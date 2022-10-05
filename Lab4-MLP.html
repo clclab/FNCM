@@ -1,0 +1,1297 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FNCM Lab 4: Multi-Layer Perceptron &#8212; My sample book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FNCM Lab 5: Reinforcement Learning" href="Lab5-RL.html" />
+    <link rel="prev" title="FNCM Lab 3: Hopfield Networks" href="Lab3-Hopfield.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
+   Linear Algebra and Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab2-SingleNeurons.html">
+   Single neuron models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab3-Hopfield.html">
+   FNCM Lab 3: Hopfield Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   FNCM Lab 4: Multi-Layer Perceptron
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab5-RL.html">
+   FNCM Lab 5: Reinforcement Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/Lab4-MLP.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLab4-MLP.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Lab4-MLP.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-and-regression">
+   1. Classification and Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-1-example-of-linear-separability">
+     Figure 1: Example of linear separability
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perceptron">
+   2. Perceptron
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-2-perceptron">
+     Figure 2: Perceptron
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-3-threshold-binary-activation-function">
+     Figure 3: Threshold binary activation function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-data">
+     2.1 Model &amp; Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prediction">
+     2.2 Prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training">
+     2.3 Training
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure-4-example-of-weight-update">
+       Figure 4: Example of weight update
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#training-on-or">
+       Training on OR
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#training-on-xor">
+       Training on XOR
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multi-layer-perceptron">
+   3. Multi-layer Perceptron
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-5-a-3-layer-perceptron-with-2-hidden-layers">
+     Figure 5: A 3-layer perceptron with 2 hidden layers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-6-sigmoid-activation-function">
+     Figure 6: Sigmoid activation function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3.1 Prediction
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure-7-feedforward-left-and-backpropagation-right">
+       Figure 7: Feedforward (left) and backpropagation (right)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     3.2 Training
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure-8-illustration-for-the-gradient-descent-method">
+       Figure 8: Illustration for the gradient descent method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-an-mlp">
+       Train an MLP
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-on-eeg-data">
+   4. Training on EEG data
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>FNCM Lab 4: Multi-Layer Perceptron</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-and-regression">
+   1. Classification and Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-1-example-of-linear-separability">
+     Figure 1: Example of linear separability
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perceptron">
+   2. Perceptron
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-2-perceptron">
+     Figure 2: Perceptron
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-3-threshold-binary-activation-function">
+     Figure 3: Threshold binary activation function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-data">
+     2.1 Model &amp; Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prediction">
+     2.2 Prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training">
+     2.3 Training
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure-4-example-of-weight-update">
+       Figure 4: Example of weight update
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#training-on-or">
+       Training on OR
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#training-on-xor">
+       Training on XOR
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multi-layer-perceptron">
+   3. Multi-layer Perceptron
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-5-a-3-layer-perceptron-with-2-hidden-layers">
+     Figure 5: A 3-layer perceptron with 2 hidden layers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#figure-6-sigmoid-activation-function">
+     Figure 6: Sigmoid activation function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3.1 Prediction
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure-7-feedforward-left-and-backpropagation-right">
+       Figure 7: Feedforward (left) and backpropagation (right)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     3.2 Training
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure-8-illustration-for-the-gradient-descent-method">
+       Figure 8: Illustration for the gradient descent method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-an-mlp">
+       Train an MLP
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-on-eeg-data">
+   4. Training on EEG data
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="fncm-lab-4-multi-layer-perceptron">
+<h1>FNCM Lab 4: Multi-Layer Perceptron<a class="headerlink" href="#fncm-lab-4-multi-layer-perceptron" title="Permalink to this headline">#</a></h1>
+<p>Submit your solutions on Canvas before Wednesday, 1 December, 17:59. Please hand in the following:</p>
+<p>A copy of this notebook with the code and results of running the code filled in the required sections. The sections to complete all start as follows:</p>
+<ul class="simple">
+<li><p><code>### YOUR CODE HERE ###</code></p></li>
+</ul>
+<p>A separate pdf file with the answer to the homework exercises. These can be identified by the following formatting:</p>
+<ul class="simple">
+<li><p><strong>Homework exercise n: question(s)/instructions.</strong></p></li>
+</ul>
+<p>Some additional questions are formatted as follows; they don’t require an answer in the pdf:</p>
+<ul class="simple">
+<li><p><strong>Exercise: question(s)/instructions.</strong></p></li>
+</ul>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>Last week we studied Hopfield nets, that consisted of <em>McCulloch-Pitts</em> units. This week, we will analyse those units in more depth. Then, we will see how to combine many neurons to build feed-forward networks called multi-layer perceptrons.</p>
+<p>We will need the <a class="reference external" href="https://docs.scipy.org/doc/numpy/index.html">numpy</a>, <a class="reference external" href="https://pandas.pydata.org/">pandas</a>, <a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://mne.tools/stable/index.html">MNE</a>, <a class="reference external" href="https://www.scipy.org/">scipy</a>, <a class="reference external" href="https://pywavelets.readthedocs.io/en/latest/">pywt</a> and <a class="reference external" href="https://scikit-learn.org/stable/">sklearn</a> libraries, as well as some functions that are defined in the <code class="docutils literal notranslate"><span class="pre">MLP.py</span></code> file and some objects loaded in the <code class="docutils literal notranslate"><span class="pre">EEG.py</span></code> file. The cell below takes care of all of this.</p>
+<p>The following will appear:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Do</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">set</span> <span class="pre">the</span> <span class="pre">path:</span> <span class="pre">/root/mne_data</span> <span class="pre">as</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">EEGBCI</span> <span class="pre">dataset</span> <span class="pre">path</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">mne-python</span> <span class="pre">config</span> <span class="pre">[y]/n?</span></code></p>
+<p>Simply press “y” (on your keyboard) and then “Enter”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install mne
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                     <span class="c1"># algebra</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>                    <span class="c1"># data manipulation</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>        <span class="c1"># plotting</span>
+<span class="kn">import</span> <span class="nn">mne</span>                             <span class="c1"># EEG dataset</span>
+<span class="kn">import</span> <span class="nn">scipy</span>                           <span class="c1"># scientific computing &amp; signal processing</span>
+<span class="kn">import</span> <span class="nn">pywt</span>                            <span class="c1"># wavelet transform</span>
+<span class="kn">import</span> <span class="nn">random</span>                          <span class="c1"># shuffling lists</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>                         <span class="c1"># machine learning tools (feature selection)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>      <span class="c1"># visualize images</span>
+<span class="kn">import</span> <span class="nn">gdown</span>                           <span class="c1"># download files from Google Drive</span>
+
+<span class="c1"># Downloading code from Simone&#39;s Google Drive</span>
+<span class="n">gdown</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;https://drive.google.com/uc?id=1Y9KSTIzvnpUjpkjj4VqG4QI8W35roJIF&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;EEG.py&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">gdown</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;https://drive.google.com/uc?id=1KNwiroZDlPCeueGVojoApmYtellMwSoL&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;MLP.py&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">MLP</span>
+<span class="kn">from</span> <span class="nn">MLP</span> <span class="k">import</span> <span class="n">MLP</span><span class="p">,</span> <span class="n">plot_errors</span>
+<span class="kn">import</span> <span class="nn">EEG</span>
+<span class="kn">from</span> <span class="nn">EEG</span> <span class="k">import</span> <span class="n">full_epochs</span><span class="p">,</span> <span class="n">cropped_epochs</span><span class="p">,</span> <span class="n">EEG_imagery</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="classification-and-regression">
+<h2>1. Classification and Regression<a class="headerlink" href="#classification-and-regression" title="Permalink to this headline">#</a></h2>
+<p>In <em>supervised learning</em> a <em>training dataset</em> <span class="math notranslate nohighlight">\(\{(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\}\)</span> is given, and the task is to find a function <span class="math notranslate nohighlight">\(y = f(x)\)</span> such that the function is applicable to unknown patterns <span class="math notranslate nohighlight">\(x\)</span>. Based on the nature of <span class="math notranslate nohighlight">\(y\)</span>, we can classify those tasks into two classes:</p>
+<ul class="simple">
+<li><p><strong>Classification</strong> is to assign a predefined label to an unknown pattern. For instance, given a picture of an animal, we need to identify if that picture is of a cat, a dog or a mouse. If there are two categories (or two classes), the problem is called binary classification; otherwise, it is multi-class classification. For the binary classification problem, there is a special case, where patterns of the two classes are perfectly separated by a hyperplane (see <a class="reference external" href="#Figure-1%3A-Example-of-linear-separability">Figure 1</a>). We call the phenomenon <em>linear separability</em>, and the hyperplane <em>decision boundary</em>.</p></li>
+<li><p><strong>Regression</strong> differs from classification in that what we need to assign to an unknown pattern is a <em>real number</em>, not a label. For instance, given the height and age of a person, can we infer their weight?</p></li>
+</ul>
+<div class="section" id="figure-1-example-of-linear-separability">
+<h3>Figure 1: Example of linear separability<a class="headerlink" href="#figure-1-example-of-linear-separability" title="Permalink to this headline">#</a></h3>
+<p><img alt="Example-of-linear-separability" src="https://docs.google.com/uc?export=download&amp;id=1DnS7gsuJyXcQQvomf8BCktG2uabMSJ9l" /></p>
+</div>
+</div>
+<div class="section" id="perceptron">
+<h2>2. Perceptron<a class="headerlink" href="#perceptron" title="Permalink to this headline">#</a></h2>
+<p>A perceptron is a simplified neuron receiving inputs as a vector of real numbers, and outputting a real number (see <a class="reference external" href="#Figure-2%3A-Perceptron">Figure 2</a>).</p>
+<div class="section" id="figure-2-perceptron">
+<h3>Figure 2: Perceptron<a class="headerlink" href="#figure-2-perceptron" title="Permalink to this headline">#</a></h3>
+<p><img alt="Perceptron" src="https://docs.google.com/uc?export=download&amp;id=1ZWsOVjYnVQJPDAfC7HP6fak0oLDLZgQa" /></p>
+</div>
+<div class="section" id="figure-3-threshold-binary-activation-function">
+<h3>Figure 3: Threshold binary activation function<a class="headerlink" href="#figure-3-threshold-binary-activation-function" title="Permalink to this headline">#</a></h3>
+<p><img alt="Threshold binary activation function" src="https://docs.google.com/uc?export=download&amp;id=1b5jNQRikzo9jWT6Haxik1d22SK6nYNhL" /></p>
+<p><span class="math notranslate nohighlight">\(
+f(z) = 
+\begin{cases}
+    1 &amp; \text{if } z &gt; 0 \\
+    0 &amp; \text{otherwise}
+\end{cases}
+\)</span></p>
+<br><p>Mathematically, a perceptron is represented by the following equation:</p>
+<div class="math notranslate nohighlight">
+\[
+y = f(w_1 x_1 + w_2 x_2 + ... + w_n x_n + b) = f(\mathbf{w}^{T}\mathbf{x} + b)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{w} = (w_1, ..., w_n)\)</span> are weights, <span class="math notranslate nohighlight">\(b\)</span> is a bias, <span class="math notranslate nohighlight">\(\mathbf{x} = (x_1, ..., x_n)\)</span> are input nodes, and <span class="math notranslate nohighlight">\(f\)</span> is an activation function.</p>
+<br>
+<p>We are going to implement and train a perceptron in this assignment. Have a look at the function definitions in the next code block.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sigmoid</span></code> and <code class="docutils literal notranslate"><span class="pre">binary_threshold</span></code> can be used as activation functions. For the present, we will use the threshold binary function for <span class="math notranslate nohighlight">\(f\)</span> (see [Figure 3](#Figure-3%3A-Threshold binary activation function)).</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Exercise</strong>: Verify that the function <code class="docutils literal notranslate"><span class="pre">binary_threshold</span></code> implements this equation.</p>
+</div></blockquote>
+<p>The other functions are defined as part of the <code class="docutils literal notranslate"><span class="pre">Perceptron</span></code> class. You can read about classes <a class="reference external" href="https://www.w3schools.com/python/python_classes.asp">here</a> but you don’t need to worry about them too much – examples of how to use the Perceptron functions are given in the next code blocks below.</p>
+<ul class="simple">
+<li><p>When a <code class="docutils literal notranslate"><span class="pre">Perceptron</span></code> object is created, it initializes a perceptron model with a vector of <code class="docutils literal notranslate"><span class="pre">weights</span></code> (<span class="math notranslate nohighlight">\(\mathbf{w}\)</span>), a <code class="docutils literal notranslate"><span class="pre">bias</span></code> term (<span class="math notranslate nohighlight">\(b\)</span>), and an <code class="docutils literal notranslate"><span class="pre">activation</span></code> function (<span class="math notranslate nohighlight">\(f\)</span>).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">compute_error</span></code> function computes the mean squared error of the perceptron model on a dataset. The mean squared error (<span class="math notranslate nohighlight">\(\text{MSE}\)</span>) and classification accuracy on a sample <span class="math notranslate nohighlight">\(D = \{(\mathbf{x}_1, y_1), ..., (\mathbf{x}_n, y_n)\}\)</span> are respectively defined as
+$<span class="math notranslate nohighlight">\(
+\text{MSE} = \frac{1}{|D|} \sum_{\langle x, y\ \in\ D \rangle} (y - \hat{y})^2, \qquad 
+\text{accuracy} = \frac{1}{n} \sum_{i=1}^n I_{y_i}(\hat{y}_i)
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>I_u(v)<span class="math notranslate nohighlight">\( is an identity function, which returns 1 if \)</span>u = v$ and 0 otherwise.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">train</span></code> function will train the perceptron model on a dataset for a given number of iterations. The <code class="docutils literal notranslate"><span class="pre">plot</span></code> function is used to visualize the progress of the model during training: it displays the dataset and the current decision boundary.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">update</span></code> function should apply the update for a single training instance. You need to complete the implementation of this function in the following exercises.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Homework exercise 1:</strong> Explain why the <span class="math notranslate nohighlight">\(\text{accuracy}\)</span> is the same as <span class="math notranslate nohighlight">\(1 - \text{MSE}\)</span> on a binary classification task.</p>
+</div></blockquote>
+</div>
+<div class="section" id="model-data">
+<h3>2.1 Model &amp; Data<a class="headerlink" href="#model-data" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sigmoid function.</span>
+<span class="sd">    </span>
+<span class="sd">    Input:</span>
+<span class="sd">      x -- an array</span>
+<span class="sd">      </span>
+<span class="sd">    Output:</span>
+<span class="sd">      sigmoid(x) = 1/(1 + exp(-x))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">binary_threshold</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Binary threshold function.</span>
+<span class="sd">    </span>
+<span class="sd">    Input:</span>
+<span class="sd">      x -- an array</span>
+<span class="sd">      </span>
+<span class="sd">    Output:</span>
+<span class="sd">      binary_threshold(x) = 1.0 if x &gt; 0, else 0.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mf">1.</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Perceptron</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">activation</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the perceptron -- sets weights, bias and</span>
+<span class="sd">        activation function; returns the perceptron object.</span>
+<span class="sd">        </span>
+<span class="sd">        Input:</span>
+<span class="sd">          dim -- dimensionality of the datapoints (integer)</span>
+<span class="sd">          activation -- the desired activation function (function)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1"># initialize all weights and bias as zero</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># activation function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">activation</span>
+            
+    <span class="k">def</span> <span class="nf">compute_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the error of the perceptron with regard to the dataset.</span>
+<span class="sd">        </span>
+<span class="sd">        Input:</span>
+<span class="sd">          X -- an (N, D) array in which each row is a data point</span>
+<span class="sd">          y -- an (N, 1) array in which each row is the target of X[i,]</span>
+<span class="sd">          </span>
+<span class="sd">        Output:</span>
+<span class="sd">          classification error (mean squared error)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1"># number of data points</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        
+        <span class="c1"># compute mean squared error</span>
+        <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> <span class="o">-</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+        
+        <span class="k">return</span> <span class="n">mse</span>
+    
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">example_input</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plot the data points and the (learned) decision boundary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">targets</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">wmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
+        <span class="n">wmax</span> <span class="o">=</span> <span class="mf">1.5</span>
+        
+        <span class="c1"># plot data points</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">targets</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">targets</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">targets</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">targets</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;rs&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        
+        <span class="c1"># plot circle around current example</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">example_input</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">example_input</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+        
+        <span class="c1"># plot decision boundary</span>
+        <span class="k">if</span> <span class="n">perceptron</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.</span> <span class="ow">and</span> <span class="n">perceptron</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">perceptron</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
+            <span class="n">db_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">wmin</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">wmax</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+            <span class="n">db_x</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">perceptron</span><span class="o">.</span><span class="n">bias</span> <span class="o">-</span> <span class="n">db_y</span><span class="o">*</span><span class="n">perceptron</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> \
+                    <span class="n">perceptron</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">db_x</span><span class="p">,</span> <span class="n">db_y</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">db_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">wmin</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">wmax</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+            <span class="n">db_y</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">perceptron</span><span class="o">.</span><span class="n">bias</span> <span class="o">-</span> <span class="n">db_x</span><span class="o">*</span><span class="n">perceptron</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> \
+                    <span class="n">perceptron</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">db_x</span><span class="p">,</span> <span class="n">db_y</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">learn_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">stepbystep</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Trains the perceptron -- iterates over a dataset and learns </span>
+<span class="sd">        online.</span>
+<span class="sd">        </span>
+<span class="sd">        Input:</span>
+<span class="sd">          X -- an (N,D) array in which each row is a data point</span>
+<span class="sd">          y -- an (N,1) array in which each row is the target of X[i,]</span>
+<span class="sd">          maxit -- the number of iterations for training</span>
+<span class="sd">          learn_rate -- the learning rate for training</span>
+<span class="sd">          stepbystep -- wait for user to continue and print each step</span>
+<span class="sd">          </span>
+<span class="sd">        Output:</span>
+<span class="sd">          errors -- error over the entire data after each iteration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">maxit</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">maxit</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">stepbystep</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;iteration&#39;</span><span class="p">,</span> <span class="n">it</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            
+            <span class="c1"># pick training example</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">it</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">example_input</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span>
+            <span class="n">example_target</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            
+            <span class="c1"># update perceptron</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">example_input</span><span class="p">,</span> <span class="n">example_target</span><span class="p">,</span> <span class="n">learn_rate</span><span class="p">,</span> <span class="n">stepbystep</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">stepbystep</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">example_input</span><span class="p">)</span>
+                <span class="n">inpt</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">inpt</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stopped after&#39;</span><span class="p">,</span> <span class="n">it</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;iterations.&#39;</span><span class="p">)</span>
+                    <span class="k">break</span>
+            
+            <span class="n">errors</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_error</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">errors</span>
+    
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">example_input</span><span class="p">,</span> <span class="n">example_target</span><span class="p">,</span> <span class="n">learn_rate</span><span class="p">,</span> <span class="n">stepbystep</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Applies a single update to the perceptron.</span>
+<span class="sd">        </span>
+<span class="sd">        Input:</span>
+<span class="sd">          example_input -- an example datapoint (vector)</span>
+<span class="sd">          example_target -- the corresponding target</span>
+<span class="sd">          learn_rate -- the learning rate (real number)</span>
+<span class="sd">          stepbystep -- whether to print the results</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1">### YOUR CODE HERE ###</span>
+        
+        <span class="c1">## TODO: make proper prediction</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="c1">## TODO: write update rules for weights and bias</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="c1">## + ...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="c1">## + ...</span>
+        
+        <span class="c1">######################</span>
+        
+        <span class="k">if</span> <span class="n">stepbystep</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">input:&#39;</span><span class="p">,</span> <span class="n">example_input</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">target:&#39;</span><span class="p">,</span> <span class="n">example_target</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">prediction:&#39;</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">weights:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">bias:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will start using a very simple dataset to train the perceptron model on: logical OR. This dataset consists of four training examples; have a look at it in the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># OR data</span>
+<span class="n">data_OR</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                             <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                             <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]})</span>
+<span class="n">data_OR</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now create a dataset for a different operation: XOR. Copy the code for the OR dataset from above, but change the values of <strong>y</strong> such that the dataset expresses the XOR operation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># XOR data</span>
+
+<span class="c1">### YOUR CODE HERE ###</span>
+<span class="c1"># data_XOR = ...</span>
+
+<span class="n">data_XOR</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now execute the code block below. It loads the data and runs the training for the perceptron. Use <code class="docutils literal notranslate"><span class="pre">stepbystep</span></code> to see the prediction and model parameters after each example. At the same time, a plot will appear to inform you which example (in the green box) is being taken, and what the current decision boundary looks like. Press Enter inside the input field to go to the next iteration.</p>
+<p>You will see that the model is not learning the task yet: you need to implement the <code class="docutils literal notranslate"><span class="pre">update</span></code> function, which you can find in <a class="reference external" href="#2.1-Model">this cell</a>. <a class="reference external" href="#2.2-Prediction">Subsection 2.2</a> and <a class="reference external" href="#2.2-Training">subsection 2.3</a> will tell you how.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data_OR</span>
+
+<span class="c1"># shuffle data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">input_size</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># initialize the perceptron</span>
+<span class="n">perceptron</span> <span class="o">=</span> <span class="n">Perceptron</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">input_size</span><span class="p">,</span>
+                        <span class="n">activation</span><span class="o">=</span><span class="n">binary_threshold</span><span class="p">)</span>
+
+<span class="c1"># print model attributes before training</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;weights:&#39;</span><span class="p">,</span> <span class="n">perceptron</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;bias:&#39;</span><span class="p">,</span> <span class="n">perceptron</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;activation function:&#39;</span><span class="p">,</span> <span class="n">perceptron</span><span class="o">.</span><span class="n">activation</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># train perceptron</span>
+<span class="n">perceptron</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+                 <span class="n">maxit</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+                 <span class="n">learn_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                 <span class="n">stepbystep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prediction">
+<h3>2.2 Prediction<a class="headerlink" href="#prediction" title="Permalink to this headline">#</a></h3>
+<p>A new pattern <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> will be assigned the label <span class="math notranslate nohighlight">\(\hat{y} = f(\mathbf{w}^T \mathbf{x} + b)\)</span>.</p>
+<blockquote>
+<div><p><strong>Homework exercise 2</strong>: Look at the code block above that implements the Perceptron class. Can you find the corresponding variables in the code for all elements of the mathematical notation? What are the variable names for the weights (<span class="math notranslate nohighlight">\(\mathbf{w}\)</span>), the bias term (<span class="math notranslate nohighlight">\(b\)</span>), an example input pattern (<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>), and the activation function <span class="math notranslate nohighlight">\(f\)</span>, in the provided Python code?</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Exercise</strong>: Rewrite the “<code class="docutils literal notranslate"><span class="pre">pred</span> <span class="pre">=</span> <span class="pre">0</span></code>” line in the <code class="docutils literal notranslate"><span class="pre">update</span></code> function of the perceptron model, such that the variable <code class="docutils literal notranslate"><span class="pre">pred</span></code> gets assigned the appropriate value according to this equation.
+Hint: you may want to use the <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.sum.html"><code class="docutils literal notranslate"><span class="pre">np.sum</span></code></a> function which returns the sum of all its input values.</p>
+</div></blockquote>
+</div>
+<div class="section" id="training">
+<h3>2.3 Training<a class="headerlink" href="#training" title="Permalink to this headline">#</a></h3>
+<p>Traditionally, a perceptron is trained in an online-learning manner with the delta rule: we randomly pick an example <span class="math notranslate nohighlight">\((\mathbf{x}, y)\)</span> and update the weights and bias as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{w}_\text{new} \leftarrow \mathbf{w}_\text{old} + \eta(y - \hat{y}_\text{old})\mathbf{x} \\
+b_\text{new} \leftarrow b_\text{old} + \eta(y - \hat{y}_\text{old})
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is a learning rate (<span class="math notranslate nohighlight">\(0 &lt; \eta &lt; 1\)</span>), <span class="math notranslate nohighlight">\(\hat{y}_\text{old}\)</span> is the prediction based on the old weights and bias.</p>
+<blockquote>
+<div><p>Implement these weight update rules in the <code class="docutils literal notranslate"><span class="pre">update</span></code> function of the perceptron model, by rewriting these lines in the code cell:</p>
+</div></blockquote>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    self.weights = self.weights ## + ...
+    self.bias = self.bias ## + ...
+</pre></div>
+</div>
+<p>The weights and bias are only updated if the prediction <span class="math notranslate nohighlight">\(\hat{y}_\text{old}\)</span> is different from the true label <span class="math notranslate nohighlight">\(y\)</span>, and the amount of update is (negatively, in the case <span class="math notranslate nohighlight">\(y = 0\)</span>) proportional to <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Intuitively, the update is to pull the decision boundary to a direction that makes the prediction on the example “less incorrect” (see <a class="reference external" href="#Figure-4%3A-Example-of-weight-update">Figure 4</a>). It can be proven that if the training dataset is linearly separable, the perceptron is guaranteed to find a hyperplane that correctly separates the training dataset (i.e., error = 0) in a finite number of update steps. Otherwise, the training won’t converge.</p>
+<div class="section" id="figure-4-example-of-weight-update">
+<h4>Figure 4: Example of weight update<a class="headerlink" href="#figure-4-example-of-weight-update" title="Permalink to this headline">#</a></h4>
+<p>The chosen example is enclosed in the green box. The update pulls the plane to a direction that makes the prediction on the example “less incorrect”.
+<img alt="Example of weight update" src="https://docs.google.com/uc?export=download&amp;id=11vTplkxk9BJN4dD1SP_QJxM-U4IVHRM8" /></p>
+</div>
+<div class="section" id="training-on-or">
+<h4>Training on OR<a class="headerlink" href="#training-on-or" title="Permalink to this headline">#</a></h4>
+<p>Now train your model on the OR data to learn the logical OR operation: re-run the code block that defines the perceptron functions (with your rewritten <code class="docutils literal notranslate"><span class="pre">update</span></code> function), and then re-run the code block for training the perceptron. Make sure you understand how the model learns by computing the prediction and update yourself (on paper) for each time step.</p>
+<blockquote>
+<div><p><strong>Homework exercise 3:</strong> In how many iterations does the training converge? Does it depend on the order of the examples? Explain.</p>
+</div></blockquote>
+</div>
+<div class="section" id="training-on-xor">
+<h4>Training on XOR<a class="headerlink" href="#training-on-xor" title="Permalink to this headline">#</a></h4>
+<p>Now train a perceptron model on your XOR data (in the code block for training the perceptron, rewrite the line <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">data_OR</span></code> so that it loads the XOR dataset that you created).</p>
+<blockquote>
+<div><p><strong>Homework exercise 4:</strong> What can you conclude about the convergence of training?</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="multi-layer-perceptron">
+<h2>3. Multi-layer Perceptron<a class="headerlink" href="#multi-layer-perceptron" title="Permalink to this headline">#</a></h2>
+<p>The perceptron model presented above is very limited: it is theoretically applicable only to linearly separable data. In order to handle non-linearly separable data, the perceptron is extended to a more complex structure, namely the multi-layer perceptron (MLP). An MLP is a neural network in which neuron layers are stacked such that the output of a neuron in a layer is only allowed to be an input to neurons in the upper layer (see <a class="reference external" href="#Figure-5%3A-A-3-layer-perceptron-with-2-hidden-layers">Figure 5</a>). Informally speaking, a neuron is activated by the sum of weighed outputs of the neurons in the lower layer. It turns out that, if the activation functions of those neurons are non-linear, such as the sigmoid (or logistic) function (see <a class="reference external" href="#Figure-6%3A-Sigmoid-activation-function">Figure 6</a>):</p>
+<div class="math notranslate nohighlight">
+\[
+\text{sigm}(z) = \frac{1}{1 + e^{-z}}
+\]</div>
+<p>then the MLP can capture high non-linearity of data: it can be proven that we can approximate any continuous function at an arbitrary small error by using complex-enough MLPs.</p>
+<div class="section" id="figure-5-a-3-layer-perceptron-with-2-hidden-layers">
+<h3>Figure 5: A 3-layer perceptron with 2 hidden layers<a class="headerlink" href="#figure-5-a-3-layer-perceptron-with-2-hidden-layers" title="Permalink to this headline">#</a></h3>
+<p>(from <a class="reference external" href="http://www.statistics4u.com/fundstat_eng/cc_ann_bp_function.html">http://www.statistics4u.com/fundstat_eng/cc_ann_bp_function.html</a>)</p>
+<p><img alt="A 3-layer perceptron with 2 hidden layers" src="https://docs.google.com/uc?export=download&amp;id=1XsU32TyLI8XeV8tMn9UA26jFGbD2q2Hq" /></p>
+<br>
+</div>
+<div class="section" id="figure-6-sigmoid-activation-function">
+<h3>Figure 6: Sigmoid activation function<a class="headerlink" href="#figure-6-sigmoid-activation-function" title="Permalink to this headline">#</a></h3>
+<p><img alt="Sigmoid activation function" src="https://docs.google.com/uc?export=download&amp;id=1rLSCR4ka5ABniYr-KwlTRZiAZeblQCFE" /></p>
+</div>
+<div class="section" id="id1">
+<h3>3.1 Prediction<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>Prediction is very fast thanks to the <em>feedforward</em> algorithm (<a class="reference external" href="#Figure-5%3A-Feedforward-(left)-and-backpropagation-(right)">Figure 7</a>, on the left). The algorithm says that, given <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, we firstly compute the outputs of the neurons in the first layer; then we compute the outputs of the neurons in the second layer; and so on until we reach the top layer.</p>
+<div class="section" id="figure-7-feedforward-left-and-backpropagation-right">
+<h4>Figure 7: Feedforward (left) and backpropagation (right)<a class="headerlink" href="#figure-7-feedforward-left-and-backpropagation-right" title="Permalink to this headline">#</a></h4>
+<p><img alt="Feedforward (left) and backpropagation (right)" src="https://docs.google.com/uc?export=download&amp;id=1UPYx7LbLF02ffOEki0nNKmQfQy1Y4GUx" /></p>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>3.2 Training<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Training an MLP is to minimize an objective function, which is related to the task that the MLP is used for. For instance, for the binary classification task, the following objective function is widely used:</p>
+<div class="math notranslate nohighlight">
+\[
+J(\theta) = \frac{1}{n} \sum_{(\mathbf{x}, y)\ \in\ D} (y - \hat{y})^2
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is a training dataset, <span class="math notranslate nohighlight">\(\hat{y}\)</span> is the output of the MLP given an input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\theta\)</span> is its set of weights and biases. In order to minimize the objective function <span class="math notranslate nohighlight">\(J(\theta)\)</span>, we will use the <em>gradient descent</em> method (see <a class="reference external" href="#Figure-8%3A-Illustration-for-the-gradient-descent-method">Figure 8</a>) which says that an amount of update for a parameter is negatively proportional to the gradient at its current value.</p>
+<div class="section" id="figure-8-illustration-for-the-gradient-descent-method">
+<h4>Figure 8: Illustration for the gradient descent method<a class="headerlink" href="#figure-8-illustration-for-the-gradient-descent-method" title="Permalink to this headline">#</a></h4>
+<p>The blue line is the tangent at the current value of the parameter <span class="math notranslate nohighlight">\(w\)</span>. If we update <span class="math notranslate nohighlight">\(w\)</span> by subtracting an amount proportional to the gradient at that point, the value of <span class="math notranslate nohighlight">\(E\)</span> will be pushed along the arrow and hence decrease. However, this method only guarantees to converge to a local minimum.</p>
+<p><img alt="Illustration for the gradient descent method" src="https://docs.google.com/uc?export=download&amp;id=1kJoLc-i55OO6CRRDv0KVvWvQMoB-x2Fj" /></p>
+<p>We will now train a multi-layer perceptron on the OR and XOR data. The MLP itself is already implemented for you, as well as the feedforward and backpropagation algorithms for training it (if you want, you can have a look at the code in the <code class="docutils literal notranslate"><span class="pre">MLP.py</span></code> file). Here we will just load the MLP and experiment with a few settings. When you execute the codeblock below, you will see the MLP’s final accuracy on the training dataset, in addition to a plot of the progress over training. This plot shows the <em>weighed sum of squared errors</em> at each iteration:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{weighed SSE} = \sum_{\langle x, y \rangle\ \in\ D} \frac{1}{\big|\{\langle x', y' \rangle\ \in\ D : y' = y \}\big|} (y - \hat{y})^2
+\]</div>
+<p>It is different from the MSE that we saw earlier. For one, it computes the sum instead of the mean of the errors. Secondly, the sum is weighed with respect to the class sizes. In many datasets, the size of the different classes varies. There may be more pictures of cats than of dogs, for instance. The weighing factor compensates for this, so that a model that always predicts “cat” has no better performance than a model that always outputs “dog”.</p>
+</div>
+<div class="section" id="train-an-mlp">
+<h4>Train an MLP<a class="headerlink" href="#train-an-mlp" title="Permalink to this headline">#</a></h4>
+<p>Now train the MLP on the OR and XOR datasets by changing and executing the code block below. Experiment by varying the number of iterations, the learning rate, and the number of hidden nodes in order to answer the homework exercises below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data_OR</span>
+
+<span class="c1"># shuffle data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">input_size</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># initialize the MLP</span>
+<span class="n">mlp</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">n_input</span><span class="o">=</span><span class="n">input_size</span><span class="p">,</span> 
+          <span class="n">n_hidden</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+          <span class="n">n_output</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># train the MLP on the dataset</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">mlp</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
+                   <span class="n">learn_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                   <span class="n">maxit</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># make predictions on the training dataset</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mlp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))])</span>
+
+<span class="c1"># compute final accuracy</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">predictions</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Final accuracy:&#39;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+
+<span class="c1"># plot weighed SSE over iterations</span>
+<span class="n">plot_errors</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="s1">&#39;Weighed SSE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Homework exercise 5:</strong> Find a minimum number of iterations such that the accuracy is 1 for the OR data, and report the number.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Homework exercise 6:</strong> How many hidden nodes do you minimally need to learn the XOR function? Motivate your answer with a theoretical explanation and an empirical validation.</p>
+</div></blockquote>
+<p>The exercises above should have given you some feel of how a perceptron and an MLP learn to predict an output from data, and the different types of learned decision boundaries needed to properly classify various datasets. On the interactive <a class="reference external" href="https://playground.tensorflow.org/">Neural Network Playground</a> app, you can play with even more datasets, network structures and training settings. It also includes very nice visualizations of the input features, weights and outputs per neuron.</p>
+<blockquote>
+<div><p><strong>Exercise</strong>: Can you (qualitatively) reproduce the OR and XOR results from the exercises above on the Neural Network Playground?</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Homework exercise 7</strong>: Is there a way for a network with no hidden layers (= a perceptron) to learn XOR-type data, that is seperated non-linearly?</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="training-on-eeg-data">
+<h2>4. Training on EEG data<a class="headerlink" href="#training-on-eeg-data" title="Permalink to this headline">#</a></h2>
+<p>We will now look at how well the MLP can be trained to classify data that we did not create ourselves, but which were recorded from brain activity. We will use a dataset from the <a class="reference external" href="https://mne.tools/stable/index.html">MNE</a> library, which is well-known and widely used for the analysis of neurophysiological data in Python. The dataset (EEGBCI, described at <a class="reference external" href="https://www.physionet.org/content/eegmmidb/1.0.0/">PhysioNet</a>) contains EEG recordings on various tasks, including a <em>motor imagery</em> task: subjects were instructed to imagine moving either their hands or their feet, given some visual cue. We will use the data from one participant performing this task, in 45 trials (21 for hands, 24 for feet), while EEGs were recorded from 64 electrodes across the scalp. First we load the data.</p>
+<p>We have loaded the EEG data from 0.5 seconds before the visual cue was presented, until 0.5 seconds after it was presented. The plots below show the raw EEG data for each of the 64 channels, averaged over trials, with the cue presentation at <span class="math notranslate nohighlight">\(t = 0\)</span>. Can you see the difference in EEGs between when the subject was thinking of moving their hands vs. moving their feet?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feet_plot</span> <span class="o">=</span> <span class="n">full_epochs</span><span class="p">[</span><span class="s1">&#39;feet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">average</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hands_plot</span> <span class="o">=</span> <span class="n">full_epochs</span><span class="p">[</span><span class="s1">&#39;hands&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">average</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We want to see whether the MLP and perceptron can also learn to distinguish these patterns, and thereby predict from an EEG signal which extremities a subject is imaginarily moving.
+For this we will only use the signals from the point where the subject was actually imagining the movement (<span class="math notranslate nohighlight">\(t = 0\)</span>). Furthermore, we don’t use <em>all</em> datapoints in the raw EEG signal; instead, we compute some features with which we aim to capture the most important information about the wave. For our toy problem, it turns out that an extremely crude encoding of this information will do.</p>
+<p>We intend to capture some of the temporal properties of the EEG signal (how the wave changes over time), as well as some spectral properties (how intense the signal is in different frequency bands).</p>
+<p>For the <em>temporal properties</em>, we divide the y-axis range of the EEG signal into 3 quantiles (in the plot below, the regions divided by the grey horizontal lines). From every raw EEG wave (the black line), we first remove the noise (giving the blue line), and then compute the average of the transformed signal at a few evenly spread points (blue dots). For each of those dots, we add a 0, 1 or 2 to our list of features depending on what quantile they fall in. Hence, the list of temporal features encoding the signal below would be <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">2]</span></code>. The quantiles are computed separately for each channel of every epoch, such that there will be an approximately equal number of points in each of the three ranges — the 0s, 1s and 2s therefore (very crudely!) encode the <em>relative</em> upward and downward movement of the wave over time.</p>
+<img src="https://docs.google.com/uc?export=download&id=1qrKyYdmrXcaaGRs4hEazeV466sWi9Fmv" alt="Temporal feature extraction" width="800"/><p>For the <em>spectral properties</em>, we look at three different frequency bands: theta (3.5 - 7.5 Hz), alpha (7.5 - 13 Hz) and beta (14+ Hz). We want to encode the relative distribution of spectral power density in these three bands: which frequency band contains most movement, and which the least? Again, we encode this using 0, 1 and 2: this time, the numbers mean “least”, “middle” and “most” spectral power density. The plot below shows the spectral power density for different frequency ranges across the entire signal timeframe. For this signal, the alpha band has the highest power density, followed by theta and finally beta. The list of spectral features encoding this signal would therefore be <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">0]</span></code>.</p>
+<img src="https://docs.google.com/uc?export=download&id=1DrG-9-n_Pfb99Jow8gClst_3Ejdh8UEf" alt="Spectral feature extraction" width="800"/><p>Ultimately, we select the best of all spectral and temporal features across trials, such that we end up with a list of 96 numbers (all 0s, 1s and 2s) encoding the EEG signal per trial. You don’t need to understand the specifics of the feature extraction and selection procedure (although you can have a look in the <code class="docutils literal notranslate"><span class="pre">EEG.py</span></code> file if you’re curious), but you can probably see that these features omit a lot of information from the EEG signal. Maybe you can even already think of better ways to represent this information (a potential mini-project!). Nevertheless, these very crude representations may still provide enough information for the MLP to learn to distinguish between imagined hand or foot movement.</p>
+<p>To see how well the MLP model can learn to do this classification, we split the data into a training and a test set: we will train the model on two thirds of the data, and then test its prediction accuracy on the other third. As such, we evaluate how well the learned decision boundary (in this case a manydimensional hypersurface) will generalize to correctly classify unseen data — this method of model validation is called <em>cross-validation</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shuffle data</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;trial_numbers&#39;</span><span class="p">])))</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+<span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;trial_numbers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;trial_numbers&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+<span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+<span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+
+<span class="c1"># split 2/3 to train &amp; test set</span>
+<span class="n">trials_train</span> <span class="o">=</span> <span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;trial_numbers&#39;</span><span class="p">][:</span><span class="mi">30</span><span class="p">]</span>
+<span class="n">trials_test</span> <span class="o">=</span> <span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;trial_numbers&#39;</span><span class="p">][</span><span class="mi">30</span><span class="p">:]</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">][:</span><span class="mi">30</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">][</span><span class="mi">30</span><span class="p">:]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">][:</span><span class="mi">30</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">EEG_imagery</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">][</span><span class="mi">30</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code block below trains the MLP, plots the error over training and prints the final accuracy on the test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># train MLP &amp; plot training error</span>
+<span class="n">mlp</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">n_input</span><span class="o">=</span><span class="mi">96</span><span class="p">,</span> 
+          <span class="n">n_hidden</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+          <span class="n">n_output</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">errors</span> <span class="o">=</span> <span class="n">mlp</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> 
+                   <span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">learn_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">plot_errors</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="s1">&#39;Weighed SSE&#39;</span><span class="p">)</span>
+
+<span class="c1"># make predictions on test set</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mlp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">))])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">accurate</span> <span class="o">=</span> <span class="p">((</span><span class="n">predictions</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">accurate</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Final accuracy:&#39;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Homework exercise 8:</strong>
+Train the MLP on the EEG dataset a few times while varying the parameters (you can vary the number of hidden nodes and the training parameters <code class="docutils literal notranslate"><span class="pre">maxit</span></code> and <code class="docutils literal notranslate"><span class="pre">learn_rate</span></code>).</p>
+<ol class="simple">
+<li><p>Run the training several times with the same settings. Do you get the same results every time? Why or why not?</p></li>
+<li><p>Training on the EEG data, how does the number of hidden nodes relate to the accuracy? Note: for proper empirical justification, you need to take the average over several runs. You may include a table or a plot to report your findings.</p></li>
+<li><p>What can you conclude about the relation between convergence speed, learning rate and number of hidden nodes?</p></li>
+</ol>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If your model does not achieve 100% accuracy on the test set, it can be worth exploring the specific test set items that led to an incorrect prediction: can we find the reason that the MLP assigned these trials to the wrong class? Do they also look particularly confusing to us?</p>
+<p>The cells below plot the EEG trials assigned to the <em>training set</em>, i.e. the epochs based on which the MLP learned to distinguish hands vs. feet in the motor imagery data. Note that the epochs here are cropped from the moment of cue presentation (t = 0). We again separately plot the training set epochs (averaged over trials) for imagined feet movement vs. imagined hand movement.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot epochs in training set for feet (labeled 0)</span>
+<span class="n">feet_trials</span> <span class="o">=</span> <span class="n">trials_train</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="n">train_feet_plot</span> <span class="o">=</span> <span class="n">cropped_epochs</span><span class="p">[</span><span class="n">feet_trials</span><span class="p">]</span><span class="o">.</span><span class="n">average</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot epochs in training set for hands (labeled 1)</span>
+<span class="n">hands_trials</span> <span class="o">=</span> <span class="n">trials_train</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="n">train_hands_plot</span> <span class="o">=</span> <span class="n">cropped_epochs</span><span class="p">[</span><span class="n">hands_trials</span><span class="p">]</span><span class="o">.</span><span class="n">average</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, for which <em>unseen</em> epochs did the MLP not manage to make a correct prediction? The code below separately plots the EEG data for each <em>misclassified</em> trial in the <em>test set</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prediction_mistakes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">accurate</span> <span class="o">==</span> <span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">prediction_mistakes</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Trial:&#39;</span><span class="p">,</span> <span class="n">trials_test</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Prediction:&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Correct label:&#39;</span><span class="p">,</span> <span class="n">y_test</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+    <span class="n">cropped_epochs</span><span class="p">[</span><span class="n">trials_test</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span><span class="o">.</span><span class="n">average</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Homework exercise 9:</strong> Explore some misclassified epochs from an MLP trained with the default settings (5 hidden nodes, 100 iterations, learning rate 0.1). Can you see why the MLP made a mistake? Explain your observations, and include the epoch plots as illustration.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Lab3-Hopfield.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">FNCM Lab 3: Hopfield Networks</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Lab5-RL.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">FNCM Lab 5: Reinforcement Learning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    <div class="extra_footer">
+      <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+</div>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

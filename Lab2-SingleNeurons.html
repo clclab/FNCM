@@ -1,0 +1,877 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single neuron models &#8212; My sample book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FNCM Lab 3: Hopfield Networks" href="Lab3-Hopfield.html" />
+    <link rel="prev" title="Linear Algebra and Ordinary Differential Equations" href="Lab1-LinearAlgebra_ODEs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
+   Linear Algebra and Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Single neuron models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab3-Hopfield.html">
+   FNCM Lab 3: Hopfield Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab4-MLP.html">
+   FNCM Lab 4: Multi-Layer Perceptron
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab5-RL.html">
+   FNCM Lab 5: Reinforcement Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/Lab2-SingleNeurons.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLab2-SingleNeurons.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Lab2-SingleNeurons.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-fitzhugh-nagumo-model">
+   The Fitzhugh-Nagumo model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-izhikevich-model">
+   The Izhikevich model
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Single neuron models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-fitzhugh-nagumo-model">
+   The Fitzhugh-Nagumo model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-izhikevich-model">
+   The Izhikevich model
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="section" id="single-neuron-models">
+<h1>Single neuron models<a class="headerlink" href="#single-neuron-models" title="Permalink to this headline">#</a></h1>
+<p>Submit your solutions on Canvas before Wednesday, 17 November, 17:59. Please hand in the following:</p>
+<ul class="simple">
+<li><p>A copy of this notebook with the <strong>code</strong> and results of running the code filled in the required sections. The sections to complete all start as follows:</p></li>
+</ul>
+<p><code>### YOUR CODE HERE ###</code></p>
+<ul class="simple">
+<li><p>A separate pdf file with the answer to the <strong>homework exercises</strong>. These can be identified by the following formatting:
+<br></p></li>
+</ul>
+<blockquote>
+<div><p><em><strong>Homework exercise n</strong></em>: question(s).
+<br></p>
+</div></blockquote>
+<p>Some coding exercises are exaplined in the text cells and start with <em><strong>Exercise</strong></em> e.g. when we just ask you to change variables or when the coding is a little more involved.</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<hr class="docutils" />
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>In the previous computer lab we learned how to use Python to plot phase portraits as well as draw nullclines and trajectories of a 2-dimensional system of linear ODEs. Today we will use the same techniques to study the behaviour of two models of single neuron dynamics: the Fitzhugh-Nagumo model and the Izhikevich model. You will need to re-use some of the code you wrote in the previous computer lab.</p>
+</div>
+<div class="section" id="the-fitzhugh-nagumo-model">
+<h2>The Fitzhugh-Nagumo model<a class="headerlink" href="#the-fitzhugh-nagumo-model" title="Permalink to this headline">#</a></h2>
+<p>The Fitzhugh-Nagumo model describes the neuronal dynamics with the following two
+ODEs, where <span class="math notranslate nohighlight">\(v\)</span> refers to the membrane potential, <span class="math notranslate nohighlight">\(r\)</span> is a recovery or feedback variable, <span class="math notranslate nohighlight">\(I\)</span>
+is the strength of the input current and <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> are constant parameters:</p>
+<p>\begin{align*}
+\frac{dv}{dt} &amp;= f(v, r) = c(v-\frac{1}{3}v^3 + r + I) \
+\frac{dr}{dt} &amp;= g(v, r) = -\frac{1}{c}(v - a + br)
+\end{align*}</p>
+<p>Note that, for the Fitzhugh-Nagumo model as it is presented here, the sign of the
+membrane potential is opposite to what you would expect in a biological neuron. That
+means, actions potentials are modeled as negative, rather than positive, deflections.</p>
+<p>Unless otherwise told, assume the following parameters: <span class="math notranslate nohighlight">\(a = 0.3\)</span>; <span class="math notranslate nohighlight">\(b = 0.8\)</span>; <span class="math notranslate nohighlight">\(c = 3\)</span>; <span class="math notranslate nohighlight">\(I = 0\)</span>.</p>
+<blockquote>
+<div><p><em><strong>Homework exercise 1</strong></em> Check what the equations of change of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> produce for some of the extreme values (<span class="math notranslate nohighlight">\(-\infty\)</span>,<span class="math notranslate nohighlight">\(0\)</span>,<span class="math notranslate nohighlight">\(\infty\)</span>) of these variables. I.e., what do you get when both <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> are <span class="math notranslate nohighlight">\(0\)</span>? What when <span class="math notranslate nohighlight">\(v\)</span> is very large but <span class="math notranslate nohighlight">\(r=0\)</span>? This is a “pen&amp;paper” exercise: solve it without the use of code.</p>
+</div></blockquote>
+<p>We will use a function called <code>dvdr</code> that takes an <span class="math notranslate nohighlight">\(v\)</span>-value, a <span class="math notranslate nohighlight">\(r\)</span>-value and a vector <span class="math notranslate nohighlight">\((a, b, c, I)\)</span> containing both the parameters of the system and its input. The function returns a vector with <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> and <span class="math notranslate nohighlight">\(\frac{dr}{dt}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>    <span class="c1"># package for plotting</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                 <span class="c1"># package for basic algebra</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">odeint</span> <span class="c1"># package to solve ODEs</span>
+
+<span class="k">def</span> <span class="nf">dvdr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">dv</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">r</span> <span class="o">+</span> <span class="n">param</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">dr</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dv</span><span class="p">,</span><span class="n">dr</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check your answers from the pen &amp; paper exercise above using the function <code>dvdr</code>. Use e.g., <span class="math notranslate nohighlight">\(100\)</span> rather than <span class="math notranslate nohighlight">\(\infty\)</span> to represent “very large”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define parameter vector</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">param</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span> 
+
+<span class="c1"># call newly defined function</span>
+<span class="n">dvdr</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">param</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also plot the vector field for this dynamical system for a grid of point in its state space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create v and r vectors</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># create arrays with all combinations of x and y</span>
+<span class="n">v_vals</span><span class="p">,</span> <span class="n">r_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># generate dv and dr at all points</span>
+<span class="c1">#a = 0.7; b = 0.8; c = 3; I = 0</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">param</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span> 
+
+<span class="c1"># evaluate ODE at all points in our grid</span>
+<span class="n">v_dirs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)))</span>
+<span class="n">r_dirs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)):</span>
+        <span class="n">dirs</span> <span class="o">=</span> <span class="n">dvdr</span><span class="p">(</span><span class="n">v_vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">r_vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">v_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dirs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">r_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dirs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># make vector fields</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">v_vals</span><span class="p">,</span> <span class="n">r_vals</span><span class="p">,</span> <span class="n">v_dirs</span><span class="p">,</span> <span class="n">r_dirs</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span> <span class="c1">#r: xlocations v: ylocations r_dirs: xdirections v_dirs: ydirections</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Can you see where the nullclines are? Which one is the <span class="math notranslate nohighlight">\(r\)</span>-nullcline, which one the <span class="math notranslate nohighlight">\(v\)</span>-nullcline? Where (approximately) do they intersect?</p>
+<p>The <span class="math notranslate nohighlight">\(v\)</span>- and <span class="math notranslate nohighlight">\(r\)</span>-nullclines of the Fitzhugh-Nagumo model are in fact given by:</p>
+<p>\begin{align*}
+r(v) &amp;= \frac{1}{3}v^3 - v - I\
+r(v) &amp; = \frac{a-v}{b}
+\end{align*}</p>
+<br>
+<blockquote>
+<div><p><em><strong>Homework exercise 2:</strong></em> Explain what these two equations describe. Analytically show that the two previous equations indeed describe the nullclines of the system. This is a “pen&amp;paper” exercise: solve it without the use of code.</p>
+</div></blockquote>
+<p>Here are two functions <code>v_nullcline</code> and <code>r_nullcline</code> that return the <span class="math notranslate nohighlight">\(r\)</span> values of the <span class="math notranslate nohighlight">\(v\)</span>- and <span class="math notranslate nohighlight">\(r\)</span>-nullclines when given input <span class="math notranslate nohighlight">\(v\)</span> and a parameter vector containing the parameters of the system.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">v_nullcline</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">v</span> <span class="o">-</span> <span class="n">param</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+<span class="k">def</span> <span class="nf">r_nullcline</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use these functions to plot the null cline. Run the code below, then do the pen &amp; paper exercise, and then complete the code to insert the vector field automatically in the plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+
+<span class="c1"># add the vector field to the graph</span>
+
+<span class="c1">###</span>
+
+<span class="c1"># make and plot nullclines</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">r_nullcline</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">param</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">v_nullcline</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">param</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><em><strong>Homework exercise 3</strong></em> What is the vector field around the equilibrium? This is a qualitative question, not a quatitive one: just try to guess how it is supposed to behave. This is a “pen&amp;paper” exercise: solve it without the use of code.</p>
+</div></blockquote>
+<p>Now let’s use the <code>odeint</code> function to plot some trajectories.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ode_system</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">state</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">state</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># Here you use our dvdr function</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">dvdr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">r</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial value points</span>
+<span class="n">v_init</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">r_init</span><span class="o">=</span><span class="mi">1</span>
+<span class="c1"># time points to evaluate</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v_init</span><span class="p">,</span><span class="n">r_init</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v_init</span><span class="p">,</span> <span class="n">r_init</span><span class="p">]);</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">ode_system</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">param</span><span class="p">,))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trajectory</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">trajectory</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><em><strong>Exercise</strong></em>: Try to plot trajectories for different initial points.</p>
+</div></blockquote>
+<p>We can automate this for a grid of initial points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># package to solve ODEs</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">odeint</span>
+
+<span class="c1"># make grid of initial values for trajectories</span>
+<span class="n">v_init</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">r_init</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">v_grid</span><span class="p">,</span> <span class="n">r_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">v_init</span><span class="p">,</span> <span class="n">r_init</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v_grid</span><span class="p">,</span><span class="n">r_grid</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+
+<span class="c1"># time points to evaluate</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="c1"># compute trajectories for each point on grid</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">v_init</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">r_init</span><span class="p">)):</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v_init</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">r_init</span><span class="p">[</span><span class="n">j</span><span class="p">]]);</span>
+        <span class="n">trajectory</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">ode_system</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">param</span><span class="p">,))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trajectory</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">trajectory</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now use our functions to study the behaviour of the system, like we did last time. That means we want to visualise the phase plot with nullclines and some trajectories. It should be fairly easy to adapt the script of the previous lab to plot the behaviour of the new system. Recall that the steps we are going through are:</p>
+<ul class="simple">
+<li><p>Create vectors with <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> values. We previously used <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> as names; it doesn’t really matter what you call them in your script as long as you are consistent and clear.</p></li>
+<li><p>Use np.meshgrid to create arrays with all possible combinations of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> values.</p></li>
+<li><p>Use your function <code>dvdr</code> to generate the <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> and <span class="math notranslate nohighlight">\(\frac{dr}{dt}\)</span> at all previously defined points and put them in a vector.</p></li>
+<li><p>Use <code>ax.quiver</code> to create the vector fields (use <code>fig, ax = plt.subplots()</code> before).</p></li>
+<li><p>Generate a (fine grained) sequence of <span class="math notranslate nohighlight">\(v\)</span>-values to plot your nullclines, fill vectors with the <span class="math notranslate nohighlight">\(r\)</span> values on these values.</p></li>
+<li><p>Plot the nullclines.</p></li>
+<li><p>Make a vector of time values and a grid of <span class="math notranslate nohighlight">\(v\)</span>- and <span class="math notranslate nohighlight">\(r\)</span>-values corresponding to starting points for the trajectories.</p></li>
+<li><p>Plot the trajectories for each starting point using <code>odeint()</code>. That function takes a function <code>ode_system</code> as an input.</p></li>
+</ul>
+<blockquote>
+<div><p><em><strong>Exercise</strong></em>: Draw the phase plane of the Fitzhugh-Nagumo model with <span class="math notranslate nohighlight">\(a = 0.7, b = 0.8, c = 3\)</span>
+and set the injected current <span class="math notranslate nohighlight">\(I\)</span> to <span class="math notranslate nohighlight">\(0\)</span>. The equilibrium point for these parameters is
+<span class="math notranslate nohighlight">\((1.1994, −0.62426)\)</span>. Confirm (on paper or by plotting it) that this point is indeed an
+equilibrium.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+
+<span class="c1"># create v and r vectors</span>
+
+<span class="c1"># create arrays with all combinations of x and y</span>
+
+<span class="c1"># generate dv and dr at all points</span>
+
+<span class="c1"># evaluate ODE at all points in our grid</span>
+
+<span class="c1"># make vector field</span>
+
+<span class="c1"># compute and plot nullclines</span>
+
+<span class="c1"># make grid of initial values for trajectories</span>
+
+<span class="c1"># time points to evaluate</span>
+
+<span class="c1"># compute trajectories for each point on grid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When no pertubations are made to the system, it will stay in its equilibrium, as both <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> and <span class="math notranslate nohighlight">\(\frac{dr}{dt}\)</span> are equal to <span class="math notranslate nohighlight">\(0\)</span>. Briefly interjecting a current <span class="math notranslate nohighlight">\(I\)</span> into the system will move it a little bit in the state space (look at the differential equations to understand how). We do not explicitly model a current as this would be require more coding. (NB: if you change the value for <span class="math notranslate nohighlight">\(I\)</span> instead, you will mimic a constant, not a brief input, and this will also shift the equilibrium point.) Instead we  manually set the starting point of the trajectory to different points in the state space and observe what happens.</p>
+<br>
+<blockquote>
+<div><p><em><strong>Homework exercise 4:</strong></em> What happens when the neuron is depolarized from its equilibrium value? In other words, explain what happens to the trajectories in the phase portait you created above. Does the system get back to the equilibrium? Do you get different types of behaviour depending on how much you perturbate the system? Make plots of the corresponding trajectories to illustrate this. How would you describe the path back to the equilibrium?</p>
+</div></blockquote>
+<blockquote>
+<div><p><em><strong>Homework exercise 5:</strong></em> Plot the value of <span class="math notranslate nohighlight">\(v\)</span> on different trajectories in the state space (i.e. starting at different states <span class="math notranslate nohighlight">\((v,r)\)</span>) against the time <span class="math notranslate nohighlight">\(t\)</span>: that is, plot <span class="math notranslate nohighlight">\(v(t)\)</span>. Does this plot remind you of something?</p>
+<p>Hint: you can use the output of the function <code>odeint</code> to create a plot of <span class="math notranslate nohighlight">\(v\)</span> versus <span class="math notranslate nohighlight">\(t\)</span>. <code>odeint</code> gives as output a matrix <code>trajectories</code> with the <span class="math notranslate nohighlight">\(v\)</span>-values in the first column and the <span class="math notranslate nohighlight">\(r\)</span>-values in the second column.</p>
+</div></blockquote>
+<blockquote>
+<div><p><em><strong>Homework exercise 6:</strong></em> Whether the nullclines cross on the left or on the right of the top of the curves determines the stability of the equilibrium. Can you change the parameters such that a qualitive change of the system occurs (i.e., a bifurcation) and the equilibrium is not stable anymore? What kind of equilibrium do we have in this case? Optionally, you can plot <span class="math notranslate nohighlight">\(v(t)\)</span> for a longer time span (such as 40 seconds) to understand the development of <span class="math notranslate nohighlight">\(v\)</span> over time.}</p>
+</div></blockquote>
+<br><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-izhikevich-model">
+<h2>The Izhikevich model<a class="headerlink" href="#the-izhikevich-model" title="Permalink to this headline">#</a></h2>
+<p>The Izhikevich model is described by the following system of two ODEs:
+\begin{align*}
+\frac{dv}{dt} &amp;= f(v,u) = 0.04v^2 + 5v + 140 - u + I \
+\frac{du}{dt} &amp;= g(v,u) = a(bv - u)
+\end{align*}
+with the reset condition: <span class="math notranslate nohighlight">\(\text{if } v \ge 30 \text{ then } v \leftarrow c;\;\; u \leftarrow u+d\)</span>. The model is discontinous at the reset point - this way Izhikevich avoids having to explicitly model how the system gets back to the equilibrium point. Therefore, we cannot use the <code>odeint</code> to compute trajectories, but we need to do it point by point using the for loop. Check out the code under the comment <em>compute trajectories</em> below if you are interested how it can be done.</p>
+<p>The nullclines of the Izhikevich neuron are given by:</p>
+<p>\begin{align*}
+u(v) &amp;= 0.04v^2 + 5v + 14 + I\
+u(v) &amp;= bv
+\end{align*}</p>
+<p>Both the <code>dvdu</code> function and the nullcline functions are already implemented in the code below, you can just use them as they are.</p>
+<br>
+<blockquote>
+<div><p><em><strong>Homework exercise 7:</strong></em> The Izhikevich neuron model can, depending on the parameters, exhibit several types of spiking behaviour, such as (1) regular spiking, (2) fast spiking or (3) intrinsically bursting behaviour. Find parameter sets that lead to these three different types of behaviour (look at <a class="reference external" href="http://www.izhikevich.org/publications/spikes.htm">http://www.izhikevich.org/publications/spikes.htm</a> for help) and see if you can understand why they behave this way by plotting their trajectories. Hand in the phase portraints and <span class="math notranslate nohighlight">\(v(t)\)</span>-plots of the three different neuron types to show that they indeed exhibit the desired behaviour. Izhikevich assumes a constant input current of <span class="math notranslate nohighlight">\(I=10\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">odeint</span>
+
+<span class="c1">### set the parameters/initialise values</span>
+<span class="n">v_init</span> <span class="o">=</span> <span class="o">-</span><span class="mi">65</span><span class="p">;</span> <span class="n">u_init</span> <span class="o">=</span> <span class="o">-</span><span class="mi">18</span> <span class="c1"># these are the initial values of the trajectory</span>
+<span class="n">times</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">;</span> <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
+
+<span class="c1"># set values for parameters (a, b and c and d or I)</span>
+<span class="c1"># these are only example parameters!</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span> <span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">I</span><span class="p">])</span>
+
+<span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">80</span><span class="p">;</span> <span class="n">vmax</span> <span class="o">=</span> <span class="mi">40</span> <span class="p">;</span><span class="n">vstep</span> <span class="o">=</span> <span class="mi">5</span>        <span class="c1"># set min, max and stepsize for v</span>
+<span class="n">umin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">30</span><span class="p">;</span> <span class="n">umax</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span> <span class="n">ustep</span> <span class="o">=</span> <span class="mf">2.5</span>      <span class="c1"># set min, max and stepsize for u</span>
+
+<span class="c1"># create v and r values</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">vstep</span><span class="p">)</span>            <span class="c1"># create v values</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">umin</span><span class="p">,</span> <span class="n">umax</span><span class="p">,</span> <span class="n">ustep</span><span class="p">)</span>            <span class="c1"># create u values</span>
+<span class="n">v_vals</span><span class="p">,</span> <span class="n">u_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+
+<span class="c1">### ODE definition</span>
+<span class="k">def</span> <span class="nf">dvdu</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="n">c</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="n">d</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="n">I</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">dv</span> <span class="o">=</span> <span class="mf">0.04</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">v</span> <span class="o">+</span> <span class="mi">140</span> <span class="o">-</span> <span class="n">u</span> <span class="o">+</span> <span class="n">I</span>
+    <span class="n">du</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">v</span> <span class="o">-</span> <span class="n">u</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">:</span> <span class="c1"># reset condition</span>
+        <span class="n">dv</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="n">c</span>
+        <span class="n">du</span> <span class="o">=</span> <span class="n">d</span>
+        
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dv</span><span class="p">,</span><span class="n">du</span><span class="p">])</span>
+
+<span class="c1">### nullcline functions</span>
+<span class="k">def</span> <span class="nf">v_nullcline</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="k">return</span> <span class="mf">0.04</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">v</span> <span class="o">+</span> <span class="mi">140</span> <span class="o">+</span> <span class="n">I</span>
+
+<span class="k">def</span> <span class="nf">u_nullcline</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">b</span><span class="o">*</span><span class="n">v</span>
+
+<span class="c1"># evaluate ODE at all points in our grid</span>
+<span class="n">v_dirs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)))</span>
+<span class="n">u_dirs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)))</span>
+<span class="n">vnorm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)))</span>
+<span class="n">unorm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">v_vals</span><span class="p">)):</span>
+        <span class="n">dirs</span> <span class="o">=</span> <span class="n">dvdu</span><span class="p">(</span><span class="n">v_vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">u_vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">params</span><span class="p">)</span>
+        <span class="n">v_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dirs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">u_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dirs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># compute normalized arrows (all of the same length) to make display more neat</span>
+        <span class="n">vnorm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span> <span class="n">v_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">v_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">unorm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">v_dirs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">vnorm</span><span class="p">,</span> <span class="n">unorm</span><span class="p">,</span><span class="n">minlength</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">#v: xlocations u: ylocations r_dirs: xdirections v_dirs: ydirections </span>
+<span class="c1">#q = ax.quiver(v, u, v_dirs, u_dirs,minlength = 2)</span>
+
+<span class="c1"># generate data to plot nullclines</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span> <span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">vstep</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>    <span class="c1"># create v-values, use vmin and vmax from before</span>
+<span class="n">v_nc</span> <span class="o">=</span> <span class="n">v_nullcline</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>            <span class="c1"># generate y values for v-nullcline</span>
+<span class="n">u_nc</span> <span class="o">=</span> <span class="n">u_nullcline</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>            <span class="c1"># generate r values for r-nullcline</span>
+ 
+<span class="c1"># plot nullclines</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v_nc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u_nc</span><span class="p">)</span>
+
+<span class="c1"># plot reset threshold</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">umin</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">umax</span><span class="o">+</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+
+<span class="c1">#### compute trajectories ###</span>
+
+<span class="c1"># allocate space</span>
+<span class="n">v_traj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">times</span><span class="p">);</span> <span class="n">u_traj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+<span class="n">v_traj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">v_init</span><span class="p">;</span> <span class="n">u_traj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">u_init</span>
+
+<span class="c1"># compute trajectories point by point</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">times</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">v_traj</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span> <span class="c1"># update according to ODE using the dvdu function</span>
+        <span class="p">[</span><span class="n">dv</span><span class="p">,</span><span class="n">du</span><span class="p">]</span><span class="o">=</span><span class="n">dvdu</span><span class="p">(</span><span class="n">v_traj</span><span class="p">[</span><span class="n">t</span><span class="p">],</span><span class="n">u_traj</span><span class="p">[</span><span class="n">t</span><span class="p">],</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">v_traj</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_traj</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">+</span> <span class="n">dv</span><span class="o">*</span><span class="n">dt</span>
+        <span class="n">u_traj</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_traj</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">du</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># update according to reset condition</span>
+        <span class="n">v_traj</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+        <span class="n">v_traj</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+        <span class="n">u_traj</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_traj</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span>
+
+<span class="c1"># plot trajectory</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v_init</span><span class="p">,</span> <span class="n">u_init</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>        
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v_traj</span><span class="p">,</span><span class="n">u_traj</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#plot v-values against time</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">times</span><span class="p">),</span><span class="n">v_traj</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Lab1-LinearAlgebra_ODEs.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Linear Algebra and Ordinary Differential Equations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Lab3-Hopfield.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">FNCM Lab 3: Hopfield Networks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    <div class="extra_footer">
+      <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+</div>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FNCM Lab 5: Reinforcement Learning &#8212; My sample book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="FNCM Lab 4: Multi-Layer Perceptron" href="Lab4-MLP.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
+   Linear Algebra and Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab2-SingleNeurons.html">
+   Single neuron models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab3-Hopfield.html">
+   FNCM Lab 3: Hopfield Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab4-MLP.html">
+   FNCM Lab 4: Multi-Layer Perceptron
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   FNCM Lab 5: Reinforcement Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/Lab5-RL.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLab5-RL.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Lab5-RL.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#updating-the-q-values">
+   Updating the Q-values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#softmax-action-selection">
+   Softmax action selection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-the-simulation">
+   Running the simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-exercises">
+   Homework exercises
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>FNCM Lab 5: Reinforcement Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#updating-the-q-values">
+   Updating the Q-values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#softmax-action-selection">
+   Softmax action selection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-the-simulation">
+   Running the simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-exercises">
+   Homework exercises
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="fncm-lab-5-reinforcement-learning">
+<h1>FNCM Lab 5: Reinforcement Learning<a class="headerlink" href="#fncm-lab-5-reinforcement-learning" title="Permalink to this headline">#</a></h1>
+<p>Submit your solutions on Canvas before Wednesday, 1 December, 17:59. Please hand in the following:</p>
+<p>A copy of this notebook with the code and results of running the code filled in the required sections. The sections to complete all start as follows:</p>
+<ul class="simple">
+<li><p><code>### YOUR CODE HERE ###</code></p></li>
+</ul>
+<p>A separate pdf file with the answer to the homework exercises. These can be identified by the following formatting:</p>
+<ul class="simple">
+<li><p><strong>Homework exercise n: question(s)/instructions.</strong></p></li>
+</ul>
+<p>Note that this notebook is structred a little differently: you first complete the coding portion and then you answer the questions.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>This lab will guide you through a reinforcement learning simulation. We will simulate an agent navigating through a maze similar to the one depicted below. The red dot is the initial position of the agent, <span class="math notranslate nohighlight">\(s_1\)</span>. The green boxes are terminal states. The stars indicate rewards.</p>
+<p>Each position in the maze is one possible state, thus there are 16 states, which we will index line by line, such that the upper left corner is state 0 and the lower right corner is state 15. Hence, state 1 and state 11 are terminal states. There are four possible action directions, left (0), up (1), right (2) and down (3). Performing an action from a state is only possible if there is no border in the way.</p>
+<p>We assume that the setup of the maze is unknown to the agent. We will implement a simple Q-learning algorithm to model how the agent learns which path to take in the maze.</p>
+<p><img alt="title" src="https://drive.google.com/uc?id=1aJzQhep462CNfmB_0Shtcv4nFc1aAx-3" /></p>
+</div>
+<div class="section" id="updating-the-q-values">
+<h2>Updating the Q-values<a class="headerlink" href="#updating-the-q-values" title="Permalink to this headline">#</a></h2>
+<p>As the agent navigates through the maze, it builds up an estimation of the utility of each state-action pair. This estimation is represented in a 16x4 matrix <span class="math notranslate nohighlight">\(Q\)</span>. Each time the agent takes a step, the Q-value of the corresponding state-action pair is updated. Specifically, when moving from state <span class="math notranslate nohighlight">\(s\)</span> to state <span class="math notranslate nohighlight">\(s'\)</span> with action <span class="math notranslate nohighlight">\(a\)</span> and obtaining reward <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(Q(s,a)\)</span> is updated according to:</p>
+<p>\begin{align*}
+Q_{t+1}(s,a)=Q_t(s,a)+\alpha*\delta
+\end{align*}</p>
+<p>where <span class="math notranslate nohighlight">\(\delta\)</span> is the prediction error, defined by:</p>
+<p>\begin{align*}
+\delta = R + \gamma * max_{a’}(Q(s’,a’))-Q(s,a)
+\end{align*}</p>
+<p>Here, <span class="math notranslate nohighlight">\(\alpha\)</span> is the learning rate and <span class="math notranslate nohighlight">\(\gamma\)</span> is the temporal discount factor. <span class="math notranslate nohighlight">\(max_{a'}(Q(s',a'))\)</span> refers to the highest Q-value of state <span class="math notranslate nohighlight">\(s'\)</span>. <span class="math notranslate nohighlight">\(Q(s,a)\)</span> is updated proportionally to the size of the prediction error – the greater the prediction error, the more the agent learns.</p>
+<br>
+<blockquote>
+<div><p>Complete the function that updates the Q values in the cell below.</p>
+</div></blockquote>
+<br>
+<p>Hint: use the function <code>np.nanmax()</code> to find the maximum of an array while ignoring nan entries (this will be important when we use the function later on).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_Q</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">s1</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to update Q values.</span>
+<span class="sd">    </span>
+<span class="sd">    Input:</span>
+<span class="sd">      a -- action (integer between 0 and 3)</span>
+<span class="sd">      s -- state (integer between 0 and 15)</span>
+<span class="sd">      s1 -- new state (integer between 0 and 15)</span>
+<span class="sd">      R -- reward value</span>
+<span class="sd">      Q -- (16, 4) array with Q-values for each (s, a) pair</span>
+<span class="sd">      gamma -- temporal discount value</span>
+<span class="sd">      alpha -- learning rate</span>
+<span class="sd">      </span>
+<span class="sd">    Output:</span>
+<span class="sd">      Q[s, a] -- updated Q value</span>
+<span class="sd">      pred_error -- prediction error (delta)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1">### YOUR CODE HERE ###</span>
+    
+    <span class="c1"># compute prediction error</span>
+    
+    <span class="c1">#pred_error = ...</span>
+    <span class="c1"># update Q value</span>
+    <span class="c1">#Q[s,a] = ...</span>
+        
+    <span class="k">return</span> <span class="n">Q</span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">],</span> <span class="n">pred_error</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="softmax-action-selection">
+<h2>Softmax action selection<a class="headerlink" href="#softmax-action-selection" title="Permalink to this headline">#</a></h2>
+<p>The second component of our Q-learning algorithm is an action selection function, that receives the Q-values of the current state as an input and returns an action to be taken. We will implement a softmax action selection function, that assigns probabilities to each action <span class="math notranslate nohighlight">\(a_i\)</span> of a given state <span class="math notranslate nohighlight">\(s\)</span>, depending on its Q-value <span class="math notranslate nohighlight">\(q_i\)</span>:</p>
+<p>\begin{align*}
+P(q_i|s) = \frac{e^{\frac{q_i}{\tau}}}{\sum_A{e^{\frac{q_i}{\tau}}}}
+\end{align*}</p>
+<p>Here, <span class="math notranslate nohighlight">\(\tau &gt; 0\)</span> is the so called temperature parameter. If <span class="math notranslate nohighlight">\(\tau\)</span> is close to <span class="math notranslate nohighlight">\(0\)</span>, the algorithm most likely selects the action with the highest Q-value (i.e. it makes a <em>greedy</em> choice). For <span class="math notranslate nohighlight">\(\tau \rightarrow \infty\)</span>, the algorithm <em>randomly</em> selects one of the actions, irrespective of their Q-value. The softmax function is implemented in the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">softmax_act_select</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Softmax function for action selection.</span>
+<span class="sd">    </span>
+<span class="sd">    Input:</span>
+<span class="sd">      Q -- (16, 4) array with Q-values for each (s, a) pair</span>
+<span class="sd">      tau -- temperature parameter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">Qs</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">Q</span><span class="p">)]</span> <span class="c1"># get valid actions</span>
+    <span class="n">actions</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">Q</span><span class="p">))</span> <span class="c1"># get valid action indices</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="n">actions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># compute probabliities for each action</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Qs</span><span class="o">.</span><span class="n">size</span><span class="p">);</span> <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Qs</span><span class="o">.</span><span class="n">size</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Qs</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">Qs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">tau</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">Qs</span><span class="p">)</span><span class="o">/</span><span class="n">tau</span><span class="p">)</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># choose action</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">actions</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="running-the-simulation">
+<h2>Running the simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this headline">#</a></h2>
+<p>Now we are ready to run the simulation. The code below sets values for our model parameter and implements the maze structure. Then it runs the simulation. Our agent has to solve the maze 100 times (you can change this number). In each trial, it starts in the initial state and can move freely around in the maze until it reaches one of the terminal states.</p>
+<p>We store the number of steps the agent takes in each trial, the Q-values after each trial, the prediction errors and visited state of each step and which terminal state was reached in each trial. These results are plotted in the lower cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">### set parameter values</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>   <span class="c1"># learning rate, 0 &lt; alpha &lt; 1</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.5</span>   <span class="c1"># temporal discount factor, 0 &lt;= gamma &lt;=1</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="mf">0.2</span>     <span class="c1"># temperature of softmax action selection, tau &gt; 0</span>
+<span class="n">trials</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># number of times the agent has to solve the maze</span>
+
+<span class="c1">### implement maze structure</span>
+
+<span class="c1"># initialize Q(s,a)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">Q</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>  <span class="c1"># array of nans</span>
+
+<span class="c1"># zeros for each possible action</span>
+<span class="n">Q</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Q</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Q</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">Q</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">14</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Q</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># terminal and initial states</span>
+<span class="n">s_term</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">]</span>
+<span class="n">s_init</span> <span class="o">=</span> <span class="mi">13</span>
+
+<span class="c1"># rewards</span>
+<span class="n">Rs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">Rs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">Rs</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1">### initialize variables to store data </span>
+<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">trials</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">s_term_meta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">trials</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">Q_meta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">trials</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">pred_error_meta</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="n">visited_states</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1">### run simulation</span>
+
+<span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">trials</span><span class="p">):</span>
+    
+    <span class="c1"># place agent in initial state</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s_init</span>
+    
+    <span class="c1"># store initial state</span>
+    <span class="n">visited_states</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">s_init</span><span class="p">])</span>
+    
+    <span class="c1"># store Q values</span>
+    <span class="n">Q_meta</span><span class="p">[</span><span class="n">trial</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">Q</span>
+    
+    <span class="c1"># continue until in terminal state</span>
+    <span class="k">while</span> <span class="ow">not</span><span class="p">(</span><span class="n">s</span> <span class="ow">in</span> <span class="n">s_term</span><span class="p">):</span>
+        <span class="c1"># print(s)</span>
+        <span class="c1"># choose action</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">softmax_act_select</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">tau</span><span class="p">)</span>
+
+        <span class="c1"># observe new state</span>
+        <span class="c1"># left</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">s1</span> <span class="o">=</span> <span class="n">s</span><span class="o">-</span><span class="mi">1</span>
+        <span class="c1"># up</span>
+        <span class="k">elif</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">s1</span><span class="o">=</span> <span class="n">s</span><span class="o">-</span><span class="mi">4</span>
+        <span class="c1"># right</span>
+        <span class="k">elif</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">s1</span> <span class="o">=</span> <span class="n">s</span><span class="o">+</span><span class="mi">1</span>
+        <span class="c1"># down</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">s1</span> <span class="o">=</span> <span class="n">s</span><span class="o">+</span><span class="mi">4</span>
+
+        <span class="c1"># observe R</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">Rs</span><span class="p">[</span><span class="n">s1</span><span class="p">]</span>
+
+        <span class="c1"># update Q</span>
+        <span class="n">Q</span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">],</span> <span class="n">pred_error</span> <span class="o">=</span> <span class="n">update_Q</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">s1</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+
+        <span class="c1"># update state</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s1</span>
+    
+        <span class="c1"># count steps</span>
+        <span class="n">steps</span><span class="p">[</span><span class="n">trial</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># store prediction error </span>
+        <span class="n">pred_error_meta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_error</span><span class="p">)</span>
+        
+        <span class="c1"># store visited state</span>
+        <span class="n">visited_states</span><span class="p">[</span><span class="n">trial</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+    
+    <span class="c1"># store terminal state</span>
+    <span class="n">s_term_meta</span><span class="p">[</span><span class="n">trial</span><span class="p">]</span> <span class="o">=</span> <span class="n">s1</span>
+        
+
+<span class="c1">### plot some results</span>
+
+<span class="c1"># plot final Q-values for each state</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;final Q-values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;up&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;down&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;actions&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;states&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1">###### helper funtions######</span>
+
+<span class="c1"># function to get coordinates for given state (used for plotting)</span>
+<span class="k">def</span> <span class="nf">xy</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">states</span> <span class="o">==</span> <span class="n">s</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">states</span> <span class="o">==</span> <span class="n">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># function to plot visited states</span>
+<span class="k">def</span> <span class="nf">plot_map</span><span class="p">(</span><span class="n">visited_states</span><span class="p">):</span>
+    <span class="n">visited_path</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">xy</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">visited_states</span><span class="p">])</span>
+    <span class="n">visited_unique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">visited_states</span><span class="p">)</span>
+    <span class="n">visited_xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">xy</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">visited_unique</span><span class="p">])</span>
+    <span class="n">visited_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">visited_states</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">visited_unique</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">visited_xy</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">visited_xy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">visited_counts</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">visited_path</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">visited_path</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+    <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">xy</span><span class="p">(</span><span class="n">st</span><span class="p">))</span>
+        
+<span class="c1">##############################</span>
+
+<span class="c1"># plot visited states</span>
+<span class="n">plot_trials</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">99</span><span class="p">]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_trials</span><span class="p">)):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plot_trials</span><span class="p">),</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot_map</span><span class="p">(</span><span class="n">visited_states</span><span class="p">[</span><span class="n">plot_trials</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;trial &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">plot_trials</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># plot Qvalues over trials</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># here you can choose which Q value to plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Q_meta</span><span class="p">[:,</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;trials&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Q value(</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># plot prediction errors</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pred_error_meta</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;steps&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;prediction error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># plot steps</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;trials&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;steps&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># plot terminal states</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_term_meta</span><span class="p">,</span><span class="s1">&#39;mx&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;trials&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;terminal state&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">s_term</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="homework-exercises">
+<h2>Homework exercises<a class="headerlink" href="#homework-exercises" title="Permalink to this headline">#</a></h2>
+<blockquote>
+<div><p><em><strong>Homework exercise 1:</strong></em> Describe and explain the evolution of (1) Q-values, (2) prediction errors and (3) step number over time with the given parameter values.</p>
+<p>Hint: You can select which Q-value to plot in the code! What does it depend on which final value the Q-values converge to? What is the highest possible Q-value?</p>
+</div></blockquote>
+<blockquote>
+<div><p><em><strong>Homework exercise 2:</strong></em> Play around with the parameter values of the model (<span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\gamma\)</span>, <span class="math notranslate nohighlight">\(\tau\)</span>). Describe and explain the effect of each parameter on the behavior of the agent.</p>
+</div></blockquote>
+<blockquote>
+<div><p><em><strong>Homework exercise 3:</strong></em> With the original parameter values (<span class="math notranslate nohighlight">\(\alpha = 0.1, \gamma = 0.5, \tau = 0.2\)</span>), does the agent reach one of the terminal states more often than the other? If so, why is that? How is this affected by the value of the parameters?</p>
+</div></blockquote>
+<blockquote>
+<div><p><em><strong>Homework exercise 4:</strong></em> In how far does the behavior of our Q-learning agent differ from what you would expect from a human agent solving the same task (assuming that she does not know the strucutre of the maze, location of terminal states and size of rewards)? Can you think of ways to overcome the shortcomings of the Q-learning algorithm on the given task?</p>
+</div></blockquote>
+<blockquote>
+<div><p><em><strong>Homework exercise 5:</strong></em> What happens if you change the size of the rewards? Try make them negative too.</p>
+</div></blockquote>
+<blockquote>
+<div><p><em><strong>Homework exercise 6:</strong></em> Let’s imagine we would design an experiment with 20 human subjects using the current task. Come up with one hypothetical research question you could answer by fitting the  model we implemented (or variants of it) to the behavioral data.</p>
+</div></blockquote>
+<blockquote>
+<div><p><em><strong>Homework exercise 7:</strong></em> In the lecture we discussed how hidden states recovered by model fitting (e.g. prediction errors) can be combined with neural data (e.g. fMRI). Let’s say we conduct a reinforcement learning task in an fMRI scanner with 20 subjects. When analysing our data, we find a brain region in which activity correlates with the prediction errors we computed by fitting a reinforcement learning model to the subject’s behavior. What can (and can’t) we conclude from this?</p>
+</div></blockquote>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Lab4-MLP.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">FNCM Lab 4: Multi-Layer Perceptron</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    <div class="extra_footer">
+      <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+</div>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

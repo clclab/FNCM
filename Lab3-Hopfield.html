@@ -1,0 +1,1202 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FNCM Lab 3: Hopfield Networks &#8212; My sample book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FNCM Lab 4: Multi-Layer Perceptron" href="Lab4-MLP.html" />
+    <link rel="prev" title="Single neuron models" href="Lab2-SingleNeurons.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
+   Linear Algebra and Ordinary Differential Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab2-SingleNeurons.html">
+   Single neuron models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   FNCM Lab 3: Hopfield Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab4-MLP.html">
+   FNCM Lab 4: Multi-Layer Perceptron
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lab5-RL.html">
+   FNCM Lab 5: Reinforcement Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/Lab3-Hopfield.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLab3-Hopfield.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Lab3-Hopfield.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-of-hopfield-networks">
+   1. Definition of Hopfield Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#activations-in-a-hopfield-network">
+   2. Activations in a Hopfield network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asynchronous-updates">
+     2.1 Asynchronous updates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#as-symmetry-of-the-weights-and-convergence">
+     2.2 (As)symmetry of the weights and convergence
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-with-hebbs-rule">
+   3. Learning with Hebb’s rule
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updating-the-weights-using-hebbian-learning">
+     3.1 Updating the weights using Hebbian learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#storing-digits-in-a-hopfield-network">
+     3.2 Storing digits in a Hopfield network
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>FNCM Lab 3: Hopfield Networks</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-of-hopfield-networks">
+   1. Definition of Hopfield Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#activations-in-a-hopfield-network">
+   2. Activations in a Hopfield network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asynchronous-updates">
+     2.1 Asynchronous updates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#as-symmetry-of-the-weights-and-convergence">
+     2.2 (As)symmetry of the weights and convergence
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-with-hebbs-rule">
+   3. Learning with Hebb’s rule
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updating-the-weights-using-hebbian-learning">
+     3.1 Updating the weights using Hebbian learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#storing-digits-in-a-hopfield-network">
+     3.2 Storing digits in a Hopfield network
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="fncm-lab-3-hopfield-networks">
+<h1>FNCM Lab 3: Hopfield Networks<a class="headerlink" href="#fncm-lab-3-hopfield-networks" title="Permalink to this headline">#</a></h1>
+<p>Submit your solutions on Canvas before Wednesday, 24 November, 17:59. Please hand in the following:</p>
+<p>A copy of this notebook with the code and results of running the code filled in the required sections. The sections to complete all start as follows:</p>
+<ul class="simple">
+<li><p><code>### YOUR CODE HERE ###</code></p></li>
+</ul>
+<p>Some coding exercises are exaplined in the text cells and start with Exercise e.g. when we just ask you to change variables or when the coding is a little more involved.</p>
+<p>A separate pdf file with the answer to the homework exercises. These can be identified by the following formatting:</p>
+<ul class="simple">
+<li><p><strong>Homework exercise n: question(s).</strong></p></li>
+</ul>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>In the previous labs we looked at models of single neurons. Starting from the Hodgkin-Huxley model, the models successively abstracted away from actual neurons, with the McCulloch-Pitts neuron as the most abstract model we have seen. This week, we see what happens if artiﬁcial neurons are connected to form networks.</p>
+<p>We will need the <a class="reference external" href="https://docs.scipy.org/doc/numpy/index.html">numpy</a>, <a class="reference external" href="https://pandas.pydata.org/">pandas</a>, <a class="reference external" href="https://matplotlib.org/">matplotlib</a> and <a class="reference external" href="https://imageio.github.io/">imageio</a> libraries, as well as some functions that are defined in the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                <span class="c1"># for algebra</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>               <span class="c1"># for data manipulation</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>   <span class="c1"># for plotting</span>
+<span class="kn">import</span> <span class="nn">gdown</span>                      <span class="c1"># for downloading image files</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>             <span class="c1"># for visualizing images</span>
+<span class="kn">import</span> <span class="nn">imageio</span>                    <span class="c1"># for loading image files</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># helper functions</span>
+<span class="k">def</span> <span class="nf">bwcolor</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pattern</span><span class="o">.</span><span class="n">T</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">),</span> <span class="n">reps</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="k">def</span> <span class="nf">plot_image</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">bwcolor</span><span class="p">(</span><span class="n">pattern</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="k">def</span> <span class="nf">plot_patterns</span><span class="p">(</span><span class="n">input_patterns</span><span class="p">,</span> <span class="n">output_patterns</span><span class="p">,</span> <span class="n">patterns_to_store</span><span class="p">):</span>
+    <span class="c1"># convert patterns to images</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">patterns_to_store</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">))</span>
+    <span class="n">input_patterns</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">:</span> <span class="n">input_patterns</span><span class="p">[</span><span class="n">d</span><span class="p">][:</span><span class="n">pixels</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+                     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">input_patterns</span><span class="p">}</span>
+    <span class="n">output_patterns</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">:</span> <span class="n">output_patterns</span><span class="p">[</span><span class="n">d</span><span class="p">][:</span><span class="n">pixels</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+                     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">output_patterns</span><span class="p">}</span>
+    <span class="n">patterns_to_store</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">:</span> <span class="n">patterns_to_store</span><span class="p">[</span><span class="n">d</span><span class="p">][:</span><span class="n">pixels</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+                     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">patterns_to_store</span><span class="p">}</span>
+    
+    <span class="c1"># create plot</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">patterns_to_store</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">patterns_to_store</span><span class="p">)):</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">input_patterns</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary_r&quot;</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">output_patterns</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary_r&quot;</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">patterns_to_store</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary_r&quot;</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="k">def</span> <span class="nf">add_noise</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">noise_rate</span><span class="p">):</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">noise_rate</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">noisy_pattern</span> <span class="o">=</span> <span class="n">pattern</span> <span class="o">*</span> <span class="n">noise</span>
+    <span class="k">return</span> <span class="n">noisy_pattern</span>
+    
+<span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="definition-of-hopfield-networks">
+<h2>1. Definition of Hopfield Networks<a class="headerlink" href="#definition-of-hopfield-networks" title="Permalink to this headline">#</a></h2>
+<p>We will study Hopﬁeld networks, which are networks where connections in both directions exist between all pairs of <em>distinct</em> neurons <span class="math notranslate nohighlight">\((i, j)\)</span>. So there is a weight <span class="math notranslate nohighlight">\(w_{ij}\)</span> associated to the connection from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span> and a weight <span class="math notranslate nohighlight">\(w_{ji}\)</span> for the connection from <span class="math notranslate nohighlight">\(j\)</span> to <span class="math notranslate nohighlight">\(i\)</span>. Moreover, in a Hopﬁeld net it holds that <span class="math notranslate nohighlight">\(w_{ij}\)</span> = <span class="math notranslate nohighlight">\(w_{ji}\)</span> , thus the weights are symmetrical.</p>
+<p>Recall from the lecture that the activation (or value) <span class="math notranslate nohighlight">\(y_i\)</span> of a McCulloch-Pitts neuron is a function of (the weighted sum of) the inputs <span class="math notranslate nohighlight">\(x_j\)</span> it receives from other neurons. In a Hopfield net, the total input a neuron receives is</p>
+<div class="math notranslate nohighlight">
+\[
+s_i = \sum_{j \neq i} w_{ji} \cdot x_j + \theta_i,
+\label{eq:neuron_input} \tag{1}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta_i\)</span> is the <em>bias</em> for a single neuron<a class="reference external" href="#fn1"><sup>1</sup></a>. The activation <span class="math notranslate nohighlight">\(y_i\)</span> is calculated from <span class="math notranslate nohighlight">\(s_i\)</span> using the sign function as the <em>activation function</em>, which evaluates to <span class="math notranslate nohighlight">\(+1\)</span> for inputs <span class="math notranslate nohighlight">\(\geq 0\)</span> and to <span class="math notranslate nohighlight">\(-1\)</span> for inputs <span class="math notranslate nohighlight">\(&lt; 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y_i = \text{sign}{(s_i)} = 
+    \begin{cases}
+    +1 &amp; \text{if } s_i \geq 0 \\
+    -1 &amp; \text{if } s_i &lt; 0
+    \end{cases}
+\label{eq:activation} \tag{2}
+\end{split}\]</div>
+<p>In Hopfield networks, we are interested in how the activation of the neurons changes over time. It would therefore be better to write <span class="math notranslate nohighlight">\(y_i^{(t)}\)</span> for the value of neuron <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>. Note that the inputs <span class="math notranslate nohighlight">\(x_j\)</span> that a neuron receives are the outputs <span class="math notranslate nohighlight">\(y_j^{(t-1)}\)</span> of other neurons at the previous time step. Using <span class="math notranslate nohighlight">\(y_j^{(t-1)}\)</span> instead of <span class="math notranslate nohighlight">\(x_j\)</span> in <span class="math notranslate nohighlight">\(\eqref{eq:neuron_input}\)</span> and <span class="math notranslate nohighlight">\(\eqref{eq:activation}\)</span> gives the following formula for the activations in a Hopfield net:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i^{(t)} = \text{sign}{\Big( \sum_{j \neq i} w_{ji} \cdot y_j^{(t - 1)} + \theta_i \Big)}
+\label{eq:activation_t} \tag{3}
+\]</div>
+<p>Starting from an initial state <span class="math notranslate nohighlight">\((v_1^{(0)}, ..., v_n^{(0)})\)</span> we can then iteratively calculate the new activation or <em>state</em> of the neuron in the next time step. This can give rise to different kinds of dynamics. A neuron <span class="math notranslate nohighlight">\(i\)</span> is called <em>stable</em> at time <span class="math notranslate nohighlight">\(t\)</span> if its value doesn’t change: <span class="math notranslate nohighlight">\(y_i^{(t)} = y_i^{(t-1)}\)</span>. A Hopfield net is called <em>stable</em> if all of its neurons are stable. In that case we also say that the network <em>converged</em> to the stable state.</p>
+<p>In this lab we will first look at the different dynamics that can occur when <em>updating the state</em> of the network over time. Next, we will see how we can <em>update the weights</em> of the network and use that to model an associative memory. We often drop the time <span class="math notranslate nohighlight">\(t\)</span>, and assume that all the thresholds <span class="math notranslate nohighlight">\(\theta_i\)</span> are <span class="math notranslate nohighlight">\(0\)</span>, i.e., we use <span class="math notranslate nohighlight">\(y_i\)</span> instead of <span class="math notranslate nohighlight">\(y_i^{(t)}\)</span>, and <span class="math notranslate nohighlight">\(\theta_i = 0\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<br>
+<blockquote>
+<div><p><strong>Is a Hopfield network a recurrent neural network?</strong></p>
+</div></blockquote>
+<br>
+<hr class="docutils" />
+<p><a id="fn1"><sup>1</sup></a>
+You can also think of <span class="math notranslate nohighlight">\(\theta_i\)</span> as a <em>threshold</em>. Using the activation function, equation <span class="math notranslate nohighlight">\(\eqref{eq:activation}\)</span> says that <span class="math notranslate nohighlight">\(y_i = 1\)</span> if <span class="math notranslate nohighlight">\(\sum_{j \neq i} w_{ji} x_j \geq - \theta_i\)</span> (if the weighted sum of the inputs exceeds the threshold <span class="math notranslate nohighlight">\(-\theta_i\)</span>) and <span class="math notranslate nohighlight">\(y_i = -1\)</span> otherwise.</p>
+<br>
+</div>
+<div class="section" id="activations-in-a-hopfield-network">
+<h2>2. Activations in a Hopfield network<a class="headerlink" href="#activations-in-a-hopfield-network" title="Permalink to this headline">#</a></h2>
+<p>There are two ways to update the state of a Hopfield network. In an <em>asynchronous</em> update, we randomly pick <em>a single</em> neuron at a time and calculate its new activation using equation <span class="math notranslate nohighlight">\(\eqref{eq:activation_t}\)</span>. In a <em>synchronous</em> update, <em>all</em> neurons are updated at the same time. It can be proven that if the net is symmetric, i.e. <span class="math notranslate nohighlight">\(w_{ij} = w_{ji}\)</span> for all <span class="math notranslate nohighlight">\(i,j\)</span>, then the state of the network will converge to a stable point<a class="reference external" href="#fn2"><sup>2</sup></a>, which is a local minimum of the following energy function:</p>
+<div class="math notranslate nohighlight">
+\[
+E = -\frac{1}{2} \sum_{i,j} w_{ij} y_i y_j = -\frac{1}{2} \mathbf{y}^T\mathbf{Wy}\ .
+\]</div>
+<br>
+<hr class="docutils" />
+<p><a id="fn2"><sup>2</sup></a>
+See Theorem 2, page 51, <a class="reference external" href="https://www.infor.uva.es/~teodoro/neuro-intro.pdf">Kröse &amp; van der Smagt (1996)</a>.</p>
+<div class="section" id="asynchronous-updates">
+<h3>2.1 Asynchronous updates<a class="headerlink" href="#asynchronous-updates" title="Permalink to this headline">#</a></h3>
+<p>Consider the network given in the following figure:</p>
+<p><img alt="ICCN-drive-steps" src="https://docs.google.com/uc?export=download&amp;id=194UNXu-fmBjZFazUaTcB0YM4lUMj_CaB" /></p>
+<p>We study how the state of the network changes if we iteratively update its state in an asynchronous fashion. For this, we will use the <code class="docutils literal notranslate"><span class="pre">run_hopfield</span></code> function defined in the next cell (instructions on how to use the function follow below).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_hopfield</span><span class="p">(</span><span class="n">hopnet</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">stepbystep</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                 <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function computes the activation of a Hopfield network, </span>
+<span class="sd">    given the input arguments hopnet (a matrix of weights defining </span>
+<span class="sd">    the Hopfield network) and pattern (an array specifying the </span>
+<span class="sd">    input pattern / initial state). The output is the network’s</span>
+<span class="sd">    state after converging (or after the max. nr. of iterations).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">stepbystep</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># print the network weights and input pattern</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weights = &quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">hopnet</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;input pattern = &quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+        <span class="n">plot_image</span><span class="p">(</span><span class="n">pattern</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="nb">input</span><span class="p">()</span>
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+    <span class="n">n_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+    <span class="n">converge</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">maxit</span><span class="p">):</span>
+        
+        <span class="c1"># asynchronous updating</span>
+        <span class="k">if</span> <span class="n">it</span> <span class="o">%</span> <span class="n">n_nodes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">replace</span> <span class="o">==</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">converge</span> <span class="o">==</span> <span class="kc">True</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reached a stable state.&#39;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># randomly choose the order of updating the n nodes</span>
+                <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_nodes</span><span class="p">),</span> 
+                                         <span class="n">size</span><span class="o">=</span><span class="n">n_nodes</span><span class="p">,</span>
+                                         <span class="n">replace</span><span class="o">=</span><span class="n">replace</span><span class="p">)</span>
+                <span class="n">converge</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="c1"># i = which node to update</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">order</span><span class="p">[</span><span class="n">it</span> <span class="o">%</span> <span class="n">n_nodes</span><span class="p">]</span>
+        
+        <span class="c1"># y[i] = current value of that node</span>
+        <span class="n">yi_old</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        
+        <span class="c1"># new value of node i = sign of the dot product of i’s weights and y</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">hopnet</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">y</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">yi_old</span> <span class="o">!=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">converge</span> <span class="o">=</span> <span class="kc">False</span>
+        
+        <span class="k">if</span> <span class="n">stepbystep</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># print the update</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;iter &#39;</span><span class="p">,</span> <span class="n">it</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pick neuron &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;input to this neuron &#39;</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;output of this neuron &#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;new state &#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            
+            <span class="c1"># plot new state</span>
+            <span class="n">plot_image</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">inpt</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">inpt</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stopped after&#39;</span><span class="p">,</span> <span class="n">it</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;iterations.&#39;</span><span class="p">)</span>
+                <span class="k">break</span>
+            
+    <span class="k">return</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code in the next cell creates a Hopfield net by defining a weight matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> 
+                    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                    <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we can ‘run’ several updates of the network. In the next code block, we specify the initial state and can then call the function <code class="docutils literal notranslate"><span class="pre">run_hopfield</span></code>.</p>
+<p>If the argument <code class="docutils literal notranslate"><span class="pre">stepbystep=True</span></code> is passed, the output is printed step by step. <code class="docutils literal notranslate"><span class="pre">maxit</span></code> specifies the number of iterations. Running the code block should result in the following output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>weights = 
+[[ 0  1 -2]
+[ 1  0  1]
+[-2  1  0]]
+input pattern =  [ 1 -1  1]
+</pre></div>
+</div>
+<p>and a black and white plot illustrating the current state of the network (black represents an activation of <span class="math notranslate nohighlight">\(-1\)</span>, white of <span class="math notranslate nohighlight">\(+1\)</span>). Press Enter inside the input field below the plot to run the next iteration. You should see something like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>iter  1
+pick neuron  1
+input to this neuron  2
+output of this neuron  1
+new state  [1 1 1]
+</pre></div>
+</div>
+<p>This means that in the first iteration, we picked neuron number 2. The total input <span class="math notranslate nohighlight">\(s_2\)</span> to this neuron was 2, and hence its output is <span class="math notranslate nohighlight">\(\text{sign}(s_2) = \text{sign}(2) = 1\)</span>. Press Enter a few more times to see what happens next. (You can type ‘q’ and press Enter at any point to stop iterating manually.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">run_hopfield</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">init_y</span><span class="p">,</span> <span class="n">stepbystep</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">maxit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Homework exercise 1:</strong> Find weights for which the network does <em>not</em> converge. Report the weights and run several iterations using these weights. Provide some of your console output and explain why it shows that the network does not converge to one state. According to the explanations above, is your network still a Hopﬁeld network?</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>State transition tables</em> are useful tools for analysing the behaviour of a Hopfield network. Such a table enumerates all the possible states the network can be in. For every state, it then indicates which state the network will go to after an asynchronous update of one single neuron. An example of such a table is given below. This is a state transition table for a Hopfield network using the weights matrix <span class="math notranslate nohighlight">\(W\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} W =
+\begin{pmatrix}
+0 &amp; 1 &amp; -2 \\
+1 &amp; 0 &amp; 1 \\
+-2 &amp; 1 &amp; 0
+\end{pmatrix}
+\end{split}\]</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>State</p></th>
+<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
+<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
+<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
+<th class="text-align:center head"><p>New state nr.</p></th>
+<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
+<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><strong>nr.</strong></p></td>
+<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(x_3\)</span>)</p></td>
+<td class="text-align:center"><p><strong>Updating node 1</strong></p></td>
+<td class="text-align:center"><p><strong>Updating node 2</strong></p></td>
+<td class="text-align:center"><p><strong>Updating node 3</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(5\)</span></p></td>
+<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(7\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(7\)</span></p></td>
+<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(7\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="as-symmetry-of-the-weights-and-convergence">
+<h3>2.2 (As)symmetry of the weights and convergence<a class="headerlink" href="#as-symmetry-of-the-weights-and-convergence" title="Permalink to this headline">#</a></h3>
+<p>To see why symmetry is important for convergence, we are going to compare two different Hopfield networks with two neurons each. The networks are determined by their weight matrices <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{W}_1 =
+\begin{pmatrix}
+0 &amp; 1 \\
+-1 &amp; 0
+\end{pmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{W}_2 =
+\begin{pmatrix}
+0 &amp; 1 \\
+1 &amp; 0
+\end{pmatrix}
+\end{split}\]</div>
+<br>
+<blockquote>
+<div><p><strong>Which of these matrices is symmetric?</strong></p>
+</div></blockquote>
+<br>
+<p>Your task is to examine whether the net converges when starting from the initial state <span class="math notranslate nohighlight">\(\mathbf{y}^{(0)} = (1, -1)^T\)</span> (that means that <span class="math notranslate nohighlight">\(y_1^{(0)} = 1\)</span> and <span class="math notranslate nohighlight">\(y_2^{(0)} = -1\)</span>). To do so, you have to repeat the steps from the previous section, using the two sets of weights <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span> and varying initial states.</p>
+<blockquote>
+<div><p>Create the matrices <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span> and run several updates using different initial states of the two neurons (check the code in the previous section to see how).</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Homework exercise 2:</strong> Construct two state transition tables for the Hopfield networks corresponding to <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span>. Do the networks reach a stable state? Explain how exactly you can infer this from the transition tables.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="learning-with-hebbs-rule">
+<h2>3. Learning with Hebb’s rule<a class="headerlink" href="#learning-with-hebbs-rule" title="Permalink to this headline">#</a></h2>
+<p>As you have seen, a Hopfield net is a fully recurrent artificial neural network. Interestingly, it can be used as an <em>associative memory</em>. That is, it can be used to associate patterns with themselves, such that they can be retrieved by the network when given an incomplete input. This is achieved by setting the weights <span class="math notranslate nohighlight">\(w_{ij}\)</span> of the network in such a way that patterns you want to store correspond to stable points of the network. (In other words, such that the patterns are local minima in the energy function of the network.)</p>
+<p>Starting from an incomplete input pattern, over iterations the network will converge to a stable point that corresponds to one of the stored patterns of the network. But how to find the weights that allow us to store a certain pattern? For that, we can use the Hebbian learning rule. Given <span class="math notranslate nohighlight">\(m\)</span> patterns <span class="math notranslate nohighlight">\(\mathbf{p}^k = (p_1^k,...,p_n^k)\)</span> (where <span class="math notranslate nohighlight">\(k = 1, ..., m\)</span>), we set the weights to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+w_{ij} = 
+\begin{cases}
+\sum_{k=1}^m p_i^k p_j^k &amp; \text{if } i \neq j \\
+0 &amp; \text{otherwise}
+\end{cases}
+\label{eq:weights} \tag{4}
+\end{split}\]</div>
+<p>How well this rule works is of course dependent on the number of patterns you want to store in your network, as well as on the similarity of the different patterns. The closer the number of patterns you want to store approaches the number of neurons, the harder it gets to store the patterns. Furthermore, it is easier to store patterns that are very different, than patterns that are very similar (note that for a Hopfield network, patterns that differ on exactly half of the neurons are the most dissimilar, do you understand why?).</p>
+<div class="section" id="updating-the-weights-using-hebbian-learning">
+<h3>3.1 Updating the weights using Hebbian learning<a class="headerlink" href="#updating-the-weights-using-hebbian-learning" title="Permalink to this headline">#</a></h3>
+<p>We will now study how to use the Hebbian learning rule to update a Hopfield net’s weights and what effects it has. We start with two <span class="math notranslate nohighlight">\(10 \times 10\)</span> images. We will not use actual images, but <span class="math notranslate nohighlight">\(10 \times 10\)</span> matrices and think of every entry in such a matrix as a pixel that is either black (the entry has value <span class="math notranslate nohighlight">\(-1\)</span>) or white (value <span class="math notranslate nohighlight">\(+1\)</span>). Start with two simple patterns: a completely white and a completely black image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pattern1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span> <span class="n">fill_value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">pattern2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span> <span class="n">fill_value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To store such an image we need a network with <span class="math notranslate nohighlight">\(10 \times 10 = 100\)</span> neurons, which will have <span class="math notranslate nohighlight">\(100 \times 100\)</span> weights. The weights are calculated using the Hebbian learning rule explained above<a class="reference external" href="#fn3"><sup>3</sup></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize the weights matrix with zeros</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> 
+                  <span class="n">fill_value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Hebbian learning step</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> \
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">pattern1</span><span class="p">,</span> <span class="n">pattern1</span><span class="p">)</span> \
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">pattern2</span><span class="p">,</span> <span class="n">pattern2</span><span class="p">)</span> \
+            <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><a id="fn3"><sup>3</sup></a>
+Calculating the weights is a bit tricky, if only because there are <span class="math notranslate nohighlight">\(100 \times 100\)</span> of them. <em>You don’t have to know all these details</em>, but if you wonder what’s going on, here’s some more background. To see how formula <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> works, suppose <span class="math notranslate nohighlight">\(m = 2\)</span>, so we have two patterns <span class="math notranslate nohighlight">\(\mathbf{p}^1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{p}^2\)</span>. We want to know the weight of the connection between neuron <span class="math notranslate nohighlight">\(3\)</span> and <span class="math notranslate nohighlight">\(4\)</span>. According to equation <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a>, we should use <span class="math notranslate nohighlight">\(w_{3,4} = p_3^1 \cdot p_4^1 + p_3^2 \cdot p_4^2\)</span>.</p>
+<p>Computing this for all connections is a lot of work, unless we use a trick. Suppose you could, for a given pattern <span class="math notranslate nohighlight">\(\mathbf{p}^k\)</span>, build a matrix <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> that contains the product <span class="math notranslate nohighlight">\(p_i^k \cdot p_j^k\)</span> at position <span class="math notranslate nohighlight">\((i, j)\)</span>. We calculate such matrices <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{P}^2\)</span> for our two patterns and then compute their sum <span class="math notranslate nohighlight">\(\mathbf{P}^1 + \mathbf{P}^2\)</span>. Can you see why <span class="math notranslate nohighlight">\(\mathbf{P}^1 + \mathbf{P}^2\)</span> will (nearly) contain the weight <span class="math notranslate nohighlight">\(w_{ij}\)</span> given by <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> at position <span class="math notranslate nohighlight">\((i, j)\)</span>? If not, try to write down the value of entry <span class="math notranslate nohighlight">\((i, j)\)</span> in <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span> + <span class="math notranslate nohighlight">\(\mathbf{P}^2\)</span> and compare it to <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a>. The only problem that remains is the diagonal, which should be zero in a Hopﬁeld network (why?), but will now contain 2s. This is easily fixed by subtracting the identity matrix twice. So how to get the <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> matrices? In fact <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> just happens to be the so called <em>outer product</em> (see <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">Wikipedia</a>) of the vector <span class="math notranslate nohighlight">\(\mathbf{p}^k\)</span> with itself. You can compute it in Python using the <code class="docutils literal notranslate"><span class="pre">numpy.outer()</span></code> function. So <code class="docutils literal notranslate"><span class="pre">numpy.outer(pattern1,</span> <span class="pre">pattern1)</span></code> computes <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span>. Can you now see why the given code actually implements equation <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> for two patterns?</p>
+<br><p>Does a network using these weights indeed store the two images <code class="docutils literal notranslate"><span class="pre">pattern1</span></code> and <code class="docutils literal notranslate"><span class="pre">pattern2</span></code>? To find out, we iterate several updates using the <code class="docutils literal notranslate"><span class="pre">run_hopfield()</span></code> function again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate starting from pattern 1</span>
+<span class="n">run_hopfield</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">pattern1</span><span class="p">,</span> <span class="n">stepbystep</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+             <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate starting from pattern 2</span>
+<span class="n">run_hopfield</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">pattern2</span><span class="p">,</span> <span class="n">stepbystep</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+             <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we create two new patterns: completely white images (just like <code class="docutils literal notranslate"><span class="pre">pattern1</span></code>) but with some black horizontal lines, i.e., some rows in the matrix have value −1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make two 10 x 10 white images</span>
+<span class="n">pattern3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">pattern4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># make the top 3 vs. the top 5 rows black</span>
+<span class="n">pattern3</span><span class="p">[:</span><span class="mi">3</span><span class="p">,]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">pattern4</span><span class="p">[:</span><span class="mi">5</span><span class="p">,]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="c1"># flatten the arrays</span>
+<span class="n">pattern3</span> <span class="o">=</span> <span class="n">pattern3</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">pattern4</span> <span class="o">=</span> <span class="n">pattern4</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Homework exercise 3:</strong> Run the network using <code class="docutils literal notranslate"><span class="pre">pattern3</span></code> and <code class="docutils literal notranslate"><span class="pre">pattern4</span></code> as the initial state. Which patterns will the net retrieve in each case? Explain how the ﬁnal state of the network depend on the initialisation of the network.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we will use the Hebbian learning rule to store pattern3, by updating the weight matrix as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hebbian learning step</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">pattern3</span><span class="p">,</span> <span class="n">pattern3</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Homework exercise 4:</strong> Does the net now remember this pattern? Think up a way to test this, explain what you did and include new plots (screenshots of the printed network states) to illustrate your answer.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">pattern4</span></code> is set as the initial state for the net, which pattern will the net retrieve?</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One interesting property of the Hebbian learning rule is that we can use its reverse (i.e. addition becomes subtraction and vice versa) to ‘erase’ a pattern out of the memory.</p>
+<blockquote>
+<div><p><strong>Homework exercise 5:</strong> Erase <code class="docutils literal notranslate"><span class="pre">pattern3</span></code> from the net and think of a way to check whether it still remembers it. Include intermediate network state plots to illustrate your approach.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="storing-digits-in-a-hopfield-network">
+<h3>3.2 Storing digits in a Hopfield network<a class="headerlink" href="#storing-digits-in-a-hopfield-network" title="Permalink to this headline">#</a></h3>
+<p>In the last part of the lab, we will train a Hopﬁeld net to store pictures of digits, from 0 to 9. First, we will download the pictures in the code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># download pictures of digits</span>
+<span class="n">gdown</span><span class="o">.</span><span class="n">download_folder</span><span class="p">(</span><span class="s1">&#39;https://drive.google.com/drive/folders/1R66lCDcvM7WJYnkq3hcmOk1cCf8crOC4?usp=sharing&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The data has been downloaded in a folder named <em>img</em>; that folder is <strong>not</strong> on your Drive but simply accesible from this notebook. Now, execute the code below to examine the similarities between digits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">patterns</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)):</span>
+    <span class="c1"># load image</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;img/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># convert to 1s and -1s</span>
+    <span class="n">img</span><span class="p">[</span><span class="n">img</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">img</span><span class="p">[</span><span class="n">img</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    
+    <span class="c1"># add a 1 at the end for bias</span>
+    <span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">pattern</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">similarities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">digits</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">digits</span><span class="p">:</span>
+        <span class="c1"># compute cosine similarity</span>
+        <span class="n">similarity</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">patterns</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> \
+            <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> \
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">patterns</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+        
+        <span class="n">similarities</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">similarity</span>
+        
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">similarities</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">digits</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">digits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Which pair of digits is the most similar? Which is the least? Which digit is the most distinguishable from the others?</p>
+</div></blockquote>
+<p>Now use the function <code class="docutils literal notranslate"><span class="pre">train_hopfield</span></code>, and the code block below it, to store a set of digits in a Hopfield network. First, try this with all ten digits, then with all odd digits, and finally with all even digits. After running the <code class="docutils literal notranslate"><span class="pre">plot_patterns</span></code> function, you should see a plot, in which the first row contains input images, the second row output images, and the third row expected output images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_hopfield</span><span class="p">(</span><span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function trains a Hopfield network on the given input</span>
+<span class="sd">    patterns, with Hebbian learning. The output is the network’s</span>
+<span class="sd">    weights matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n_nodes</span> <span class="o">=</span> <span class="n">n_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">patterns</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">n_nodes</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">patterns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">patterns</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">weights</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose which digits to store here</span>
+<span class="n">digits_to_store</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># train the Hopfield network</span>
+<span class="n">patterns_to_store</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">:</span> <span class="n">patterns</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">digits_to_store</span><span class="p">}</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">train_hopfield</span><span class="p">(</span><span class="n">patterns_to_store</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noise_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">input_patterns</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">:</span> <span class="n">add_noise</span><span class="p">(</span><span class="n">patterns_to_store</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">noise_rate</span><span class="p">)</span> 
+                 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">patterns_to_store</span><span class="p">}</span>
+<span class="n">output_patterns</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">:</span> <span class="n">run_hopfield</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> 
+                                   <span class="n">input_patterns</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> 
+                                   <span class="n">maxit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                  <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">input_patterns</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_patterns</span><span class="p">(</span><span class="n">input_patterns</span><span class="p">,</span> <span class="n">output_patterns</span><span class="p">,</span> <span class="n">patterns_to_store</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>What do you see? Can you explain?</strong></p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Homework exercise 6:</strong> What is the largest set of digits that the net can store? (This is an empirical question – experiment with the provided code to find your answer, and describe the method you used and the parameter settings for which your answer holds.)</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we consider only even digits. The parameter <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> decides the probability that a pixel is flipped, e.g. <code class="docutils literal notranslate"><span class="pre">noise_rate</span> <span class="pre">=</span> <span class="pre">0.1</span></code> means any pixel is flipped with the probability <span class="math notranslate nohighlight">\(0.1\)</span>. The higher <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> is, the more noisy the input is.</p>
+<blockquote>
+<div><p><strong>Homework exercise 7:</strong> Choose a set of digits that are retrieved correctly for <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> 0, for example the set of digits you found in the previous exercise. Gradually increase the value of <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> from 0 to 1. Report the maximum value of the noise rate for which the network still correctly retrieves all inputs.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Homework exercise 8:</strong> In some cases, the retrieved digit looks quite good, but not perfect. Can you explain why this happens?</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Lab2-SingleNeurons.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Single neuron models</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Lab4-MLP.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">FNCM Lab 4: Multi-Layer Perceptron</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    <div class="extra_footer">
+      <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+</div>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
