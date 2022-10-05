@@ -1,0 +1,11 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: Lab1-LinearAlgebra_ODEs.ipynb
+- file: Lab2-SingleNeurons.ipynb
+- file: Lab3-Hopfield.ipynb
+- file: Lab4-MLP.ipynb
+- file: Lab5-RL.ipynb
