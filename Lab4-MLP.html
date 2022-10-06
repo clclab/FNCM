@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FNCM Lab 4: Multi-Layer Perceptron &#8212; My sample book</title>
+    <title>Multi-Layer Perceptron &#8212; FNCM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="FNCM Lab 5: Reinforcement Learning" href="Lab5-RL.html" />
-    <link rel="prev" title="FNCM Lab 3: Hopfield Networks" href="Lab3-Hopfield.html" />
+    <link rel="next" title="Reinforcement Learning" href="Lab5-RL.html" />
+    <link rel="prev" title="Hopfield Networks" href="Lab3-Hopfield.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -98,7 +98,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">My sample book</h1>
+      <h1 class="site-logo" id="site-title">FNCM</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -110,11 +110,16 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Foundations of Neural and Cognitive Modeling
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
    Linear Algebra and Ordinary Differential Equations
@@ -122,22 +127,22 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab2-SingleNeurons.html">
-   Single neuron models
+   Single Neuron Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab3-Hopfield.html">
-   FNCM Lab 3: Hopfield Networks
+   Hopfield Networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   FNCM Lab 4: Multi-Layer Perceptron
+   Multi-Layer Perceptron
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab5-RL.html">
-   FNCM Lab 5: Reinforcement Learning
+   Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -199,7 +204,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/Lab4-MLP.ipynb"
+        <a href="https://colab.research.google.com/github/clclab/FNCM/blob/main/book/Lab4-MLP.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -242,7 +247,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/clclab/FNCM"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -259,7 +264,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLab4-MLP.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/clclab/FNCM/issues/new?title=Issue%20on%20page%20%2FLab4-MLP.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -413,7 +418,7 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multi-layer-perceptron">
+  <a class="reference internal nav-link" href="#id1">
    3. Multi-layer Perceptron
   </a>
   <ul class="nav section-nav flex-column">
@@ -428,7 +433,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id2">
      3.1 Prediction
     </a>
     <ul class="nav section-nav flex-column">
@@ -440,7 +445,7 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+    <a class="reference internal nav-link" href="#id3">
      3.2 Training
     </a>
     <ul class="nav section-nav flex-column">
@@ -472,7 +477,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>FNCM Lab 4: Multi-Layer Perceptron</h1>
+                <h1>Multi-Layer Perceptron</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -549,7 +554,7 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multi-layer-perceptron">
+  <a class="reference internal nav-link" href="#id1">
    3. Multi-layer Perceptron
   </a>
   <ul class="nav section-nav flex-column">
@@ -564,7 +569,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id2">
      3.1 Prediction
     </a>
     <ul class="nav section-nav flex-column">
@@ -576,7 +581,7 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+    <a class="reference internal nav-link" href="#id3">
      3.2 Training
     </a>
     <ul class="nav section-nav flex-column">
@@ -609,8 +614,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="fncm-lab-4-multi-layer-perceptron">
-<h1>FNCM Lab 4: Multi-Layer Perceptron<a class="headerlink" href="#fncm-lab-4-multi-layer-perceptron" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="multi-layer-perceptron">
+<h1>Multi-Layer Perceptron<a class="headerlink" href="#multi-layer-perceptron" title="Permalink to this headline">#</a></h1>
 <p>Submit your solutions on Canvas before Wednesday, 1 December, 17:59. Please hand in the following:</p>
 <p>A copy of this notebook with the code and results of running the code filled in the required sections. The sections to complete all start as follows:</p>
 <ul class="simple">
@@ -629,12 +634,16 @@ title="Print to PDF"
 <p>Last week we studied Hopfield nets, that consisted of <em>McCulloch-Pitts</em> units. This week, we will analyse those units in more depth. Then, we will see how to combine many neurons to build feed-forward networks called multi-layer perceptrons.</p>
 <p>We will need the <a class="reference external" href="https://docs.scipy.org/doc/numpy/index.html">numpy</a>, <a class="reference external" href="https://pandas.pydata.org/">pandas</a>, <a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://mne.tools/stable/index.html">MNE</a>, <a class="reference external" href="https://www.scipy.org/">scipy</a>, <a class="reference external" href="https://pywavelets.readthedocs.io/en/latest/">pywt</a> and <a class="reference external" href="https://scikit-learn.org/stable/">sklearn</a> libraries, as well as some functions that are defined in the <code class="docutils literal notranslate"><span class="pre">MLP.py</span></code> file and some objects loaded in the <code class="docutils literal notranslate"><span class="pre">EEG.py</span></code> file. The cell below takes care of all of this.</p>
 <p>The following will appear:</p>
-<p><code class="docutils literal notranslate"><span class="pre">Do</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">set</span> <span class="pre">the</span> <span class="pre">path:</span> <span class="pre">/root/mne_data</span> <span class="pre">as</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">EEGBCI</span> <span class="pre">dataset</span> <span class="pre">path</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">mne-python</span> <span class="pre">config</span> <span class="pre">[y]/n?</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Do you want to set the path: /root/mne_data as the default EEGBCI dataset path in the mne-python config [y]/n?
+</pre></div>
+</div>
 <p>Simply press “y” (on your keyboard) and then “Enter”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install mne
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install missing package</span>
+<span class="o">!</span>pip install mne
 
+<span class="c1"># Import packages</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                     <span class="c1"># algebra</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>                    <span class="c1"># data manipulation</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>        <span class="c1"># plotting</span>
@@ -643,13 +652,12 @@ title="Print to PDF"
 <span class="kn">import</span> <span class="nn">pywt</span>                            <span class="c1"># wavelet transform</span>
 <span class="kn">import</span> <span class="nn">random</span>                          <span class="c1"># shuffling lists</span>
 <span class="kn">import</span> <span class="nn">sklearn</span>                         <span class="c1"># machine learning tools (feature selection)</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>      <span class="c1"># visualize images</span>
-<span class="kn">import</span> <span class="nn">gdown</span>                           <span class="c1"># download files from Google Drive</span>
 
-<span class="c1"># Downloading code from Simone&#39;s Google Drive</span>
-<span class="n">gdown</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;https://drive.google.com/uc?id=1Y9KSTIzvnpUjpkjj4VqG4QI8W35roJIF&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;EEG.py&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">gdown</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;https://drive.google.com/uc?id=1KNwiroZDlPCeueGVojoApmYtellMwSoL&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;MLP.py&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># Download code from the FNCM github repository</span>
+<span class="o">!</span>wget --no-cache <span class="o">{</span><span class="s2">&quot;https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/EEG.py&quot;</span><span class="o">}</span>
+<span class="o">!</span>wget --no-cache <span class="o">{</span><span class="s2">&quot;https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/MLP.py&quot;</span><span class="o">}</span>
 
+<span class="c1"># Import said code</span>
 <span class="kn">import</span> <span class="nn">MLP</span>
 <span class="kn">from</span> <span class="nn">MLP</span> <span class="k">import</span> <span class="n">MLP</span><span class="p">,</span> <span class="n">plot_errors</span>
 <span class="kn">import</span> <span class="nn">EEG</span>
@@ -661,14 +669,14 @@ title="Print to PDF"
 </div>
 <div class="section" id="classification-and-regression">
 <h2>1. Classification and Regression<a class="headerlink" href="#classification-and-regression" title="Permalink to this headline">#</a></h2>
-<p>In <em>supervised learning</em> a <em>training dataset</em> <span class="math notranslate nohighlight">\(\{(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\}\)</span> is given, and the task is to find a function <span class="math notranslate nohighlight">\(y = f(x)\)</span> such that the function is applicable to unknown patterns <span class="math notranslate nohighlight">\(x\)</span>. Based on the nature of <span class="math notranslate nohighlight">\(y\)</span>, we can classify those tasks into two classes:</p>
+<p>In supervised learning a training dataset <span class="math notranslate nohighlight">\(\{(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\}\)</span> is given, and the task is to find a function <span class="math notranslate nohighlight">\(y = f(x)\)</span> such that the function is applicable to unknown patterns <span class="math notranslate nohighlight">\(x\)</span>. Based on the nature of <span class="math notranslate nohighlight">\(y\)</span>, we can classify those tasks into two classes:</p>
 <ul class="simple">
 <li><p><strong>Classification</strong> is to assign a predefined label to an unknown pattern. For instance, given a picture of an animal, we need to identify if that picture is of a cat, a dog or a mouse. If there are two categories (or two classes), the problem is called binary classification; otherwise, it is multi-class classification. For the binary classification problem, there is a special case, where patterns of the two classes are perfectly separated by a hyperplane (see <a class="reference external" href="#Figure-1%3A-Example-of-linear-separability">Figure 1</a>). We call the phenomenon <em>linear separability</em>, and the hyperplane <em>decision boundary</em>.</p></li>
-<li><p><strong>Regression</strong> differs from classification in that what we need to assign to an unknown pattern is a <em>real number</em>, not a label. For instance, given the height and age of a person, can we infer their weight?</p></li>
+<li><p><strong>Regression</strong> differs from classification in that what we need to assign to an unknown pattern is a real number, not a label. For instance, given the height and age of a person, can we infer their weight?</p></li>
 </ul>
 <div class="section" id="figure-1-example-of-linear-separability">
 <h3>Figure 1: Example of linear separability<a class="headerlink" href="#figure-1-example-of-linear-separability" title="Permalink to this headline">#</a></h3>
-<p><img alt="Example-of-linear-separability" src="https://docs.google.com/uc?export=download&amp;id=1DnS7gsuJyXcQQvomf8BCktG2uabMSJ9l" /></p>
+<p><img alt="Example-of-linear-separability" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/linear_sep.png" /></p>
 </div>
 </div>
 <div class="section" id="perceptron">
@@ -676,11 +684,11 @@ title="Print to PDF"
 <p>A perceptron is a simplified neuron receiving inputs as a vector of real numbers, and outputting a real number (see <a class="reference external" href="#Figure-2%3A-Perceptron">Figure 2</a>).</p>
 <div class="section" id="figure-2-perceptron">
 <h3>Figure 2: Perceptron<a class="headerlink" href="#figure-2-perceptron" title="Permalink to this headline">#</a></h3>
-<p><img alt="Perceptron" src="https://docs.google.com/uc?export=download&amp;id=1ZWsOVjYnVQJPDAfC7HP6fak0oLDLZgQa" /></p>
+<p><img alt="Perceptron" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/perceptron.png" /></p>
 </div>
 <div class="section" id="figure-3-threshold-binary-activation-function">
 <h3>Figure 3: Threshold binary activation function<a class="headerlink" href="#figure-3-threshold-binary-activation-function" title="Permalink to this headline">#</a></h3>
-<p><img alt="Threshold binary activation function" src="https://docs.google.com/uc?export=download&amp;id=1b5jNQRikzo9jWT6Haxik1d22SK6nYNhL" /></p>
+<p><img alt="Threshold binary activation function" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/thresbin.png" /></p>
 <p><span class="math notranslate nohighlight">\(
 f(z) = 
 \begin{cases}
@@ -697,7 +705,7 @@ y = f(w_1 x_1 + w_2 x_2 + ... + w_n x_n + b) = f(\mathbf{w}^{T}\mathbf{x} + b)
 <br>
 <p>We are going to implement and train a perceptron in this assignment. Have a look at the function definitions in the next code block.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sigmoid</span></code> and <code class="docutils literal notranslate"><span class="pre">binary_threshold</span></code> can be used as activation functions. For the present, we will use the threshold binary function for <span class="math notranslate nohighlight">\(f\)</span> (see [Figure 3](#Figure-3%3A-Threshold binary activation function)).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigmoid</span></code> and <code class="docutils literal notranslate"><span class="pre">binary_threshold</span></code> can be used as activation functions. For the present, we will use the threshold binary function for <span class="math notranslate nohighlight">\(f\)</span> (see <a class="reference external" href="#Figure-3%3A-Threshold-binary-activation-function">Figure 3</a>).</p></li>
 </ul>
 <blockquote>
 <div><p><strong>Exercise</strong>: Verify that the function <code class="docutils literal notranslate"><span class="pre">binary_threshold</span></code> implements this equation.</p>
@@ -920,10 +928,12 @@ where \)</span>I_u(v)<span class="math notranslate nohighlight">\( is an identit
 </div>
 </div>
 <p>Now execute the code block below. It loads the data and runs the training for the perceptron. Use <code class="docutils literal notranslate"><span class="pre">stepbystep</span></code> to see the prediction and model parameters after each example. At the same time, a plot will appear to inform you which example (in the green box) is being taken, and what the current decision boundary looks like. Press Enter inside the input field to go to the next iteration.</p>
-<p>You will see that the model is not learning the task yet: you need to implement the <code class="docutils literal notranslate"><span class="pre">update</span></code> function, which you can find in <a class="reference external" href="#2.1-Model">this cell</a>. <a class="reference external" href="#2.2-Prediction">Subsection 2.2</a> and <a class="reference external" href="#2.2-Training">subsection 2.3</a> will tell you how.</p>
+<p>You will see that the model is not learning the task yet. You need to implement the <code class="docutils literal notranslate"><span class="pre">update</span></code> function, which you can find in <a class="reference external" href="#2.1-Model">this cell</a>: <a class="reference external" href="#2.2-Prediction">Subsection 2.2</a> and <a class="reference external" href="#2.2-Training">subsection 2.3</a> will tell you how.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data_OR</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the data</span>
+<span class="c1"># change between data_OR and data_XOR based on what you want to learn</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data_OR</span>
 
 <span class="c1"># shuffle data</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -981,7 +991,7 @@ b_\text{new} \leftarrow b_\text{old} + \eta(y - \hat{y}_\text{old})
 <div class="section" id="figure-4-example-of-weight-update">
 <h4>Figure 4: Example of weight update<a class="headerlink" href="#figure-4-example-of-weight-update" title="Permalink to this headline">#</a></h4>
 <p>The chosen example is enclosed in the green box. The update pulls the plane to a direction that makes the prediction on the example “less incorrect”.
-<img alt="Example of weight update" src="https://docs.google.com/uc?export=download&amp;id=11vTplkxk9BJN4dD1SP_QJxM-U4IVHRM8" /></p>
+<img alt="Example of weight update" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/update_w.png" /></p>
 </div>
 <div class="section" id="training-on-or">
 <h4>Training on OR<a class="headerlink" href="#training-on-or" title="Permalink to this headline">#</a></h4>
@@ -999,8 +1009,8 @@ b_\text{new} \leftarrow b_\text{old} + \eta(y - \hat{y}_\text{old})
 </div>
 </div>
 </div>
-<div class="section" id="multi-layer-perceptron">
-<h2>3. Multi-layer Perceptron<a class="headerlink" href="#multi-layer-perceptron" title="Permalink to this headline">#</a></h2>
+<div class="section" id="id1">
+<h2>3. Multi-layer Perceptron<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>The perceptron model presented above is very limited: it is theoretically applicable only to linearly separable data. In order to handle non-linearly separable data, the perceptron is extended to a more complex structure, namely the multi-layer perceptron (MLP). An MLP is a neural network in which neuron layers are stacked such that the output of a neuron in a layer is only allowed to be an input to neurons in the upper layer (see <a class="reference external" href="#Figure-5%3A-A-3-layer-perceptron-with-2-hidden-layers">Figure 5</a>). Informally speaking, a neuron is activated by the sum of weighed outputs of the neurons in the lower layer. It turns out that, if the activation functions of those neurons are non-linear, such as the sigmoid (or logistic) function (see <a class="reference external" href="#Figure-6%3A-Sigmoid-activation-function">Figure 6</a>):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1010,23 +1020,23 @@ b_\text{new} \leftarrow b_\text{old} + \eta(y - \hat{y}_\text{old})
 <div class="section" id="figure-5-a-3-layer-perceptron-with-2-hidden-layers">
 <h3>Figure 5: A 3-layer perceptron with 2 hidden layers<a class="headerlink" href="#figure-5-a-3-layer-perceptron-with-2-hidden-layers" title="Permalink to this headline">#</a></h3>
 <p>(from <a class="reference external" href="http://www.statistics4u.com/fundstat_eng/cc_ann_bp_function.html">http://www.statistics4u.com/fundstat_eng/cc_ann_bp_function.html</a>)</p>
-<p><img alt="A 3-layer perceptron with 2 hidden layers" src="https://docs.google.com/uc?export=download&amp;id=1XsU32TyLI8XeV8tMn9UA26jFGbD2q2Hq" /></p>
+<p><img alt="A 3-layer perceptron with 2 hidden layers" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/multil_perceptron.png" /></p>
 <br>
 </div>
 <div class="section" id="figure-6-sigmoid-activation-function">
 <h3>Figure 6: Sigmoid activation function<a class="headerlink" href="#figure-6-sigmoid-activation-function" title="Permalink to this headline">#</a></h3>
-<p><img alt="Sigmoid activation function" src="https://docs.google.com/uc?export=download&amp;id=1rLSCR4ka5ABniYr-KwlTRZiAZeblQCFE" /></p>
+<p><img alt="Sigmoid activation function" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/sigmoid.png" /></p>
 </div>
-<div class="section" id="id1">
-<h3>3.1 Prediction<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<div class="section" id="id2">
+<h3>3.1 Prediction<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>Prediction is very fast thanks to the <em>feedforward</em> algorithm (<a class="reference external" href="#Figure-5%3A-Feedforward-(left)-and-backpropagation-(right)">Figure 7</a>, on the left). The algorithm says that, given <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, we firstly compute the outputs of the neurons in the first layer; then we compute the outputs of the neurons in the second layer; and so on until we reach the top layer.</p>
 <div class="section" id="figure-7-feedforward-left-and-backpropagation-right">
 <h4>Figure 7: Feedforward (left) and backpropagation (right)<a class="headerlink" href="#figure-7-feedforward-left-and-backpropagation-right" title="Permalink to this headline">#</a></h4>
-<p><img alt="Feedforward (left) and backpropagation (right)" src="https://docs.google.com/uc?export=download&amp;id=1UPYx7LbLF02ffOEki0nNKmQfQy1Y4GUx" /></p>
+<p><img alt="Feedforward (left) and backpropagation (right)" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/feedforward_backprop.png" /></p>
 </div>
 </div>
-<div class="section" id="id2">
-<h3>3.2 Training<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<div class="section" id="id3">
+<h3>3.2 Training<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>Training an MLP is to minimize an objective function, which is related to the task that the MLP is used for. For instance, for the binary classification task, the following objective function is widely used:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1036,7 +1046,7 @@ J(\theta) = \frac{1}{n} \sum_{(\mathbf{x}, y)\ \in\ D} (y - \hat{y})^2
 <div class="section" id="figure-8-illustration-for-the-gradient-descent-method">
 <h4>Figure 8: Illustration for the gradient descent method<a class="headerlink" href="#figure-8-illustration-for-the-gradient-descent-method" title="Permalink to this headline">#</a></h4>
 <p>The blue line is the tangent at the current value of the parameter <span class="math notranslate nohighlight">\(w\)</span>. If we update <span class="math notranslate nohighlight">\(w\)</span> by subtracting an amount proportional to the gradient at that point, the value of <span class="math notranslate nohighlight">\(E\)</span> will be pushed along the arrow and hence decrease. However, this method only guarantees to converge to a local minimum.</p>
-<p><img alt="Illustration for the gradient descent method" src="https://docs.google.com/uc?export=download&amp;id=1kJoLc-i55OO6CRRDv0KVvWvQMoB-x2Fj" /></p>
+<p><img alt="Illustration for the gradient descent method" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/gradient_descent.png" /></p>
 <p>We will now train a multi-layer perceptron on the OR and XOR data. The MLP itself is already implemented for you, as well as the feedforward and backpropagation algorithms for training it (if you want, you can have a look at the code in the <code class="docutils literal notranslate"><span class="pre">MLP.py</span></code> file). Here we will just load the MLP and experiment with a few settings. When you execute the codeblock below, you will see the MLP’s final accuracy on the training dataset, in addition to a plot of the progress over training. This plot shows the <em>weighed sum of squared errors</em> at each iteration:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1086,10 +1096,6 @@ J(\theta) = \frac{1}{n} \sum_{(\mathbf{x}, y)\ \in\ D} (y - \hat{y})^2
 <blockquote>
 <div><p><strong>Homework exercise 6:</strong> How many hidden nodes do you minimally need to learn the XOR function? Motivate your answer with a theoretical explanation and an empirical validation.</p>
 </div></blockquote>
-<p>The exercises above should have given you some feel of how a perceptron and an MLP learn to predict an output from data, and the different types of learned decision boundaries needed to properly classify various datasets. On the interactive <a class="reference external" href="https://playground.tensorflow.org/">Neural Network Playground</a> app, you can play with even more datasets, network structures and training settings. It also includes very nice visualizations of the input features, weights and outputs per neuron.</p>
-<blockquote>
-<div><p><strong>Exercise</strong>: Can you (qualitatively) reproduce the OR and XOR results from the exercises above on the Neural Network Playground?</p>
-</div></blockquote>
 <blockquote>
 <div><p><strong>Homework exercise 7</strong>: Is there a way for a network with no hidden layers (= a perceptron) to learn XOR-type data, that is seperated non-linearly?</p>
 </div></blockquote>
@@ -1118,8 +1124,8 @@ J(\theta) = \frac{1}{n} \sum_{(\mathbf{x}, y)\ \in\ D} (y - \hat{y})^2
 For this we will only use the signals from the point where the subject was actually imagining the movement (<span class="math notranslate nohighlight">\(t = 0\)</span>). Furthermore, we don’t use <em>all</em> datapoints in the raw EEG signal; instead, we compute some features with which we aim to capture the most important information about the wave. For our toy problem, it turns out that an extremely crude encoding of this information will do.</p>
 <p>We intend to capture some of the temporal properties of the EEG signal (how the wave changes over time), as well as some spectral properties (how intense the signal is in different frequency bands).</p>
 <p>For the <em>temporal properties</em>, we divide the y-axis range of the EEG signal into 3 quantiles (in the plot below, the regions divided by the grey horizontal lines). From every raw EEG wave (the black line), we first remove the noise (giving the blue line), and then compute the average of the transformed signal at a few evenly spread points (blue dots). For each of those dots, we add a 0, 1 or 2 to our list of features depending on what quantile they fall in. Hence, the list of temporal features encoding the signal below would be <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">2]</span></code>. The quantiles are computed separately for each channel of every epoch, such that there will be an approximately equal number of points in each of the three ranges — the 0s, 1s and 2s therefore (very crudely!) encode the <em>relative</em> upward and downward movement of the wave over time.</p>
-<img src="https://docs.google.com/uc?export=download&id=1qrKyYdmrXcaaGRs4hEazeV466sWi9Fmv" alt="Temporal feature extraction" width="800"/><p>For the <em>spectral properties</em>, we look at three different frequency bands: theta (3.5 - 7.5 Hz), alpha (7.5 - 13 Hz) and beta (14+ Hz). We want to encode the relative distribution of spectral power density in these three bands: which frequency band contains most movement, and which the least? Again, we encode this using 0, 1 and 2: this time, the numbers mean “least”, “middle” and “most” spectral power density. The plot below shows the spectral power density for different frequency ranges across the entire signal timeframe. For this signal, the alpha band has the highest power density, followed by theta and finally beta. The list of spectral features encoding this signal would therefore be <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">0]</span></code>.</p>
-<img src="https://docs.google.com/uc?export=download&id=1DrG-9-n_Pfb99Jow8gClst_3Ejdh8UEf" alt="Spectral feature extraction" width="800"/><p>Ultimately, we select the best of all spectral and temporal features across trials, such that we end up with a list of 96 numbers (all 0s, 1s and 2s) encoding the EEG signal per trial. You don’t need to understand the specifics of the feature extraction and selection procedure (although you can have a look in the <code class="docutils literal notranslate"><span class="pre">EEG.py</span></code> file if you’re curious), but you can probably see that these features omit a lot of information from the EEG signal. Maybe you can even already think of better ways to represent this information (a potential mini-project!). Nevertheless, these very crude representations may still provide enough information for the MLP to learn to distinguish between imagined hand or foot movement.</p>
+<img src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/tempf.png" alt="Temporal feature extraction" width="800"/><p>For the <em>spectral properties</em>, we look at three different frequency bands: theta (3.5 - 7.5 Hz), alpha (7.5 - 13 Hz) and beta (14+ Hz). We want to encode the relative distribution of spectral power density in these three bands: which frequency band contains most movement, and which the least? Again, we encode this using 0, 1 and 2: this time, the numbers mean “least”, “middle” and “most” spectral power density. The plot below shows the spectral power density for different frequency ranges across the entire signal timeframe. For this signal, the alpha band has the highest power density, followed by theta and finally beta. The list of spectral features encoding this signal would therefore be <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">0]</span></code>.</p>
+<img src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab4-materials/img/specf.png" alt="Spectral feature extraction" width="800"/><p>Ultimately, we select the best of all spectral and temporal features across trials, such that we end up with a list of 96 numbers (all 0s, 1s and 2s) encoding the EEG signal per trial. You don’t need to understand the specifics of the feature extraction and selection procedure (although you can have a look in the <code class="docutils literal notranslate"><span class="pre">EEG.py</span></code> file if you’re curious), but you can probably see that these features omit a lot of information from the EEG signal. Maybe you can even already think of better ways to represent this information (a potential mini-project!). Nevertheless, these very crude representations may still provide enough information for the MLP to learn to distinguish between imagined hand or foot movement.</p>
 <p>To see how well the MLP model can learn to do this classification, we split the data into a training and a test set: we will train the model on two thirds of the data, and then test its prediction accuracy on the other third. As such, we evaluate how well the learned decision boundary (in this case a manydimensional hypersurface) will generalize to correctly classify unseen data — this method of model validation is called <em>cross-validation</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1256,13 +1262,13 @@ Train the MLP on the EEG dataset a few times while varying the parameters (you c
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">FNCM Lab 3: Hopfield Networks</p>
+            <p class="prev-next-title">Hopfield Networks</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Lab5-RL.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">FNCM Lab 5: Reinforcement Learning</p>
+        <p class="prev-next-title">Reinforcement Learning</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

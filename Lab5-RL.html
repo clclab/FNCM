@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FNCM Lab 5: Reinforcement Learning &#8212; My sample book</title>
+    <title>Reinforcement Learning &#8212; FNCM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="FNCM Lab 4: Multi-Layer Perceptron" href="Lab4-MLP.html" />
+    <link rel="prev" title="Multi-Layer Perceptron" href="Lab4-MLP.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -97,7 +97,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">My sample book</h1>
+      <h1 class="site-logo" id="site-title">FNCM</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -109,11 +109,16 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Foundations of Neural and Cognitive Modeling
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
    Linear Algebra and Ordinary Differential Equations
@@ -121,22 +126,22 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab2-SingleNeurons.html">
-   Single neuron models
+   Single Neuron Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab3-Hopfield.html">
-   FNCM Lab 3: Hopfield Networks
+   Hopfield Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab4-MLP.html">
-   FNCM Lab 4: Multi-Layer Perceptron
+   Multi-Layer Perceptron
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   FNCM Lab 5: Reinforcement Learning
+   Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -198,7 +203,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/Lab5-RL.ipynb"
+        <a href="https://colab.research.google.com/github/clclab/FNCM/blob/main/book/Lab5-RL.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -241,7 +246,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/clclab/FNCM"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -258,7 +263,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLab5-RL.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/clclab/FNCM/issues/new?title=Issue%20on%20page%20%2FLab5-RL.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -379,7 +384,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>FNCM Lab 5: Reinforcement Learning</h1>
+                <h1>Reinforcement Learning</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -424,8 +429,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="fncm-lab-5-reinforcement-learning">
-<h1>FNCM Lab 5: Reinforcement Learning<a class="headerlink" href="#fncm-lab-5-reinforcement-learning" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="reinforcement-learning">
+<h1>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">#</a></h1>
 <p>Submit your solutions on Canvas before Wednesday, 1 December, 17:59. Please hand in the following:</p>
 <p>A copy of this notebook with the code and results of running the code filled in the required sections. The sections to complete all start as follows:</p>
 <ul class="simple">
@@ -441,22 +446,28 @@ title="Print to PDF"
 <p>This lab will guide you through a reinforcement learning simulation. We will simulate an agent navigating through a maze similar to the one depicted below. The red dot is the initial position of the agent, <span class="math notranslate nohighlight">\(s_1\)</span>. The green boxes are terminal states. The stars indicate rewards.</p>
 <p>Each position in the maze is one possible state, thus there are 16 states, which we will index line by line, such that the upper left corner is state 0 and the lower right corner is state 15. Hence, state 1 and state 11 are terminal states. There are four possible action directions, left (0), up (1), right (2) and down (3). Performing an action from a state is only possible if there is no border in the way.</p>
 <p>We assume that the setup of the maze is unknown to the agent. We will implement a simple Q-learning algorithm to model how the agent learns which path to take in the maze.</p>
-<p><img alt="title" src="https://drive.google.com/uc?id=1aJzQhep462CNfmB_0Shtcv4nFc1aAx-3" /></p>
+<p><img alt="title" src="%21%5B%5D(https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab5-maze.jpg)" /></p>
 </div>
 <div class="section" id="updating-the-q-values">
 <h2>Updating the Q-values<a class="headerlink" href="#updating-the-q-values" title="Permalink to this headline">#</a></h2>
 <p>As the agent navigates through the maze, it builds up an estimation of the utility of each state-action pair. This estimation is represented in a 16x4 matrix <span class="math notranslate nohighlight">\(Q\)</span>. Each time the agent takes a step, the Q-value of the corresponding state-action pair is updated. Specifically, when moving from state <span class="math notranslate nohighlight">\(s\)</span> to state <span class="math notranslate nohighlight">\(s'\)</span> with action <span class="math notranslate nohighlight">\(a\)</span> and obtaining reward <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(Q(s,a)\)</span> is updated according to:</p>
-<p>\begin{align*}
-Q_{t+1}(s,a)=Q_t(s,a)+\alpha*\delta
-\end{align*}</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    Q_{t+1}(s,a)=Q_t(s,a)+\alpha*\delta
+\end{align*}
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\delta\)</span> is the prediction error, defined by:</p>
-<p>\begin{align*}
-\delta = R + \gamma * max_{a’}(Q(s’,a’))-Q(s,a)
-\end{align*}</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+   \delta = R + \gamma * max_{a'}(Q(s',a'))-Q(s,a)
+\end{align*}
+\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(\alpha\)</span> is the learning rate and <span class="math notranslate nohighlight">\(\gamma\)</span> is the temporal discount factor. <span class="math notranslate nohighlight">\(max_{a'}(Q(s',a'))\)</span> refers to the highest Q-value of state <span class="math notranslate nohighlight">\(s'\)</span>. <span class="math notranslate nohighlight">\(Q(s,a)\)</span> is updated proportionally to the size of the prediction error – the greater the prediction error, the more the agent learns.</p>
 <br>
 <blockquote>
-<div><p>Complete the function that updates the Q values in the cell below.</p>
+<div><p>Complete the function that updates the Q-values in the cell below.</p>
 </div></blockquote>
 <br>
 <p>Hint: use the function <code>np.nanmax()</code> to find the maximum of an array while ignoring nan entries (this will be important when we use the function later on).</p>
@@ -476,7 +487,7 @@ Q_{t+1}(s,a)=Q_t(s,a)+\alpha*\delta
 <span class="sd">      alpha -- learning rate</span>
 <span class="sd">      </span>
 <span class="sd">    Output:</span>
-<span class="sd">      Q[s, a] -- updated Q value</span>
+<span class="sd">      Q[s, a] -- updated Q-value</span>
 <span class="sd">      pred_error -- prediction error (delta)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
@@ -497,9 +508,12 @@ Q_{t+1}(s,a)=Q_t(s,a)+\alpha*\delta
 <div class="section" id="softmax-action-selection">
 <h2>Softmax action selection<a class="headerlink" href="#softmax-action-selection" title="Permalink to this headline">#</a></h2>
 <p>The second component of our Q-learning algorithm is an action selection function, that receives the Q-values of the current state as an input and returns an action to be taken. We will implement a softmax action selection function, that assigns probabilities to each action <span class="math notranslate nohighlight">\(a_i\)</span> of a given state <span class="math notranslate nohighlight">\(s\)</span>, depending on its Q-value <span class="math notranslate nohighlight">\(q_i\)</span>:</p>
-<p>\begin{align*}
-P(q_i|s) = \frac{e^{\frac{q_i}{\tau}}}{\sum_A{e^{\frac{q_i}{\tau}}}}
-\end{align*}</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+    P(q_i|s) = \frac{e^{\frac{q_i}{\tau}}}{\sum_A{e^{\frac{q_i}{\tau}}}}
+\end{align*}
+\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(\tau &gt; 0\)</span> is the so called temperature parameter. If <span class="math notranslate nohighlight">\(\tau\)</span> is close to <span class="math notranslate nohighlight">\(0\)</span>, the algorithm most likely selects the action with the highest Q-value (i.e. it makes a <em>greedy</em> choice). For <span class="math notranslate nohighlight">\(\tau \rightarrow \infty\)</span>, the algorithm <em>randomly</em> selects one of the actions, irrespective of their Q-value. The softmax function is implemented in the cell below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -771,7 +785,7 @@ P(q_i|s) = \frac{e^{\frac{q_i}{\tau}}}{\sum_A{e^{\frac{q_i}{\tau}}}}
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">FNCM Lab 4: Multi-Layer Perceptron</p>
+            <p class="prev-next-title">Multi-Layer Perceptron</p>
         </div>
     </a>
 </div>

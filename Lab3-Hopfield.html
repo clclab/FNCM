@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FNCM Lab 3: Hopfield Networks &#8212; My sample book</title>
+    <title>Hopfield Networks &#8212; FNCM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="FNCM Lab 4: Multi-Layer Perceptron" href="Lab4-MLP.html" />
-    <link rel="prev" title="Single neuron models" href="Lab2-SingleNeurons.html" />
+    <link rel="next" title="Multi-Layer Perceptron" href="Lab4-MLP.html" />
+    <link rel="prev" title="Single Neuron Models" href="Lab2-SingleNeurons.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -98,7 +98,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">My sample book</h1>
+      <h1 class="site-logo" id="site-title">FNCM</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -110,11 +110,16 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Foundations of Neural and Cognitive Modeling
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
    Linear Algebra and Ordinary Differential Equations
@@ -122,22 +127,22 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab2-SingleNeurons.html">
-   Single neuron models
+   Single Neuron Models
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   FNCM Lab 3: Hopfield Networks
+   Hopfield Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab4-MLP.html">
-   FNCM Lab 4: Multi-Layer Perceptron
+   Multi-Layer Perceptron
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab5-RL.html">
-   FNCM Lab 5: Reinforcement Learning
+   Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -199,7 +204,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/Lab3-Hopfield.ipynb"
+        <a href="https://colab.research.google.com/github/clclab/FNCM/blob/main/book/Lab3-Hopfield.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -242,7 +247,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/clclab/FNCM"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -259,7 +264,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLab3-Hopfield.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/clclab/FNCM/issues/new?title=Issue%20on%20page%20%2FLab3-Hopfield.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -399,7 +404,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>FNCM Lab 3: Hopfield Networks</h1>
+                <h1>Hopfield Networks</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -463,8 +468,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="fncm-lab-3-hopfield-networks">
-<h1>FNCM Lab 3: Hopfield Networks<a class="headerlink" href="#fncm-lab-3-hopfield-networks" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="hopfield-networks">
+<h1>Hopfield Networks<a class="headerlink" href="#hopfield-networks" title="Permalink to this headline">#</a></h1>
 <p>Submit your solutions on Canvas before Wednesday, 24 November, 17:59. Please hand in the following:</p>
 <p>A copy of this notebook with the code and results of running the code filled in the required sections. The sections to complete all start as follows:</p>
 <ul class="simple">
@@ -481,11 +486,11 @@ title="Print to PDF"
 <p>We will need the <a class="reference external" href="https://docs.scipy.org/doc/numpy/index.html">numpy</a>, <a class="reference external" href="https://pandas.pydata.org/">pandas</a>, <a class="reference external" href="https://matplotlib.org/">matplotlib</a> and <a class="reference external" href="https://imageio.github.io/">imageio</a> libraries, as well as some functions that are defined in the cell below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                <span class="c1"># for algebra</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>apt install subversion           # <span class="k">for</span> downloading folder from GitHub
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                <span class="c1"># for algebra</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>               <span class="c1"># for data manipulation</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>   <span class="c1"># for plotting</span>
-<span class="kn">import</span> <span class="nn">gdown</span>                      <span class="c1"># for downloading image files</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>             <span class="c1"># for visualizing images</span>
 <span class="kn">import</span> <span class="nn">imageio</span>                    <span class="c1"># for loading image files</span>
 </pre></div>
 </div>
@@ -555,15 +560,14 @@ s_i = \sum_{j \neq i} w_{ji} \cdot x_j + \theta_i,
 \label{eq:neuron_input} \tag{1}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\theta_i\)</span> is the <em>bias</em> for a single neuron<a class="reference external" href="#fn1"><sup>1</sup></a>. The activation <span class="math notranslate nohighlight">\(y_i\)</span> is calculated from <span class="math notranslate nohighlight">\(s_i\)</span> using the sign function as the <em>activation function</em>, which evaluates to <span class="math notranslate nohighlight">\(+1\)</span> for inputs <span class="math notranslate nohighlight">\(\geq 0\)</span> and to <span class="math notranslate nohighlight">\(-1\)</span> for inputs <span class="math notranslate nohighlight">\(&lt; 0\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-y_i = \text{sign}{(s_i)} = 
-    \begin{cases}
-    +1 &amp; \text{if } s_i \geq 0 \\
-    -1 &amp; \text{if } s_i &lt; 0
-    \end{cases}
-\label{eq:activation} \tag{2}
-\end{split}\]</div>
+<p>\begin{equation} \tag{2}
+y_i = \text{sign}{(s_i)} =
+\begin{cases}
++1 &amp; \text{if } s_i \geq 0 \
+-1 &amp; \text{if } s_i &lt; 0
+\end{cases}
+\label{eq:activation}
+\end{equation}</p>
 <p>In Hopfield networks, we are interested in how the activation of the neurons changes over time. It would therefore be better to write <span class="math notranslate nohighlight">\(y_i^{(t)}\)</span> for the value of neuron <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>. Note that the inputs <span class="math notranslate nohighlight">\(x_j\)</span> that a neuron receives are the outputs <span class="math notranslate nohighlight">\(y_j^{(t-1)}\)</span> of other neurons at the previous time step. Using <span class="math notranslate nohighlight">\(y_j^{(t-1)}\)</span> instead of <span class="math notranslate nohighlight">\(x_j\)</span> in <span class="math notranslate nohighlight">\(\eqref{eq:neuron_input}\)</span> and <span class="math notranslate nohighlight">\(\eqref{eq:activation}\)</span> gives the following formula for the activations in a Hopfield net:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -596,7 +600,7 @@ See Theorem 2, page 51, <a class="reference external" href="https://www.infor.uv
 <div class="section" id="asynchronous-updates">
 <h3>2.1 Asynchronous updates<a class="headerlink" href="#asynchronous-updates" title="Permalink to this headline">#</a></h3>
 <p>Consider the network given in the following figure:</p>
-<p><img alt="ICCN-drive-steps" src="https://docs.google.com/uc?export=download&amp;id=194UNXu-fmBjZFazUaTcB0YM4lUMj_CaB" /></p>
+<p><img alt="ICCN-drive-steps" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab3-materials/hopfield_3nodes.png" /></p>
 <p>We study how the state of the network changes if we iteratively update its state in an asynchronous fashion. For this, we will use the <code class="docutils literal notranslate"><span class="pre">run_hopfield</span></code> function defined in the next cell (instructions on how to use the function follow below).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -862,15 +866,14 @@ new state  [1 1 1]
 <h2>3. Learning with Hebb’s rule<a class="headerlink" href="#learning-with-hebbs-rule" title="Permalink to this headline">#</a></h2>
 <p>As you have seen, a Hopfield net is a fully recurrent artificial neural network. Interestingly, it can be used as an <em>associative memory</em>. That is, it can be used to associate patterns with themselves, such that they can be retrieved by the network when given an incomplete input. This is achieved by setting the weights <span class="math notranslate nohighlight">\(w_{ij}\)</span> of the network in such a way that patterns you want to store correspond to stable points of the network. (In other words, such that the patterns are local minima in the energy function of the network.)</p>
 <p>Starting from an incomplete input pattern, over iterations the network will converge to a stable point that corresponds to one of the stored patterns of the network. But how to find the weights that allow us to store a certain pattern? For that, we can use the Hebbian learning rule. Given <span class="math notranslate nohighlight">\(m\)</span> patterns <span class="math notranslate nohighlight">\(\mathbf{p}^k = (p_1^k,...,p_n^k)\)</span> (where <span class="math notranslate nohighlight">\(k = 1, ..., m\)</span>), we set the weights to:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-w_{ij} = 
+<p>\begin{equation} \tag{4}
+w_{ij} =
 \begin{cases}
-\sum_{k=1}^m p_i^k p_j^k &amp; \text{if } i \neq j \\
+\sum_{k=1}^m p_i^k p_j^k &amp; \text{if } i \neq j \
 0 &amp; \text{otherwise}
 \end{cases}
-\label{eq:weights} \tag{4}
-\end{split}\]</div>
+\label{eq:weights}
+\end{equation}</p>
 <p>How well this rule works is of course dependent on the number of patterns you want to store in your network, as well as on the similarity of the different patterns. The closer the number of patterns you want to store approaches the number of neurons, the harder it gets to store the patterns. Furthermore, it is easier to store patterns that are very different, than patterns that are very similar (note that for a Hopfield network, patterns that differ on exactly half of the neurons are the most dissimilar, do you understand why?).</p>
 <div class="section" id="updating-the-weights-using-hebbian-learning">
 <h3>3.1 Updating the weights using Hebbian learning<a class="headerlink" href="#updating-the-weights-using-hebbian-learning" title="Permalink to this headline">#</a></h3>
@@ -994,8 +997,8 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 <p>In the last part of the lab, we will train a Hopﬁeld net to store pictures of digits, from 0 to 9. First, we will download the pictures in the code below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># download pictures of digits</span>
-<span class="n">gdown</span><span class="o">.</span><span class="n">download_folder</span><span class="p">(</span><span class="s1">&#39;https://drive.google.com/drive/folders/1R66lCDcvM7WJYnkq3hcmOk1cCf8crOC4?usp=sharing&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># download folder of pictures of digits</span>
+<span class="o">!</span>svn checkout https://github.com/clclab/FNCM/trunk/book/Lab3-materials/digits
 </pre></div>
 </div>
 </div>
@@ -1161,13 +1164,13 @@ Calculating the weights is a bit tricky, if only because there are <span class="
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Single neuron models</p>
+            <p class="prev-next-title">Single Neuron Models</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Lab4-MLP.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">FNCM Lab 4: Multi-Layer Perceptron</p>
+        <p class="prev-next-title">Multi-Layer Perceptron</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

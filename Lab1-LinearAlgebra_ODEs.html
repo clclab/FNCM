@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linear Algebra and Ordinary Differential Equations &#8212; My sample book</title>
+    <title>Linear Algebra and Ordinary Differential Equations &#8212; FNCM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Single neuron models" href="Lab2-SingleNeurons.html" />
-    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+    <link rel="next" title="Single Neuron Models" href="Lab2-SingleNeurons.html" />
+    <link rel="prev" title="Welcome to Foundations of Neural and Cognitive Modeling" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -98,7 +98,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">My sample book</h1>
+      <h1 class="site-logo" id="site-title">FNCM</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -110,11 +110,16 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Foundations of Neural and Cognitive Modeling
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab assignments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Linear Algebra and Ordinary Differential Equations
@@ -122,22 +127,22 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab2-SingleNeurons.html">
-   Single neuron models
+   Single Neuron Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab3-Hopfield.html">
-   FNCM Lab 3: Hopfield Networks
+   Hopfield Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab4-MLP.html">
-   FNCM Lab 4: Multi-Layer Perceptron
+   Multi-Layer Perceptron
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab5-RL.html">
-   FNCM Lab 5: Reinforcement Learning
+   Reinforcement Learning
   </a>
  </li>
 </ul>
@@ -199,7 +204,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/Lab1-LinearAlgebra_ODEs.ipynb"
+        <a href="https://colab.research.google.com/github/clclab/FNCM/blob/main/book/Lab1-LinearAlgebra_ODEs.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -242,7 +247,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/clclab/FNCM"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -259,7 +264,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLab1-LinearAlgebra_ODEs.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/clclab/FNCM/issues/new?title=Issue%20on%20page%20%2FLab1-LinearAlgebra_ODEs.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -714,7 +719,11 @@ title="Print to PDF"
 <h2>2.1. Phase portraits of 1-dimensional ODEs<a class="headerlink" href="#phase-portraits-of-1-dimensional-odes" title="Permalink to this headline">#</a></h2>
 <p>A phase portrait is a visual representation of the trajectories of a dynamical system.</p>
 <p>Let’s first consider a 1-dimensional ODE:</p>
-<center>$\frac{dx}{dt}=2-0.1*x$</center>
+<center>
+    \begin{equation}
+        \frac{dx}{dt}=2-0.1*x
+    \end{equation}
+</center>
 <blockquote>
 <div><p><em><strong>Homework exercise 2:</strong></em> Let’s assume that the variable <span class="math notranslate nohighlight">\(x\)</span> denotes the speed of an object. What information does the equation above provide? Explain in one sentence!</p>
 </div></blockquote>
@@ -748,7 +757,11 @@ plot vectors field, we use the <code>quiver</code> function from the <code>matpl
 </div>
 </div>
 <p>Now it’s your turn. In a similar way, create a phase portrait of:</p>
-<center>$\frac{dx}{dt} = sin(x)$</center>
+<center>
+    \begin{equation}
+        \frac{dx}{dt} = sin(x)
+    \end{equation}
+</center>
 <p>Write your code in the following cell. Check if the directions of the arrows make sense by plotting the actual function <span class="math notranslate nohighlight">\(f(x) = sin(x)\)</span> in the same window.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,13 +790,12 @@ plot vectors field, we use the <code>quiver</code> function from the <code>matpl
 <div class="section" id="phase-portraits-of-2-dimensional-odes">
 <h2>2.2. Phase portraits of 2-dimensional ODEs<a class="headerlink" href="#phase-portraits-of-2-dimensional-odes" title="Permalink to this headline">#</a></h2>
 <p>Now let’s consider the 2-dimensional case. We will work with a system of two linear first-order ODEs, defined by:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\left\{ \begin{array}{c}
-\frac{dx}{dt} = a x + b y \\
+<p>\begin{equation}
+\left{ \begin{array}{c}
+\frac{dx}{dt} = a x + b y \
 \frac{dy}{dt} = c x + d y
 \end{array} \right.
-\end{split}\]</div>
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables and <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> are parameters.</p>
 <p>Whether this system has a stable equilibrium depends on the value of the parameters. By investigating the phase portrait, we will examine how the behavior of the system changes with its parameter values.</p>
 <div class="section" id="generating-the-data">
@@ -1027,13 +1039,13 @@ The <span class="math notranslate nohighlight">\(x\)</span>-nullcline is the set
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome to your Jupyter Book</p>
+            <p class="prev-next-title">Welcome to Foundations of Neural and Cognitive Modeling</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Lab2-SingleNeurons.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Single neuron models</p>
+        <p class="prev-next-title">Single Neuron Models</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
