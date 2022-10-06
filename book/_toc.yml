@@ -3,9 +3,12 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: Lab1-LinearAlgebra_ODEs.ipynb
-- file: Lab2-SingleNeurons.ipynb
-- file: Lab3-Hopfield.ipynb
-- file: Lab4-MLP.ipynb
-- file: Lab5-RL.ipynb
+parts:
+  - caption: Lab assignments
+    chapters:
+    - file: Lab1-LinearAlgebra_ODEs.ipynb
+    - file: Lab2-SingleNeurons.ipynb
+    - file: Lab3-Hopfield.ipynb
+    - file: Lab4-MLP.ipynb
+    - file: Lab5-RL.ipynb
+  
