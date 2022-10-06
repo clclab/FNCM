@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Single Neuron Models &#8212; FNCM</title>
+    <title>2. Single Neuron Models &#8212; FNCM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Hopfield Networks" href="Lab3-Hopfield.html" />
-    <link rel="prev" title="Linear Algebra and Ordinary Differential Equations" href="Lab1-LinearAlgebra_ODEs.html" />
+    <link rel="prev" title="1. Linear Algebra and Ordinary Differential Equations" href="Lab1-LinearAlgebra_ODEs.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -122,12 +122,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
-   Linear Algebra and Ordinary Differential Equations
+   1. Linear Algebra and Ordinary Differential Equations
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Single Neuron Models
+   2. Single Neuron Models
   </a>
  </li>
  <li class="toctree-l1">
@@ -375,7 +375,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Single Neuron Models</h1>
+                <h1>2. Single Neuron Models</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -411,7 +411,7 @@ title="Print to PDF"
               <div>
                 
   <div class="section" id="single-neuron-models">
-<h1>Single Neuron Models<a class="headerlink" href="#single-neuron-models" title="Permalink to this headline">#</a></h1>
+<h1>2. Single Neuron Models<a class="headerlink" href="#single-neuron-models" title="Permalink to this headline">#</a></h1>
 <p>Submit your solutions on Canvas before Wednesday, 17 November, 17:59. Please hand in the following:</p>
 <ul class="simple">
 <li><p>A copy of this notebook with the <strong>code</strong> and results of running the code filled in the required sections. The sections to complete all start as follows:</p></li>
@@ -426,9 +426,6 @@ title="Print to PDF"
 <br></p>
 </div></blockquote>
 <p>Some coding exercises are exaplined in the text cells and start with <em><strong>Exercise</strong></em> e.g. when we just ask you to change variables or when the coding is a little more involved.</p>
-<hr class="docutils" />
-<hr class="docutils" />
-<hr class="docutils" />
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>In the previous computer lab we learned how to use Python to plot phase portraits as well as draw nullclines and trajectories of a 2-dimensional system of linear ODEs. Today we will use the same techniques to study the behaviour of two models of single neuron dynamics: the Fitzhugh-Nagumo model and the Izhikevich model. You will need to re-use some of the code you wrote in the previous computer lab.</p>
@@ -521,7 +518,6 @@ means, actions potentials are modeled as negative, rather than positive, deflect
     r(v) &amp; = \frac{a-v}{b}
 \end{align*}
 \end{split}\]</div>
-<br>
 <blockquote>
 <div><p><em><strong>Homework exercise 2:</strong></em> Explain what these two equations describe. Analytically show that the two previous equations indeed describe the nullclines of the system. This is a “pen&amp;paper” exercise: solve it without the use of code.</p>
 </div></blockquote>
@@ -689,19 +685,24 @@ equilibrium.</p>
 </div>
 <div class="section" id="the-izhikevich-model">
 <h2>The Izhikevich model<a class="headerlink" href="#the-izhikevich-model" title="Permalink to this headline">#</a></h2>
-<p>The Izhikevich model is described by the following system of two ODEs:
+<p>The Izhikevich model is described by the following system of two ODEs:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
-\frac{dv}{dt} &amp;= f(v,u) = 0.04v^2 + 5v + 140 - u + I \
-\frac{du}{dt} &amp;= g(v,u) = a(bv - u)
+    \frac{dv}{dt} &amp;= f(v,u) = 0.04v^2 + 5v + 140 - u + I \\
+    \frac{du}{dt} &amp;= g(v,u) = a(bv - u)
 \end{align*}
-with the reset condition: <span class="math notranslate nohighlight">\(\text{if } v \ge 30 \text{ then } v \leftarrow c;\;\; u \leftarrow u+d\)</span>. The model is discontinous at the reset point - this way Izhikevich avoids having to explicitly model how the system gets back to the equilibrium point. Therefore, we cannot use the <code>odeint</code> to compute trajectories, but we need to do it point by point using the for loop. Check out the code under the comment <em>compute trajectories</em> below if you are interested how it can be done.</p>
+\end{split}\]</div>
+<p>with the reset condition: <span class="math notranslate nohighlight">\(\text{if } v \ge 30 \text{ then } v \leftarrow c;\;\; u \leftarrow u+d\)</span>. The model is discontinous at the reset point - this way Izhikevich avoids having to explicitly model how the system gets back to the equilibrium point. Therefore, we cannot use the <code>odeint</code> to compute trajectories, but we need to do it point by point using the for loop. Check out the code under the comment <em>compute trajectories</em> below if you are interested how it can be done.</p>
 <p>The nullclines of the Izhikevich neuron are given by:</p>
-<p>\begin{align*}
-u(v) &amp;= 0.04v^2 + 5v + 14 + I\
-u(v) &amp;= bv
-\end{align*}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+    u(v) &amp;= 0.04v^2 + 5v + 14 + I\\
+    u(v) &amp;= bv
+\end{align*}
+\end{split}\]</div>
 <p>Both the <code>dvdu</code> function and the nullcline functions are already implemented in the code below, you can just use them as they are.</p>
-<br>
 <blockquote>
 <div><p><em><strong>Homework exercise 7:</strong></em> The Izhikevich neuron model can, depending on the parameters, exhibit several types of spiking behaviour, such as (1) regular spiking, (2) fast spiking or (3) intrinsically bursting behaviour. Find parameter sets that lead to these three different types of behaviour (look at <a class="reference external" href="http://www.izhikevich.org/publications/spikes.htm">http://www.izhikevich.org/publications/spikes.htm</a> for help) and see if you can understand why they behave this way by plotting their trajectories. Hand in the phase portraints and <span class="math notranslate nohighlight">\(v(t)\)</span>-plots of the three different neuron types to show that they indeed exhibit the desired behaviour. Izhikevich assumes a constant input current of <span class="math notranslate nohighlight">\(I=10\)</span>.</p>
 </div></blockquote>
@@ -847,7 +848,7 @@ u(v) &amp;= bv
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Linear Algebra and Ordinary Differential Equations</p>
+            <p class="prev-next-title">1. Linear Algebra and Ordinary Differential Equations</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Lab3-Hopfield.html" title="next page">

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linear Algebra and Ordinary Differential Equations &#8212; FNCM</title>
+    <title>1. Linear Algebra and Ordinary Differential Equations &#8212; FNCM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Single Neuron Models" href="Lab2-SingleNeurons.html" />
+    <link rel="next" title="2. Single Neuron Models" href="Lab2-SingleNeurons.html" />
     <link rel="prev" title="Welcome to Foundations of Neural and Cognitive Modeling" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -122,12 +122,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Linear Algebra and Ordinary Differential Equations
+   1. Linear Algebra and Ordinary Differential Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab2-SingleNeurons.html">
-   Single Neuron Models
+   2. Single Neuron Models
   </a>
  </li>
  <li class="toctree-l1">
@@ -429,7 +429,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Linear Algebra and Ordinary Differential Equations</h1>
+                <h1>1. Linear Algebra and Ordinary Differential Equations</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -519,7 +519,7 @@ title="Print to PDF"
               <div>
                 
   <div class="section" id="linear-algebra-and-ordinary-differential-equations">
-<h1>Linear Algebra and Ordinary Differential Equations<a class="headerlink" href="#linear-algebra-and-ordinary-differential-equations" title="Permalink to this headline">#</a></h1>
+<h1>1. Linear Algebra and Ordinary Differential Equations<a class="headerlink" href="#linear-algebra-and-ordinary-differential-equations" title="Permalink to this headline">#</a></h1>
 <div class="section" id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">#</a></h2>
 <p>Submit your solutions on Canvas on Wednesday (10 November, 17:59). Please hand in the following:</p>
@@ -540,10 +540,7 @@ title="Print to PDF"
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>In this lab, we will use Python to study some essential concepts of linear algebra and then experiment with ordinary differential equations (ODEs) and phase portraits. In the first section, we will see the definitions, the notation, and the operations of vectors and matrices. We then explain determinants and eigenvalues of simple matrices, as these concepts will be used in the next weeks. If you already have a lot of experience with linear algebra in Python, you may skip this section.</p>
 <p>In the second section, we will go step by step through a set of instructions to create a phase portrait for a 2-dimensional system of ODEs. Some of the code is given, but you will need to fill in some sections yourself.</p>
-<hr class="docutils" />
-<hr class="docutils" />
 </div>
-<hr class="docutils" />
 <div class="section" id="linear-algebra">
 <h2>1. Linear algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this headline">#</a></h2>
 <div class="section" id="vectors-definitions">
@@ -790,12 +787,15 @@ plot vectors field, we use the <code>quiver</code> function from the <code>matpl
 <div class="section" id="phase-portraits-of-2-dimensional-odes">
 <h2>2.2. Phase portraits of 2-dimensional ODEs<a class="headerlink" href="#phase-portraits-of-2-dimensional-odes" title="Permalink to this headline">#</a></h2>
 <p>Now let’s consider the 2-dimensional case. We will work with a system of two linear first-order ODEs, defined by:</p>
-<p>\begin{equation}
-\left{ \begin{array}{c}
-\frac{dx}{dt} = a x + b y \
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\left\{ \begin{array}{c}
+\frac{dx}{dt} = a x + b y \\
 \frac{dy}{dt} = c x + d y
 \end{array} \right.
-\end{equation}</p>
+\end{equation}
+\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables and <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> are parameters.</p>
 <p>Whether this system has a stable equilibrium depends on the value of the parameters. By investigating the phase portrait, we will examine how the behavior of the system changes with its parameter values.</p>
 <div class="section" id="generating-the-data">
@@ -815,7 +815,6 @@ plot vectors field, we use the <code>quiver</code> function from the <code>matpl
 </div>
 <p>We want to compute <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dy\)</span> at all points (<code>x_vals[i,j]</code>, <code>y_vals[i,j]</code>). We will write a
 function to easily compute these two components.</p>
-<br>
 <blockquote>
 <div><p>Create a function called <code>dxdy</code> that takes an <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> value as input, and a vector containing the parameters <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> and returns a vector containing <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dy\)</span>.
 <br></p>
@@ -904,7 +903,6 @@ called <code>x_dirs</code> and <code>y_dirs</code>.</p>
 <p>To get a more complete phase portrait, we also want to include the nullclines in the plot.
 The <span class="math notranslate nohighlight">\(x\)</span>-nullcline is the set of points where <span class="math notranslate nohighlight">\(\frac{dx}{dt}= 0\)</span>, the <span class="math notranslate nohighlight">\(y\)</span>-nullcline is the set of points where
 <span class="math notranslate nohighlight">\(\frac{dy}{dt}= 0\)</span>. The general definition of nullcline is a little more involved, but these will work for our (2-dimensional) purposes.</p>
-<br>
 <blockquote>
 <div><p><em><strong>Homework exercise 3</strong></em>: Analytically (with pen &amp; paper!) determine the two nullclines by finding the solutions to <span class="math notranslate nohighlight">\(\frac{dx}{dt}= 0\)</span> and <span class="math notranslate nohighlight">\(\frac{dy}{dt}= 0\)</span> as a function of <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> (and <span class="math notranslate nohighlight">\(x\)</span>). Both your solutions should be of the form <span class="math notranslate nohighlight">\(y = f(x, a, b, c, d)\)</span> i.e. you must not have numbers in place of them.</p>
 <p>Show analytically (i.e. using the equations you just found) that <span class="math notranslate nohighlight">\((0, 0)\)</span> is an equilibrium.</p>
@@ -1045,7 +1043,7 @@ The <span class="math notranslate nohighlight">\(x\)</span>-nullcline is the set
     <a class='right-next' id="next-link" href="Lab2-SingleNeurons.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Single Neuron Models</p>
+        <p class="prev-next-title">2. Single Neuron Models</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

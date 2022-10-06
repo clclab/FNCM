@@ -122,12 +122,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
-   Linear Algebra and Ordinary Differential Equations
+   1. Linear Algebra and Ordinary Differential Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab2-SingleNeurons.html">
-   Single Neuron Models
+   2. Single Neuron Models
   </a>
  </li>
  <li class="toctree-l1">
@@ -713,12 +713,14 @@ y = f(w_1 x_1 + w_2 x_2 + ... + w_n x_n + b) = f(\mathbf{w}^{T}\mathbf{x} + b)
 <p>The other functions are defined as part of the <code class="docutils literal notranslate"><span class="pre">Perceptron</span></code> class. You can read about classes <a class="reference external" href="https://www.w3schools.com/python/python_classes.asp">here</a> but you don’t need to worry about them too much – examples of how to use the Perceptron functions are given in the next code blocks below.</p>
 <ul class="simple">
 <li><p>When a <code class="docutils literal notranslate"><span class="pre">Perceptron</span></code> object is created, it initializes a perceptron model with a vector of <code class="docutils literal notranslate"><span class="pre">weights</span></code> (<span class="math notranslate nohighlight">\(\mathbf{w}\)</span>), a <code class="docutils literal notranslate"><span class="pre">bias</span></code> term (<span class="math notranslate nohighlight">\(b\)</span>), and an <code class="docutils literal notranslate"><span class="pre">activation</span></code> function (<span class="math notranslate nohighlight">\(f\)</span>).</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">compute_error</span></code> function computes the mean squared error of the perceptron model on a dataset. The mean squared error (<span class="math notranslate nohighlight">\(\text{MSE}\)</span>) and classification accuracy on a sample <span class="math notranslate nohighlight">\(D = \{(\mathbf{x}_1, y_1), ..., (\mathbf{x}_n, y_n)\}\)</span> are respectively defined as
-$<span class="math notranslate nohighlight">\(
-\text{MSE} = \frac{1}{|D|} \sum_{\langle x, y\ \in\ D \rangle} (y - \hat{y})^2, \qquad 
-\text{accuracy} = \frac{1}{n} \sum_{i=1}^n I_{y_i}(\hat{y}_i)
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>I_u(v)<span class="math notranslate nohighlight">\( is an identity function, which returns 1 if \)</span>u = v$ and 0 otherwise.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">compute_error</span></code> function computes the mean squared error of the perceptron model on a dataset. The mean squared error (<span class="math notranslate nohighlight">\(\text{MSE}\)</span>) and classification accuracy on a sample <span class="math notranslate nohighlight">\(D = \{(\mathbf{x}_1, y_1), ..., (\mathbf{x}_n, y_n)\}\)</span> are respectively defined as</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE} = \frac{1}{|D|} \sum_{\langle x, y\ \in\ D \rangle} (y - \hat{y})^2, \qquad \text{accuracy} = \frac{1}{n} \sum_{i=1}^n I_{y_i}(\hat{y}_i)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(I_u(v)\)</span> is an identity function, which returns 1 if <span class="math notranslate nohighlight">\(u = v\)</span> and 0 otherwise.</p>
+<ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">train</span></code> function will train the perceptron model on a dataset for a given number of iterations. The <code class="docutils literal notranslate"><span class="pre">plot</span></code> function is used to visualize the progress of the model during training: it displays the dataset and the current decision boundary.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">update</span></code> function should apply the update for a single training instance. You need to complete the implementation of this function in the following exercises.</p></li>
 </ul>

@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Multi-Layer Perceptron" href="Lab4-MLP.html" />
-    <link rel="prev" title="Single Neuron Models" href="Lab2-SingleNeurons.html" />
+    <link rel="prev" title="2. Single Neuron Models" href="Lab2-SingleNeurons.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -122,12 +122,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
-   Linear Algebra and Ordinary Differential Equations
+   1. Linear Algebra and Ordinary Differential Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab2-SingleNeurons.html">
-   Single Neuron Models
+   2. Single Neuron Models
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -560,14 +560,17 @@ s_i = \sum_{j \neq i} w_{ji} \cdot x_j + \theta_i,
 \label{eq:neuron_input} \tag{1}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\theta_i\)</span> is the <em>bias</em> for a single neuron<a class="reference external" href="#fn1"><sup>1</sup></a>. The activation <span class="math notranslate nohighlight">\(y_i\)</span> is calculated from <span class="math notranslate nohighlight">\(s_i\)</span> using the sign function as the <em>activation function</em>, which evaluates to <span class="math notranslate nohighlight">\(+1\)</span> for inputs <span class="math notranslate nohighlight">\(\geq 0\)</span> and to <span class="math notranslate nohighlight">\(-1\)</span> for inputs <span class="math notranslate nohighlight">\(&lt; 0\)</span>:</p>
-<p>\begin{equation} \tag{2}
-y_i = \text{sign}{(s_i)} =
-\begin{cases}
-+1 &amp; \text{if } s_i \geq 0 \
--1 &amp; \text{if } s_i &lt; 0
-\end{cases}
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation} \tag{2}
+y_i = \text{sign}{(s_i)} = 
+    \begin{cases}
+    +1 &amp; \text{if } s_i \geq 0 \\
+    -1 &amp; \text{if } s_i &lt; 0
+    \end{cases}
 \label{eq:activation}
-\end{equation}</p>
+\end{equation}
+\end{split}\]</div>
 <p>In Hopfield networks, we are interested in how the activation of the neurons changes over time. It would therefore be better to write <span class="math notranslate nohighlight">\(y_i^{(t)}\)</span> for the value of neuron <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>. Note that the inputs <span class="math notranslate nohighlight">\(x_j\)</span> that a neuron receives are the outputs <span class="math notranslate nohighlight">\(y_j^{(t-1)}\)</span> of other neurons at the previous time step. Using <span class="math notranslate nohighlight">\(y_j^{(t-1)}\)</span> instead of <span class="math notranslate nohighlight">\(x_j\)</span> in <span class="math notranslate nohighlight">\(\eqref{eq:neuron_input}\)</span> and <span class="math notranslate nohighlight">\(\eqref{eq:activation}\)</span> gives the following formula for the activations in a Hopfield net:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -866,14 +869,17 @@ new state  [1 1 1]
 <h2>3. Learning with Hebb’s rule<a class="headerlink" href="#learning-with-hebbs-rule" title="Permalink to this headline">#</a></h2>
 <p>As you have seen, a Hopfield net is a fully recurrent artificial neural network. Interestingly, it can be used as an <em>associative memory</em>. That is, it can be used to associate patterns with themselves, such that they can be retrieved by the network when given an incomplete input. This is achieved by setting the weights <span class="math notranslate nohighlight">\(w_{ij}\)</span> of the network in such a way that patterns you want to store correspond to stable points of the network. (In other words, such that the patterns are local minima in the energy function of the network.)</p>
 <p>Starting from an incomplete input pattern, over iterations the network will converge to a stable point that corresponds to one of the stored patterns of the network. But how to find the weights that allow us to store a certain pattern? For that, we can use the Hebbian learning rule. Given <span class="math notranslate nohighlight">\(m\)</span> patterns <span class="math notranslate nohighlight">\(\mathbf{p}^k = (p_1^k,...,p_n^k)\)</span> (where <span class="math notranslate nohighlight">\(k = 1, ..., m\)</span>), we set the weights to:</p>
-<p>\begin{equation} \tag{4}
-w_{ij} =
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation} \tag{4}
+w_{ij} = 
 \begin{cases}
-\sum_{k=1}^m p_i^k p_j^k &amp; \text{if } i \neq j \
+\sum_{k=1}^m p_i^k p_j^k &amp; \text{if } i \neq j \\
 0 &amp; \text{otherwise}
 \end{cases}
 \label{eq:weights}
-\end{equation}</p>
+\end{equation}
+\end{split}\]</div>
 <p>How well this rule works is of course dependent on the number of patterns you want to store in your network, as well as on the similarity of the different patterns. The closer the number of patterns you want to store approaches the number of neurons, the harder it gets to store the patterns. Furthermore, it is easier to store patterns that are very different, than patterns that are very similar (note that for a Hopfield network, patterns that differ on exactly half of the neurons are the most dissimilar, do you understand why?).</p>
 <div class="section" id="updating-the-weights-using-hebbian-learning">
 <h3>3.1 Updating the weights using Hebbian learning<a class="headerlink" href="#updating-the-weights-using-hebbian-learning" title="Permalink to this headline">#</a></h3>
@@ -906,7 +912,7 @@ w_{ij} =
 <p><a id="fn3"><sup>3</sup></a>
 Calculating the weights is a bit tricky, if only because there are <span class="math notranslate nohighlight">\(100 \times 100\)</span> of them. <em>You don’t have to know all these details</em>, but if you wonder what’s going on, here’s some more background. To see how formula <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> works, suppose <span class="math notranslate nohighlight">\(m = 2\)</span>, so we have two patterns <span class="math notranslate nohighlight">\(\mathbf{p}^1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{p}^2\)</span>. We want to know the weight of the connection between neuron <span class="math notranslate nohighlight">\(3\)</span> and <span class="math notranslate nohighlight">\(4\)</span>. According to equation <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a>, we should use <span class="math notranslate nohighlight">\(w_{3,4} = p_3^1 \cdot p_4^1 + p_3^2 \cdot p_4^2\)</span>.</p>
 <p>Computing this for all connections is a lot of work, unless we use a trick. Suppose you could, for a given pattern <span class="math notranslate nohighlight">\(\mathbf{p}^k\)</span>, build a matrix <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> that contains the product <span class="math notranslate nohighlight">\(p_i^k \cdot p_j^k\)</span> at position <span class="math notranslate nohighlight">\((i, j)\)</span>. We calculate such matrices <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{P}^2\)</span> for our two patterns and then compute their sum <span class="math notranslate nohighlight">\(\mathbf{P}^1 + \mathbf{P}^2\)</span>. Can you see why <span class="math notranslate nohighlight">\(\mathbf{P}^1 + \mathbf{P}^2\)</span> will (nearly) contain the weight <span class="math notranslate nohighlight">\(w_{ij}\)</span> given by <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> at position <span class="math notranslate nohighlight">\((i, j)\)</span>? If not, try to write down the value of entry <span class="math notranslate nohighlight">\((i, j)\)</span> in <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span> + <span class="math notranslate nohighlight">\(\mathbf{P}^2\)</span> and compare it to <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a>. The only problem that remains is the diagonal, which should be zero in a Hopﬁeld network (why?), but will now contain 2s. This is easily fixed by subtracting the identity matrix twice. So how to get the <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> matrices? In fact <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> just happens to be the so called <em>outer product</em> (see <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">Wikipedia</a>) of the vector <span class="math notranslate nohighlight">\(\mathbf{p}^k\)</span> with itself. You can compute it in Python using the <code class="docutils literal notranslate"><span class="pre">numpy.outer()</span></code> function. So <code class="docutils literal notranslate"><span class="pre">numpy.outer(pattern1,</span> <span class="pre">pattern1)</span></code> computes <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span>. Can you now see why the given code actually implements equation <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> for two patterns?</p>
-<br><p>Does a network using these weights indeed store the two images <code class="docutils literal notranslate"><span class="pre">pattern1</span></code> and <code class="docutils literal notranslate"><span class="pre">pattern2</span></code>? To find out, we iterate several updates using the <code class="docutils literal notranslate"><span class="pre">run_hopfield()</span></code> function again:</p>
+<p>Does a network using these weights indeed store the two images <code class="docutils literal notranslate"><span class="pre">pattern1</span></code> and <code class="docutils literal notranslate"><span class="pre">pattern2</span></code>? To find out, we iterate several updates using the <code class="docutils literal notranslate"><span class="pre">run_hopfield()</span></code> function again:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate starting from pattern 1</span>
@@ -1164,7 +1170,7 @@ Calculating the weights is a bit tricky, if only because there are <span class="
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Single Neuron Models</p>
+            <p class="prev-next-title">2. Single Neuron Models</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Lab4-MLP.html" title="next page">

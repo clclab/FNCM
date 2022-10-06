@@ -121,12 +121,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lab1-LinearAlgebra_ODEs.html">
-   Linear Algebra and Ordinary Differential Equations
+   1. Linear Algebra and Ordinary Differential Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Lab2-SingleNeurons.html">
-   Single Neuron Models
+   2. Single Neuron Models
   </a>
  </li>
  <li class="toctree-l1">
@@ -446,7 +446,7 @@ title="Print to PDF"
 <p>This lab will guide you through a reinforcement learning simulation. We will simulate an agent navigating through a maze similar to the one depicted below. The red dot is the initial position of the agent, <span class="math notranslate nohighlight">\(s_1\)</span>. The green boxes are terminal states. The stars indicate rewards.</p>
 <p>Each position in the maze is one possible state, thus there are 16 states, which we will index line by line, such that the upper left corner is state 0 and the lower right corner is state 15. Hence, state 1 and state 11 are terminal states. There are four possible action directions, left (0), up (1), right (2) and down (3). Performing an action from a state is only possible if there is no border in the way.</p>
 <p>We assume that the setup of the maze is unknown to the agent. We will implement a simple Q-learning algorithm to model how the agent learns which path to take in the maze.</p>
-<p><img alt="title" src="%21%5B%5D(https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab5-maze.jpg)" /></p>
+<p><img alt="title" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab5-maze.jpg" /></p>
 </div>
 <div class="section" id="updating-the-q-values">
 <h2>Updating the Q-values<a class="headerlink" href="#updating-the-q-values" title="Permalink to this headline">#</a></h2>
@@ -465,11 +465,9 @@ title="Print to PDF"
 \end{align*}
 \]</div>
 <p>Here, <span class="math notranslate nohighlight">\(\alpha\)</span> is the learning rate and <span class="math notranslate nohighlight">\(\gamma\)</span> is the temporal discount factor. <span class="math notranslate nohighlight">\(max_{a'}(Q(s',a'))\)</span> refers to the highest Q-value of state <span class="math notranslate nohighlight">\(s'\)</span>. <span class="math notranslate nohighlight">\(Q(s,a)\)</span> is updated proportionally to the size of the prediction error – the greater the prediction error, the more the agent learns.</p>
-<br>
 <blockquote>
 <div><p>Complete the function that updates the Q-values in the cell below.</p>
 </div></blockquote>
-<br>
 <p>Hint: use the function <code>np.nanmax()</code> to find the maximum of an array while ignoring nan entries (this will be important when we use the function later on).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
