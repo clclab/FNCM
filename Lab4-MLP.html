@@ -358,7 +358,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#classification-and-regression">
-   1. Classification and Regression
+   1. Classification and regression
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -419,7 +419,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   3. Multi-layer Perceptron
+   3. Multi-layer perceptron
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -494,7 +494,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#classification-and-regression">
-   1. Classification and Regression
+   1. Classification and regression
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -555,7 +555,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   3. Multi-layer Perceptron
+   3. Multi-layer perceptron
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -668,7 +668,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="classification-and-regression">
-<h2>1. Classification and Regression<a class="headerlink" href="#classification-and-regression" title="Permalink to this headline">#</a></h2>
+<h2>1. Classification and regression<a class="headerlink" href="#classification-and-regression" title="Permalink to this headline">#</a></h2>
 <p>In supervised learning a training dataset <span class="math notranslate nohighlight">\(\{(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\}\)</span> is given, and the task is to find a function <span class="math notranslate nohighlight">\(y = f(x)\)</span> such that the function is applicable to unknown patterns <span class="math notranslate nohighlight">\(x\)</span>. Based on the nature of <span class="math notranslate nohighlight">\(y\)</span>, we can classify those tasks into two classes:</p>
 <ul class="simple">
 <li><p><strong>Classification</strong> is to assign a predefined label to an unknown pattern. For instance, given a picture of an animal, we need to identify if that picture is of a cat, a dog or a mouse. If there are two categories (or two classes), the problem is called binary classification; otherwise, it is multi-class classification. For the binary classification problem, there is a special case, where patterns of the two classes are perfectly separated by a hyperplane (see <a class="reference external" href="#Figure-1%3A-Example-of-linear-separability">Figure 1</a>). We call the phenomenon <em>linear separability</em>, and the hyperplane <em>decision boundary</em>.</p></li>
@@ -1012,7 +1012,7 @@ b_\text{new} \leftarrow b_\text{old} + \eta(y - \hat{y}_\text{old})
 </div>
 </div>
 <div class="section" id="id1">
-<h2>3. Multi-layer Perceptron<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>3. Multi-layer perceptron<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>The perceptron model presented above is very limited: it is theoretically applicable only to linearly separable data. In order to handle non-linearly separable data, the perceptron is extended to a more complex structure, namely the multi-layer perceptron (MLP). An MLP is a neural network in which neuron layers are stacked such that the output of a neuron in a layer is only allowed to be an input to neurons in the upper layer (see <a class="reference external" href="#Figure-5%3A-A-3-layer-perceptron-with-2-hidden-layers">Figure 5</a>). Informally speaking, a neuron is activated by the sum of weighed outputs of the neurons in the lower layer. It turns out that, if the activation functions of those neurons are non-linear, such as the sigmoid (or logistic) function (see <a class="reference external" href="#Figure-6%3A-Sigmoid-activation-function">Figure 6</a>):</p>
 <div class="math notranslate nohighlight">
 \[

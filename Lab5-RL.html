@@ -357,22 +357,22 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#updating-the-q-values">
-   Updating the Q-values
+   1. Updating the Q-values
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#softmax-action-selection">
-   Softmax action selection
+   2. Softmax action selection
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#running-the-simulation">
-   Running the simulation
+   3. Running the simulation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#homework-exercises">
-   Homework exercises
+   4. Homework exercises
   </a>
  </li>
 </ul>
@@ -401,22 +401,22 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#updating-the-q-values">
-   Updating the Q-values
+   1. Updating the Q-values
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#softmax-action-selection">
-   Softmax action selection
+   2. Softmax action selection
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#running-the-simulation">
-   Running the simulation
+   3. Running the simulation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#homework-exercises">
-   Homework exercises
+   4. Homework exercises
   </a>
  </li>
 </ul>
@@ -449,7 +449,7 @@ title="Print to PDF"
 <p><img alt="title" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab5-maze.jpg" /></p>
 </div>
 <div class="section" id="updating-the-q-values">
-<h2>Updating the Q-values<a class="headerlink" href="#updating-the-q-values" title="Permalink to this headline">#</a></h2>
+<h2>1. Updating the Q-values<a class="headerlink" href="#updating-the-q-values" title="Permalink to this headline">#</a></h2>
 <p>As the agent navigates through the maze, it builds up an estimation of the utility of each state-action pair. This estimation is represented in a 16x4 matrix <span class="math notranslate nohighlight">\(Q\)</span>. Each time the agent takes a step, the Q-value of the corresponding state-action pair is updated. Specifically, when moving from state <span class="math notranslate nohighlight">\(s\)</span> to state <span class="math notranslate nohighlight">\(s'\)</span> with action <span class="math notranslate nohighlight">\(a\)</span> and obtaining reward <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(Q(s,a)\)</span> is updated according to:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -504,7 +504,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="softmax-action-selection">
-<h2>Softmax action selection<a class="headerlink" href="#softmax-action-selection" title="Permalink to this headline">#</a></h2>
+<h2>2. Softmax action selection<a class="headerlink" href="#softmax-action-selection" title="Permalink to this headline">#</a></h2>
 <p>The second component of our Q-learning algorithm is an action selection function, that receives the Q-values of the current state as an input and returns an action to be taken. We will implement a softmax action selection function, that assigns probabilities to each action <span class="math notranslate nohighlight">\(a_i\)</span> of a given state <span class="math notranslate nohighlight">\(s\)</span>, depending on its Q-value <span class="math notranslate nohighlight">\(q_i\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -546,7 +546,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="running-the-simulation">
-<h2>Running the simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this headline">#</a></h2>
+<h2>3. Running the simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this headline">#</a></h2>
 <p>Now we are ready to run the simulation. The code below sets values for our model parameter and implements the maze structure. Then it runs the simulation. Our agent has to solve the maze 100 times (you can change this number). In each trial, it starts in the initial state and can move freely around in the maze until it reaches one of the terminal states.</p>
 <p>We store the number of steps the agent takes in each trial, the Q-values after each trial, the prediction errors and visited state of each step and which terminal state was reached in each trial. These results are plotted in the lower cell.</p>
 <div class="cell docutils container">
@@ -726,7 +726,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="homework-exercises">
-<h2>Homework exercises<a class="headerlink" href="#homework-exercises" title="Permalink to this headline">#</a></h2>
+<h2>4. Homework exercises<a class="headerlink" href="#homework-exercises" title="Permalink to this headline">#</a></h2>
 <blockquote>
 <div><p><em><strong>Homework exercise 1:</strong></em> Describe and explain the evolution of (1) Q-values, (2) prediction errors and (3) step number over time with the given parameter values.</p>
 <p>Hint: You can select which Q-value to plot in the code! What does it depend on which final value the Q-values converge to? What is the highest possible Q-value?</p>
