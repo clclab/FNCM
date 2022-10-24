@@ -352,6 +352,11 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
   </a>
@@ -389,15 +394,20 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#phase-portraits-of-1-dimensional-odes">
-   2.1. Phase portraits of 1-dimensional ODEs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#phase-portraits-of-2-dimensional-odes">
-   2.2. Phase portraits of 2-dimensional ODEs
+  <a class="reference internal nav-link" href="#ordinary-differential-equations">
+   2. Ordinary Differential Equations
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phase-portraits-of-1-dimensional-odes">
+     2.1. Phase portraits of 1-dimensional ODEs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phase-portraits-of-2-dimensional-odes">
+     2.2. Phase portraits of 2-dimensional ODEs
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#generating-the-data">
      Generating the data
@@ -435,6 +445,11 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
   </a>
@@ -472,15 +487,20 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#phase-portraits-of-1-dimensional-odes">
-   2.1. Phase portraits of 1-dimensional ODEs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#phase-portraits-of-2-dimensional-odes">
-   2.2. Phase portraits of 2-dimensional ODEs
+  <a class="reference internal nav-link" href="#ordinary-differential-equations">
+   2. Ordinary Differential Equations
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phase-portraits-of-1-dimensional-odes">
+     2.1. Phase portraits of 1-dimensional ODEs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phase-portraits-of-2-dimensional-odes">
+     2.2. Phase portraits of 2-dimensional ODEs
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#generating-the-data">
      Generating the data
@@ -510,22 +530,26 @@ title="Print to PDF"
                 
   <div class="section" id="linear-algebra-and-ordinary-differential-equations">
 <h1>1. Linear Algebra and Ordinary Differential Equations<a class="headerlink" href="#linear-algebra-and-ordinary-differential-equations" title="Permalink to this headline">#</a></h1>
-<p>Submit your solutions on Canvas on Wednesday (10 November, 17:59). Please hand in the following:</p>
+<p>This notebook is part of a larger effort to offer an approachable introduction to models of the mind and the brain for the course “Foundations of Neural and Cognitive Modelling”, offered at the University of Amsterdam by Jelle (aka Willem) Zuidema. The notebook in this present form is the result of the combined work of Iris Proff, Marianne de Heer Kloots, and Simone Astarita.</p>
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">#</a></h2>
+<p>The following instructions apply if and only if you are student taking the course “Foundations of Neural and Cognitive Modelling” at the University of Amsterdam (Semester 1, Period 2, Year 2022).</p>
+<p>Submit your solutions on Canvas by Wednesday 9th November 09:00. Please hand in the following:</p>
 <ul class="simple">
 <li><p>A copy of this notebook with the <strong>code</strong> and results of running the code filled in the required sections. The sections to complete all start as follows:</p></li>
 </ul>
 <p><code>### YOUR CODE HERE ###</code></p>
 <ul class="simple">
-<li><p>A separate pdf file with the answer to the <strong>homework exercises</strong>. These can be identified by the following formatting:
+<li><p>A separate pdf file with the answer to the <strong>homework exercises</strong>. These can be identified by the following formatting, where <strong>n</strong> is the number of points (out of 10) that question <strong>m</strong> is worth:
 <br></p></li>
 </ul>
 <blockquote>
-<div><p><em><strong>Homework exercise n</strong></em>: question(s).
-<br></p>
+<div><p><em><strong>Homework exercise m</strong></em>: question(s) <strong>(npt)</strong>.</p>
 </div></blockquote>
+</div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>In this lab, we will use Python to study some essential concepts of linear algebra and then experiment with ordinary differential equations (ODEs) and phase portraits. In the first section, we will see the definitions, the notation, and the operations of vectors and matrices. We then explain determinants and eigenvalues of simple matrices, as these concepts will be used in the next weeks. If you already have a lot of experience with linear algebra in Python, you may skip this section.</p>
+<p>In this lab, we will use Python to study some essential concepts of linear algebra and then experiment with ordinary differential equations (ODEs) and phase portraits. In the first section, we will see the definitions, the notation, and the operations of vectors and matrices. We then explain determinants and eigenvalues of simple matrices, as these concepts will be used in the next weeks. If you already have a lot of experience with linear algebra in Python, you may simply skim or skip this section, but don’t forget to complete the homework exercise at the end of it.</p>
 <p>In the second section, we will go step by step through a set of instructions to create a phase portrait for a 2-dimensional system of ODEs. Some of the code is given, but you will need to fill in some sections yourself.</p>
 </div>
 <div class="section" id="linear-algebra">
@@ -591,7 +615,7 @@ title="Print to PDF"
 <br>
 <blockquote>
 <div><ul class="simple">
-<li><p>Use Python to compute <span class="math notranslate nohighlight">\(A \times B\)</span> and <span class="math notranslate nohighlight">\(B \times A\)</span>. Is the result the same? Briefly explain the result in a comment in the code.</p></li>
+<li><p>Use Python to create two matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> with <span class="math notranslate nohighlight">\(A \ne B\)</span> and that satisfy the conditions for <strong>multiplication</strong>. Compute <span class="math notranslate nohighlight">\(A \times B\)</span> and <span class="math notranslate nohighlight">\(B \times A\)</span>: is the result the same? Briefly explain the result in a comment in the code.</p></li>
 <li><p>Play around to understand the difference between <code>np.dot(v1,v2)</code> and <code>v1*v2</code>, where <code>v1</code> and <code>v2</code> are vectors or matrices.</p></li>
 <li><p>Type <code>B.shape</code> and <code>B.size</code>. What information do the commands provide?</p></li>
 </ul>
@@ -616,7 +640,7 @@ title="Print to PDF"
 <br>
 <p>In the following, we draw the vector <span class="math notranslate nohighlight">\(\vec{v} = \begin{pmatrix}0.5 \\0.5\end{pmatrix}\)</span>. We then create a matrix that rotates a vector by 45 degrees (the code applies it to the vector <span class="math notranslate nohighlight">\(\vec{v}\)</span>, and draws the resulting vector in red in the same figure) . Note: the code uses <code>math.pi</code> for <span class="math notranslate nohighlight">\(\pi\)</span>; to divide real numbers e.g. <span class="math notranslate nohighlight">\(5\)</span> and <span class="math notranslate nohighlight">\(2\)</span>, we use the following notation: <code>5./2.</code>.</p>
 <blockquote>
-<div><p>Try rotating the vector by 90, 180, 270 and 360 degrees.</p>
+<div><p>Try rotating the vector by 90, 180, 270 and 360 degrees by changing the value of <code>phi</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -626,6 +650,8 @@ title="Print to PDF"
 
 <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">head_width</span> <span class="o">=</span> <span class="mf">0.03</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="c1">### YOUR CODE HERE ###</span>
+<span class="c1"># change the value of phi</span>
 <span class="n">phi</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">4.</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)],[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)]])</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
@@ -636,7 +662,6 @@ title="Print to PDF"
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="c1">### YOUR CODE HERE ###</span>
 
 <span class="c1">###</span>
 </pre></div>
@@ -650,33 +675,48 @@ title="Print to PDF"
 <p>When <span class="math notranslate nohighlight">\(M\)</span> is multiplied with a vector, this yields a new vector, as explained above. For most vectors, both the length and the direction changes. Some vectors however do not get not rotated by mutliplication with <span class="math notranslate nohighlight">\(M\)</span> or any other square matrix. For these vectors, it holds that <span class="math notranslate nohighlight">\(M\times \vec{v} = \lambda\vec{v}\)</span>. In other words, the vectors get only scaled by the matrix. These are so-called eigenvectors. The corresponding scaling factor <span class="math notranslate nohighlight">\(\lambda\)</span> is called the eigenvalue.</p>
 <br>
 <blockquote>
-<div><p>Use  Python function <code>np.linalg.eig()</code> to compute eigenvalues and eigenvectors of the matrix <span class="math notranslate nohighlight">\(M\)</span>. Try to find matrices that have negative eigenvalues and matrices that have complex eigenvalues.</p>
+<div><p>We know use the  Python function <code>np.linalg.eig()</code> to compute eigenvalues and eigenvectors of the matrix <span class="math notranslate nohighlight">\(M\)</span>. Try to find matrices that have negative and/or complex eigenvalues.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
 
+<span class="c1"># try to find matrices with negative and/or complex eigenvalues by changing the values of M</span>
+
+<span class="c1"># the matrix</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># np.linalg.eig() creates a tuple of two arrays containing eigenvalues and eigenvectors</span>
 <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-<span class="n">eigenvalue1</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">eigenvector1</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># print eigenvalues and eigenvectors</span>
+<span class="c1"># note: the COLUMNS of &quot;eigenvectors&quot; are the eigenvectors</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">eigenvectors</span><span class="p">)</span>
-<span class="c1">#print(eigenvector1)</span>
-<span class="c1">### YOUR CODE HERE ###</span>
 
-<span class="c1">####</span>
+<span class="c1"># see the first eigenvalues and corresponding eigenvector</span>
+<span class="n">eigenvalue1</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">eigenvector1</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">eigenvalue2</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">eigenvector2</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">eigenvalue1</span><span class="p">,</span> <span class="n">eigenvector1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigenvalue2</span><span class="p">,</span> <span class="n">eigenvector2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <blockquote>
-<div><p>Check the eigenvector/eigenvalue condition for both eigenvalues and eigenvectors. I.e., <span class="math notranslate nohighlight">\(\vec{v}\)</span> is an eigenvector of matrix <span class="math notranslate nohighlight">\(M\)</span> if:</p>
+<div><p>Check the eigenvector/eigenvalue condition for both eigenvalues and eigenvectors. I.e., <span class="math notranslate nohighlight">\(\vec{v}\)</span> is an eigenvector of a matrix <span class="math notranslate nohighlight">\(M\)</span> if:</p>
 <div class="math notranslate nohighlight">
 \[ M \vec{v} = \lambda \vec{v} \]</div>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+
+<span class="c1"># pick the eigenvalues and eigenvectors from the cell above</span>
+<span class="c1"># then do the relevant multiplications</span>
 
 <span class="c1">####</span>
 </pre></div>
@@ -687,20 +727,39 @@ title="Print to PDF"
 </div>
 <div class="section" id="determinant-and-trace">
 <h3>Determinant and trace<a class="headerlink" href="#determinant-and-trace" title="Permalink to this headline">#</a></h3>
-<p>Two other interesting values of a square matrix are the <em>determinant</em> and the <em>trace</em>. The determinant of a <span class="math notranslate nohighlight">\(2\times2\)</span> matrix, is computed as follows:</p>
+<p>Two other interesting values of a square matrix are the <em>determinant</em> and the <em>trace</em>. The determinant of a <span class="math notranslate nohighlight">\(2\times2\)</span> matrix is computed as follows:</p>
 <p><span class="math notranslate nohighlight">\(A = \left( \begin{array}{cc}    a     &amp; b \\    c     &amp; d    \end{array} \right), 
 \quad \det(A)=\left| \begin{array}{cc}  a &amp; b \\c&amp; d \end{array} \right| = ad - cb\)</span></p>
-<p>The <em>trace</em> of a matrix is the sum of the main diagonal, which is the one from upper left to lower right.</p>
+<p>The <em>trace</em> of a matrix is the sum of the main diagonal, which is the one from upper left to lower right. So, in a <span class="math notranslate nohighlight">\(2\times2\)</span> matrix:</p>
+<p><span class="math notranslate nohighlight">\(A = \left( \begin{array}{cc}    a     &amp; b \\    c     &amp; d    \end{array} \right), 
+\quad \text{tr}(A)=\left| \begin{array}{cc}  a &amp; b \\c&amp; d \end{array} \right| = a+d\)</span></p>
 <blockquote>
-<div><p><em><strong>Homework exercise 1</strong></em>: What are the determinant, trace and eigenvalues of matrix <span class="math notranslate nohighlight">\(M\)</span>, defined as above? You should use the code to get the eigenvalues and calculate the determinant and trace yourself.</p>
+<div><p><em><strong>Homework exercise 1</strong></em>: What are the determinant, trace, eigenvalues and corresponding eigenvectors of matrix <span class="math notranslate nohighlight">\(M=\begin{pmatrix}5&amp;2\\4&amp;3\end{pmatrix}\)</span>? You should use the code to get the eigenvalues and eigenvectors, and calculate the determinant and trace yourself. <strong>(1pt)</strong></p>
 </div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE</span>
+
+<span class="c1"># define M</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+
+<span class="c1"># copy-paste the code from above to calculate eigenvalues and their respective eigenvectors</span>
+
+<span class="c1">####</span>
+</pre></div>
+</div>
+</div>
+</div>
 <hr class="docutils" />
 <hr class="docutils" />
 </div>
 </div>
 <hr class="docutils" />
+<div class="section" id="ordinary-differential-equations">
+<h2>2. Ordinary Differential Equations<a class="headerlink" href="#ordinary-differential-equations" title="Permalink to this headline">#</a></h2>
 <div class="section" id="phase-portraits-of-1-dimensional-odes">
-<h2>2.1. Phase portraits of 1-dimensional ODEs<a class="headerlink" href="#phase-portraits-of-1-dimensional-odes" title="Permalink to this headline">#</a></h2>
+<h3>2.1. Phase portraits of 1-dimensional ODEs<a class="headerlink" href="#phase-portraits-of-1-dimensional-odes" title="Permalink to this headline">#</a></h3>
 <p>A phase portrait is a visual representation of the trajectories of a dynamical system.</p>
 <p>Let’s first consider a 1-dimensional ODE:</p>
 <center>
@@ -709,10 +768,10 @@ title="Print to PDF"
     \end{equation}
 </center>
 <blockquote>
-<div><p><em><strong>Homework exercise 2:</strong></em> Let’s assume that the variable <span class="math notranslate nohighlight">\(x\)</span> denotes the speed of an object. What information does the equation above provide? Explain in one sentence!</p>
+<div><p><em><strong>Homework exercise 2:</strong></em> Let’s assume that the variable <span class="math notranslate nohighlight">\(x\)</span> denotes the speed of an object. What information does the equation above provide? <strong>(1pt)</strong></p>
 </div></blockquote>
-<p>The code below plots a one-dimensional vector field for our ODE. That means, at a range of <span class="math notranslate nohighlight">\(x\)</span> values, it draws an arrow pointing into the direction of the derivative <span class="math notranslate nohighlight">\(dx\)</span>. Moreover, it also plots the function <span class="math notranslate nohighlight">\(f(x) = 2-0.1*x\)</span>. To
-plot vectors field, we use the <code>quiver</code> function from the <code>matplotlib.pyplot</code> library.</p>
+<p>The code below plots a one-dimensional vector field for our ODE. That means, at a range of <span class="math notranslate nohighlight">\(x\)</span> values, it draws an arrow pointing into the direction of the derivative <span class="math notranslate nohighlight">\(dx\)</span>. Moreover, it also plots the derivative <span class="math notranslate nohighlight">\(\frac{dx}{dt} = 2-0.1*x\)</span> and the corresponding function, <span class="math notranslate nohighlight">\(f(x) = 2x - \frac{x^2}{20}\)</span> (assuming the constant <span class="math notranslate nohighlight">\(c = 0\)</span>). To plot vectors field, we use the <code>quiver</code> function from the <code>matplotlib.pyplot</code> library.</p>
+<p>Note that, for visual reasons, we rather define the values for the <span class="math notranslate nohighlight">\(\frac{dx}{dt}\)</span> and for the vector field differently, as too many arrows make it hard to understand which direction the vectors are going, but the ODE is still the same. If this does not make sense to you, try to chance <code>x_vecs</code> below with the code that defines <code>x</code>: what happens? Similarly, play around with the values of <code>plt.xlim</code> and <code>plt.ylim</code> to get a good picture of both <span class="math notranslate nohighlight">\(\frac{dx}{dt}\)</span> and <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -722,46 +781,78 @@ plot vectors field, we use the <code>quiver</code> function from the <code>matpl
 <span class="c1"># package to solve ODEs</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">odeint</span>
 
-<span class="c1"># define values to be evaluated</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="c1"># define values to be evaluated for the ODE</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
 
 <span class="c1"># define ODE</span>
-<span class="n">dx</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">x</span><span class="p">)</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mi">2</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="n">x</span>
+
+<span class="c1"># define values to be evaluated for the vector field</span>
+<span class="n">x_vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y_vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vecs</span><span class="p">))</span>
+
+<span class="c1"># define ODE for the vector field</span>
+<span class="n">dx_vecs</span> <span class="o">=</span> <span class="mi">2</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="n">x_vecs</span>
 
 <span class="c1"># plot vector field</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span>  <span class="n">scale</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>  <span class="n">headwidth</span><span class="o">=</span> <span class="mi">10</span><span class="p">)</span> 
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x_vecs</span><span class="p">,</span> <span class="n">y_vecs</span><span class="p">,</span> <span class="n">dx_vecs</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span>  <span class="n">scale</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>  <span class="n">headwidth</span><span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># plot the derivative</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># plot the function f(x)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">20</span><span class="p">),</span><span class="s1">&#39;--r&#39;</span><span class="p">)</span>
+
+<span class="c1"># the limits of the graphs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now it’s your turn. In a similar way, create a phase portrait of:</p>
+<p>In a similar way, create a phase portrait of:</p>
 <center>
     \begin{equation}
         \frac{dx}{dt} = sin(x)
     \end{equation}
 </center>
-<p>Write your code in the following cell. Check if the directions of the arrows make sense by plotting the actual function <span class="math notranslate nohighlight">\(f(x) = sin(x)\)</span> in the same window.</p>
+<blockquote>
+<div><p>Write your code in the following cell; some obvious parts are already in there for you. Remember to also include the integral of <span class="math notranslate nohighlight">\(sin(x)\)</span>, that is the function <span class="math notranslate nohighlight">\(f(x)\)</span> from which the funciton is taken from: it helps you check that your vector field actually makes sense.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
 
 <span class="c1"># define values to be evaluated</span>
+<span class="n">x</span> <span class="o">=</span> 
 
 <span class="c1"># define ODE</span>
+<span class="n">dx</span> <span class="o">=</span> 
 
-<span class="c1">######</span>
+<span class="c1"># define values to be evaluated for the vector field</span>
+<span class="n">x_vecs</span> <span class="o">=</span>
+<span class="n">y_vecs</span> <span class="o">=</span>
+
+<span class="c1"># define ODE for the vector field</span>
+<span class="n">dx_vecs</span> <span class="o">=</span>
+
+<span class="c1">###</span>
 
 <span class="c1"># plot vector field</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x_vecs</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx_vecs</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">scale</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">headwidth</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> 
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x_vecs</span><span class="p">,</span> <span class="n">y_vecs</span><span class="p">,</span> <span class="n">dx_vecs</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">headwidth</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> 
 
+<span class="c1"># plot the derivative</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
+
+<span class="c1"># plot the function f(x)</span>
+<span class="c1">### YOUR CODE HERE ###</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>
+
+<span class="c1"># we don&#39;t need to manually edit the graph limits in this case</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
@@ -772,8 +863,8 @@ plot vectors field, we use the <code>quiver</code> function from the <code>matpl
 </div>
 </div>
 <div class="section" id="phase-portraits-of-2-dimensional-odes">
-<h2>2.2. Phase portraits of 2-dimensional ODEs<a class="headerlink" href="#phase-portraits-of-2-dimensional-odes" title="Permalink to this headline">#</a></h2>
-<p>Now let’s consider the 2-dimensional case. We will work with a system of two linear first-order ODEs, defined by:</p>
+<h3>2.2. Phase portraits of 2-dimensional ODEs<a class="headerlink" href="#phase-portraits-of-2-dimensional-odes" title="Permalink to this headline">#</a></h3>
+<p>Now let’s consider the 2-dimensional case. We work with a system of two linear first-order ODEs, defined by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
@@ -784,10 +875,11 @@ plot vectors field, we use the <code>quiver</code> function from the <code>matpl
 \end{equation}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables and <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> are parameters.</p>
-<p>Whether this system has a stable equilibrium depends on the value of the parameters. By investigating the phase portrait, we will examine how the behavior of the system changes with its parameter values.</p>
+<p>Whether this system has a stable equilibrium depends on the value of the parameters. By investigating the phase portrait, we examine how the behavior of the system changes with its parameter values.</p>
+</div>
 <div class="section" id="generating-the-data">
 <h3>Generating the data<a class="headerlink" href="#generating-the-data" title="Permalink to this headline">#</a></h3>
-<p>To create a phase portrait, we will first generate a grid of points <span class="math notranslate nohighlight">\((x, y)\)</span> at which we want to compute <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dy\)</span>. We do this by creating a vector with <span class="math notranslate nohighlight">\(x\)</span>-values and a vector with <span class="math notranslate nohighlight">\(y\)</span>−values (decide for yourself if you like the current ranges for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> values). We then create two arrays that together contain all combinations of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> using the <code>np.meshgrid</code> function.</p>
+<p>To create a phase portrait, we first generate a grid of points <span class="math notranslate nohighlight">\((x, y)\)</span> at which we want to compute <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dy\)</span>. We do this by creating a vector with <span class="math notranslate nohighlight">\(x\)</span>-values and a vector with <span class="math notranslate nohighlight">\(y\)</span>−values (decide for yourself if you like the current ranges for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> values). We then create two arrays that together contain all combinations of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> using the <code>np.meshgrid</code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### GENERATE DATA ###</span>
@@ -800,24 +892,26 @@ plot vectors field, we use the <code>quiver</code> function from the <code>matpl
 </div>
 </div>
 </div>
-<p>We want to compute <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dy\)</span> at all points (<code>x_vals[i,j]</code>, <code>y_vals[i,j]</code>). We will write a
+<p>We want to compute <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dy\)</span> at all points (<code>x_vals[i,j]</code>, <code>y_vals[i,j]</code>): we write a
 function to easily compute these two components.</p>
 <blockquote>
-<div><p>Create a function called <code>dxdy</code> that takes an <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> value as input, and a vector containing the parameters <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> and returns a vector containing <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dy\)</span>.
-<br></p>
+<div><p>Create a function called <code>dxdy</code> that takes an <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> value as input, and a vector containing the parameters <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> and returns a vector containing <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dy\)</span>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is the definition of our 2-dimensional ODE</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### this is the definition of our 2-dimensional ODE</span>
 <span class="k">def</span> <span class="nf">dxdy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
     <span class="c1">### YOUR CODE HERE</span>
+    <span class="c1"># remember: param = (a,b,c,d)</span>
+    <span class="n">dx</span> <span class="o">=</span>
+    <span class="n">dy</span> <span class="o">=</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>We can then use the function to compute the derivative at all previously defined
-points in the state space using a loop. We will store these components in two arrays
+points in the state space using a loop. We store these components in two arrays
 called <code>x_dirs</code> and <code>y_dirs</code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -842,10 +936,7 @@ called <code>x_dirs</code> and <code>y_dirs</code>.</p>
 </div>
 </div>
 </div>
-<p>Now that we have generated the data we needed, we can generate a vector field.</p>
-<blockquote>
-<div><p>Create the vector field using <code>ax.quiver</code> in the cell below (check out the example from the 1-dimensional ODE above to see how). Vary the parameters <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> to see if you can get qualitatively different types of phase portraits.</p>
-</div></blockquote>
+<p>Now that we have generated the data we needed, we can generate a vector field. Vary the parameters <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> in the cell above to see if you can get qualitatively different types of phase portraits.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### PLOT VECTOR FIELD ###</span>
@@ -859,42 +950,17 @@ called <code>x_dirs</code> and <code>y_dirs</code>.</p>
 </div>
 </div>
 </div>
-<blockquote>
-<div><p>Draw vector fields for the dynamical systems defined by the following parameter matrices</p>
-</div></blockquote>
-<blockquote>
-<div><p><span class="math notranslate nohighlight">\(a = -1\)</span> ; <span class="math notranslate nohighlight">\(b = 4\)</span> ; <span class="math notranslate nohighlight">\(c = -1\)</span> ; <span class="math notranslate nohighlight">\(d = 1\)</span></p>
-</div></blockquote>
-<blockquote>
-<div><p><span class="math notranslate nohighlight">\(a = 3\)</span> ; <span class="math notranslate nohighlight">\(b = -6\)</span> ; <span class="math notranslate nohighlight">\(c = 2\)</span> ; <span class="math notranslate nohighlight">\(d = -1\)</span></p>
-</div></blockquote>
-<blockquote>
-<div><p><span class="math notranslate nohighlight">\(a = -4\)</span> ; <span class="math notranslate nohighlight">\(b = 5\)</span> ; <span class="math notranslate nohighlight">\(c = -5\)</span> ; <span class="math notranslate nohighlight">\(d = 2\)</span></p>
-</div></blockquote>
-<blockquote>
-<div><p>What type of equilibrium do they yield?</p>
-</div></blockquote>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
-
-
-<span class="c1">######</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>You can also play with it: draw vector fields for the dynamical systems defined by some parameter matrices, and try and see what type of equilibrium do they yield.</p>
 </div>
 <div class="section" id="drawing-nullclines">
 <h3>Drawing nullclines<a class="headerlink" href="#drawing-nullclines" title="Permalink to this headline">#</a></h3>
 <p>To get a more complete phase portrait, we also want to include the nullclines in the plot.
 The <span class="math notranslate nohighlight">\(x\)</span>-nullcline is the set of points where <span class="math notranslate nohighlight">\(\frac{dx}{dt}= 0\)</span>, the <span class="math notranslate nohighlight">\(y\)</span>-nullcline is the set of points where
-<span class="math notranslate nohighlight">\(\frac{dy}{dt}= 0\)</span>. The general definition of nullcline is a little more involved, but these will work for our (2-dimensional) purposes.</p>
+<span class="math notranslate nohighlight">\(\frac{dy}{dt}= 0\)</span>. The general definition of nullcline is a little more involved, but these work for our (2-dimensional) purposes.</p>
 <blockquote>
-<div><p><em><strong>Homework exercise 3</strong></em>: Analytically (with pen &amp; paper!) determine the two nullclines by finding the solutions to <span class="math notranslate nohighlight">\(\frac{dx}{dt}= 0\)</span> and <span class="math notranslate nohighlight">\(\frac{dy}{dt}= 0\)</span> as a function of <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> (and <span class="math notranslate nohighlight">\(x\)</span>). Both your solutions should be of the form <span class="math notranslate nohighlight">\(y = f(x, a, b, c, d)\)</span> i.e. you must not have numbers in place of them.</p>
-<p>Show analytically (i.e. using the equations you just found) that <span class="math notranslate nohighlight">\((0, 0)\)</span> is an equilibrium.</p>
+<div><p><em><strong>Homework exercise 3</strong></em>: Analytically (with pen &amp; paper!) determine the two nullclines by finding the solutions to <span class="math notranslate nohighlight">\(\frac{dx}{dt}= 0\)</span> and <span class="math notranslate nohighlight">\(\frac{dy}{dt}= 0\)</span> as a function of <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> (and <span class="math notranslate nohighlight">\(x\)</span>). Both your solutions should be of the form <span class="math notranslate nohighlight">\(y = f(x, a, b, c, d)\)</span> i.e. you must not have numbers in place of constants and variables. Specify what assumptions, if any, you make about the them in order to provide your solution. <strong>(1.5pt)</strong> Show analytically (i.e. using the equations you just found) that <span class="math notranslate nohighlight">\((0, 0)\)</span> is always an equilibrium. <strong>(0.5pt)</strong></p>
 </div></blockquote>
-<p>Create a function <span class="math notranslate nohighlight">\(x\)</span>-nullcline and a function <span class="math notranslate nohighlight">\(y\)</span>-nullcline that return the <span class="math notranslate nohighlight">\(y\)</span>-values for the <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>-nullclines as a function of <span class="math notranslate nohighlight">\(x\)</span> and a vector containing the parameters <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span>. Use these functions to plot the <span class="math notranslate nohighlight">\(x\)</span> and the <span class="math notranslate nohighlight">\(y\)</span> nullcline.</p>
+<p>We now create a function <span class="math notranslate nohighlight">\(x\)</span>-nullcline and a function <span class="math notranslate nohighlight">\(y\)</span>-nullcline that return the <span class="math notranslate nohighlight">\(y\)</span>-values for the <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>-nullclines as a function of <span class="math notranslate nohighlight">\(x\)</span> and a vector containing the parameters <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span>. Use these functions to plot the <span class="math notranslate nohighlight">\(x\)</span> and the <span class="math notranslate nohighlight">\(y\)</span> nullcline.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### NULLCLINES ###</span>
@@ -941,7 +1007,7 @@ The <span class="math notranslate nohighlight">\(x\)</span>-nullcline is the set
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot vectorfield</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_dirs</span><span class="p">,</span> <span class="n">y_dirs</span><span class="p">)</span> <span class="c1">#X: xlocations Y: ylocations U: xdirections V: ydirections</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_dirs</span><span class="p">,</span> <span class="n">y_dirs</span><span class="p">)</span>
 
 <span class="c1"># plot nullclines</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x_nullcline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">param</span><span class="p">))</span>
@@ -977,12 +1043,14 @@ The <span class="math notranslate nohighlight">\(x\)</span>-nullcline is the set
 <p>From the ODEs given above, we can extract the parameter matrix <span class="math notranslate nohighlight">\(M = \left( \begin{array}{cc}    a     &amp; b \\    c     &amp; d    \end{array} \right)\)</span>.</p>
 <p>The properties of this matrix (such as its eigenvectors, determinants and trace) can inform us about the behavior of the system. This is because we can view the current position in state space as a vector <span class="math notranslate nohighlight">\(\left( \begin{array}{c} x \\ y \end{array} \right)\)</span>, and one step of the dynamics defined by our dynamical system as multiplying with <span class="math notranslate nohighlight">\(M\)</span>.</p>
 <blockquote>
-<div><p><em><strong>Homework exercise 4:</strong></em> Play with the parameters of the system to get different types of behaviour. Find parameters for which the system has all six types of equilibria. Report the corresponding eigenvalues (use the function <code>np.linalg.eig()</code>) and check if they are consistent with what is mentioned in the lecture slides. Also hand in the corresponding phase portait plots.
+<div><p><em><strong>Homework exercise 4:</strong></em> Find parameters for which the system has all six types of equilibria. For each of them, hand in the corresponding phase portait plots, report the corresponding matrix and its eigenvalues and eigenvectors, using the function <code>np.linalg.eig()</code>. Briefly show that you results are consistent with what is mentioned in the lecture slides about equilibria and corresponding eigenvalues. <strong>(6pt)</strong>
 <br></p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+
+<span class="c1"># copy-paste the code from above, just change the values of parameters in param</span>
 
 <span class="c1">###</span>
 </pre></div>

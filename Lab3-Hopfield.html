@@ -352,6 +352,11 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
   </a>
@@ -415,6 +420,11 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
   </a>
@@ -470,16 +480,23 @@ title="Print to PDF"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="hopfield-networks">
 <h1>3. Hopfield Networks<a class="headerlink" href="#hopfield-networks" title="Permalink to this headline">#</a></h1>
-<p>Submit your solutions on Canvas before Wednesday, 24 November, 17:59. Please hand in the following:</p>
-<p>A copy of this notebook with the code and results of running the code filled in the required sections. The sections to complete all start as follows:</p>
+<p>This notebook is part of a larger effort to offer an approachable introduction to models of the mind and the brain for the course “Foundations of Neural and Cognitive Modelling”, offered at the University of Amsterdam by Jelle (aka Willem) Zuidema. The notebook in this present form is the result of the combined work of Iris Proff, Marianne de Heer Kloots, and Simone Astarita.</p>
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">#</a></h2>
+<p>The following instructions apply if and only if you are student taking the course “Foundations of Neural and Cognitive Modelling” at the University of Amsterdam (Semester 1, Period 2, Year 2022).</p>
+<p>Submit your solutions on Canvas by Wednesday 23th November 09:00. Please hand in the following:</p>
 <ul class="simple">
-<li><p><code>### YOUR CODE HERE ###</code></p></li>
+<li><p>A copy of this notebook with the <strong>code</strong> and results of running the code filled in the required sections. The sections to complete all start as follows:</p></li>
 </ul>
-<p>Some coding exercises are exaplined in the text cells and start with Exercise e.g. when we just ask you to change variables or when the coding is a little more involved.</p>
-<p>A separate pdf file with the answer to the homework exercises. These can be identified by the following formatting:</p>
+<p><code>### YOUR CODE HERE ###</code></p>
 <ul class="simple">
-<li><p><strong>Homework exercise n: question(s).</strong></p></li>
+<li><p>A separate pdf file with the answer to the <strong>homework exercises</strong>. These can be identified by the following formatting, where <strong>n</strong> is the number of points (out of 10) that question <strong>m</strong> is worth:
+<br></p></li>
 </ul>
+<blockquote>
+<div><p><em><strong>Homework exercise m</strong></em>: question(s) <strong>(npt)</strong>.</p>
+</div></blockquote>
+</div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>In the previous labs we looked at models of single neurons. Starting from the Hodgkin-Huxley model, the models successively abstracted away from actual neurons, with the McCulloch-Pitts neuron as the most abstract model we have seen. This week, we see what happens if artiﬁcial neurons are connected to form networks.</p>
@@ -579,11 +596,9 @@ y_i^{(t)} = \text{sign}{\Big( \sum_{j \neq i} w_{ji} \cdot y_j^{(t - 1)} + \thet
 \]</div>
 <p>Starting from an initial state <span class="math notranslate nohighlight">\((v_1^{(0)}, ..., v_n^{(0)})\)</span> we can then iteratively calculate the new activation or <em>state</em> of the neuron in the next time step. This can give rise to different kinds of dynamics. A neuron <span class="math notranslate nohighlight">\(i\)</span> is called <em>stable</em> at time <span class="math notranslate nohighlight">\(t\)</span> if its value doesn’t change: <span class="math notranslate nohighlight">\(y_i^{(t)} = y_i^{(t-1)}\)</span>. A Hopfield net is called <em>stable</em> if all of its neurons are stable. In that case we also say that the network <em>converged</em> to the stable state.</p>
 <p>In this lab we will first look at the different dynamics that can occur when <em>updating the state</em> of the network over time. Next, we will see how we can <em>update the weights</em> of the network and use that to model an associative memory. We often drop the time <span class="math notranslate nohighlight">\(t\)</span>, and assume that all the thresholds <span class="math notranslate nohighlight">\(\theta_i\)</span> are <span class="math notranslate nohighlight">\(0\)</span>, i.e., we use <span class="math notranslate nohighlight">\(y_i\)</span> instead of <span class="math notranslate nohighlight">\(y_i^{(t)}\)</span>, and <span class="math notranslate nohighlight">\(\theta_i = 0\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>.</p>
-<br>
 <blockquote>
-<div><p><strong>Is a Hopfield network a recurrent neural network?</strong></p>
+<div><p><em><strong>Homework exercise 1</strong></em>: is a Hopfield network a recurrent neural network? (0.5)</p>
 </div></blockquote>
-<br>
 <hr class="docutils" />
 <p><a id="fn1"><sup>1</sup></a>
 You can also think of <span class="math notranslate nohighlight">\(\theta_i\)</span> as a <em>threshold</em>. Using the activation function, equation <span class="math notranslate nohighlight">\(\eqref{eq:activation}\)</span> says that <span class="math notranslate nohighlight">\(y_i = 1\)</span> if <span class="math notranslate nohighlight">\(\sum_{j \neq i} w_{ji} x_j \geq - \theta_i\)</span> (if the weighted sum of the inputs exceeds the threshold <span class="math notranslate nohighlight">\(-\theta_i\)</span>) and <span class="math notranslate nohighlight">\(y_i = -1\)</span> otherwise.</p>
@@ -713,7 +728,7 @@ new state  [1 1 1]
 </div>
 </div>
 <blockquote>
-<div><p><strong>Homework exercise 1:</strong> Find weights for which the network does <em>not</em> converge. Report the weights and run several iterations using these weights. Provide some of your console output and explain why it shows that the network does not converge to one state. According to the explanations above, is your network still a Hopﬁeld network?</p>
+<div><p><em><strong>Homework exercise 2</strong></em>: Find weights for which the network does <em>not</em> converge. Report the weights and run several iterations using these weights. Provide some of your console output and explain why it shows (even if it doesn’t prove) that the network does not converge to one state. <strong>(1pt)</strong> According to the explanations above, is your network still a Hopﬁeld network? <strong>(0.5pt)</strong></p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -837,18 +852,15 @@ new state  [1 1 1]
 1 &amp; 0
 \end{pmatrix}
 \end{split}\]</div>
-<br>
-<blockquote>
-<div><p><strong>Which of these matrices is symmetric?</strong></p>
-</div></blockquote>
-<br>
+<p>Think: Wwich of these matrices is symmetric?</p>
 <p>Your task is to examine whether the net converges when starting from the initial state <span class="math notranslate nohighlight">\(\mathbf{y}^{(0)} = (1, -1)^T\)</span> (that means that <span class="math notranslate nohighlight">\(y_1^{(0)} = 1\)</span> and <span class="math notranslate nohighlight">\(y_2^{(0)} = -1\)</span>). To do so, you have to repeat the steps from the previous section, using the two sets of weights <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span> and varying initial states.</p>
 <blockquote>
-<div><p>Create the matrices <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span> and run several updates using different initial states of the two neurons (check the code in the previous section to see how).</p>
+<div><p>Create the matrices <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span> and run several updates using different initial states of the two neurons. Check the code in the previous section to see how.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+<span class="c1"># W1</span>
 </pre></div>
 </div>
 </div>
@@ -856,12 +868,13 @@ new state  [1 1 1]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+<span class="c1"># W2</span>
 </pre></div>
 </div>
 </div>
 </div>
 <blockquote>
-<div><p><strong>Homework exercise 2:</strong> Construct two state transition tables for the Hopfield networks corresponding to <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span>. Do the networks reach a stable state? Explain how exactly you can infer this from the transition tables.</p>
+<div><p><em><strong>Homework exercise 3</strong></em>: Construct two state transition tables for the Hopfield networks corresponding to <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span>. Do the networks reach a stable state? Explain how exactly you can infer this from the transition tables. <strong>(2pt)</strong></p>
 </div></blockquote>
 </div>
 </div>
@@ -950,11 +963,12 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 </div>
 </div>
 <blockquote>
-<div><p><strong>Homework exercise 3:</strong> Run the network using <code class="docutils literal notranslate"><span class="pre">pattern3</span></code> and <code class="docutils literal notranslate"><span class="pre">pattern4</span></code> as the initial state. Which patterns will the net retrieve in each case? Explain how the ﬁnal state of the network depend on the initialisation of the network.</p>
+<div><p><em><strong>Homework exercise 4</strong></em>: Run the network using <code class="docutils literal notranslate"><span class="pre">pattern3</span></code> and <code class="docutils literal notranslate"><span class="pre">pattern4</span></code> as the initial state. Explain how the ﬁnal state of the network depend on the initialisation of the network. <strong>(1pt)</strong></p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+<span class="c1"># pattern 3</span>
 </pre></div>
 </div>
 </div>
@@ -962,6 +976,7 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+<span class="c1"># pattern 4</span>
 </pre></div>
 </div>
 </div>
@@ -976,8 +991,7 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 </div>
 </div>
 <blockquote>
-<div><p><strong>Homework exercise 4:</strong> Does the net now remember this pattern? Think up a way to test this, explain what you did and include new plots (screenshots of the printed network states) to illustrate your answer.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">pattern4</span></code> is set as the initial state for the net, which pattern will the net retrieve?</p>
+<div><p><em><strong>Homework exercise 5</strong></em>: Does the net now remember this pattern? Think up a way to test this, explain what you did and include new plots (screenshots of the printed network states) to illustrate your answer. <strong>(1pt)</strong></p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -988,7 +1002,7 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 </div>
 <p>One interesting property of the Hebbian learning rule is that we can use its reverse (i.e. addition becomes subtraction and vice versa) to ‘erase’ a pattern out of the memory.</p>
 <blockquote>
-<div><p><strong>Homework exercise 5:</strong> Erase <code class="docutils literal notranslate"><span class="pre">pattern3</span></code> from the net and think of a way to check whether it still remembers it. Include intermediate network state plots to illustrate your approach.</p>
+<div><p><em><strong>Homework exercise 6</strong></em>: Erase <code class="docutils literal notranslate"><span class="pre">pattern3</span></code> from the network and check whether it still remembers it. Include intermediate network state plots. <strong>(1pt)</strong></p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1009,7 +1023,7 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 </div>
 </div>
 </div>
-<p>The data has been downloaded in a folder named <em>img</em>; that folder is <strong>not</strong> on your Drive but simply accesible from this notebook. Now, execute the code below to examine the similarities between digits.</p>
+<p>The data has been downloaded in a folder named <em>digits</em>; that folder is <strong>not</strong> on your Drive but simply accesible from this notebook. Now, execute the code below to examine the similarities between digits.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
@@ -1017,7 +1031,7 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)):</span>
     <span class="c1"># load image</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;img/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;digits/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
     
     <span class="c1"># convert to 1s and -1s</span>
     <span class="n">img</span><span class="p">[</span><span class="n">img</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1043,9 +1057,7 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 </div>
 </div>
 </div>
-<blockquote>
-<div><p>Which pair of digits is the most similar? Which is the least? Which digit is the most distinguishable from the others?</p>
-</div></blockquote>
+<p>Look at the table above: which pair of digits is the most similar? Which is the least? Which digit is the most distinguishable from the others?</p>
 <p>Now use the function <code class="docutils literal notranslate"><span class="pre">train_hopfield</span></code>, and the code block below it, to store a set of digits in a Hopfield network. First, try this with all ten digits, then with all odd digits, and finally with all even digits. After running the <code class="docutils literal notranslate"><span class="pre">plot_patterns</span></code> function, you should see a plot, in which the first row contains input images, the second row output images, and the third row expected output images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1101,11 +1113,9 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 </div>
 </div>
 </div>
+<p>Think: What do you see? Can you explain it?</p>
 <blockquote>
-<div><p><strong>What do you see? Can you explain?</strong></p>
-</div></blockquote>
-<blockquote>
-<div><p><strong>Homework exercise 6:</strong> What is the largest set of digits that the net can store? (This is an empirical question – experiment with the provided code to find your answer, and describe the method you used and the parameter settings for which your answer holds.)</p>
+<div><p><em><strong>Homework exercise 7</strong></em>: What is the largest set of digits that the net can store? This is an empirical question: experiment with the provided code to find your answer, and describe the method you used and the parameter settings for which your answer holds. <strong>(1pt)</strong></p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1116,7 +1126,7 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 </div>
 <p>Now we consider only even digits. The parameter <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> decides the probability that a pixel is flipped, e.g. <code class="docutils literal notranslate"><span class="pre">noise_rate</span> <span class="pre">=</span> <span class="pre">0.1</span></code> means any pixel is flipped with the probability <span class="math notranslate nohighlight">\(0.1\)</span>. The higher <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> is, the more noisy the input is.</p>
 <blockquote>
-<div><p><strong>Homework exercise 7:</strong> Choose a set of digits that are retrieved correctly for <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> 0, for example the set of digits you found in the previous exercise. Gradually increase the value of <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> from 0 to 1. Report the maximum value of the noise rate for which the network still correctly retrieves all inputs.</p>
+<div><p><em><strong>Homework exercise 8</strong></em>: Choose a set of digits that are retrieved correctly for <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> 0, for example the set of digits you found in the previous exercise. Gradually increase the value of <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> from 0 to 0.5. Report the range of noise rate for which the network correctly retrieves all inputs. Then gradually increase the value of <code class="docutils literal notranslate"><span class="pre">noise_rate</span></code> from 0.5 to 1, explain what happens then, and finally report the range of noise rate for which the network correctly (in a peculiar sense of <em>correctly</em>) retrieves all inputs. <strong>(1pt)</strong></p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1126,15 +1136,8 @@ Calculating the weights is a bit tricky, if only because there are <span class="
 </div>
 </div>
 <blockquote>
-<div><p><strong>Homework exercise 8:</strong> In some cases, the retrieved digit looks quite good, but not perfect. Can you explain why this happens?</p>
+<div><p><em><strong>Homework exercise 9</strong></em>: In some cases, the retrieved digit looks quite good, but not perfect. Can you explain why this happens? <strong>(1pt)</strong></p>
 </div></blockquote>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

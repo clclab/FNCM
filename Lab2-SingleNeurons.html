@@ -352,6 +352,11 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
   </a>
@@ -386,6 +391,11 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
   </a>
@@ -412,20 +422,23 @@ title="Print to PDF"
                 
   <div class="section" id="single-neuron-models">
 <h1>2. Single Neuron Models<a class="headerlink" href="#single-neuron-models" title="Permalink to this headline">#</a></h1>
-<p>Submit your solutions on Canvas before Wednesday, 17 November, 17:59. Please hand in the following:</p>
+<p>This notebook is part of a larger effort to offer an approachable introduction to models of the mind and the brain for the course “Foundations of Neural and Cognitive Modelling”, offered at the University of Amsterdam by Jelle (aka Willem) Zuidema. The notebook in this present form is the result of the combined work of Iris Proff, Marianne de Heer Kloots, and Simone Astarita.</p>
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">#</a></h2>
+<p>The following instructions apply if and only if you are student taking the course “Foundations of Neural and Cognitive Modelling” at the University of Amsterdam (Semester 1, Period 2, Year 2022).</p>
+<p>Submit your solutions on Canvas by Wednesday 16th November 09:00. Please hand in the following:</p>
 <ul class="simple">
 <li><p>A copy of this notebook with the <strong>code</strong> and results of running the code filled in the required sections. The sections to complete all start as follows:</p></li>
 </ul>
 <p><code>### YOUR CODE HERE ###</code></p>
 <ul class="simple">
-<li><p>A separate pdf file with the answer to the <strong>homework exercises</strong>. These can be identified by the following formatting:
+<li><p>A separate pdf file with the answer to the <strong>homework exercises</strong>. These can be identified by the following formatting, where <strong>n</strong> is the number of points (out of 10) that question <strong>m</strong> is worth:
 <br></p></li>
 </ul>
 <blockquote>
-<div><p><em><strong>Homework exercise n</strong></em>: question(s).
-<br></p>
+<div><p><em><strong>Homework exercise m</strong></em>: question(s) <strong>(npt)</strong>.</p>
 </div></blockquote>
-<p>Some coding exercises are exaplined in the text cells and start with <em><strong>Exercise</strong></em> e.g. when we just ask you to change variables or when the coding is a little more involved.</p>
+</div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>In the previous computer lab we learned how to use Python to plot phase portraits as well as draw nullclines and trajectories of a 2-dimensional system of linear ODEs. Today we will use the same techniques to study the behaviour of two models of single neuron dynamics: the Fitzhugh-Nagumo model and the Izhikevich model. You will need to re-use some of the code you wrote in the previous computer lab.</p>
@@ -445,10 +458,7 @@ is the strength of the input current and <span class="math notranslate nohighlig
 <p>Note that, for the Fitzhugh-Nagumo model as it is presented here, the sign of the
 membrane potential is opposite to what you would expect in a biological neuron. That
 means, actions potentials are modeled as negative, rather than positive, deflections.</p>
-<p>Unless otherwise told, assume the following parameters: <span class="math notranslate nohighlight">\(a = 0.3\)</span>; <span class="math notranslate nohighlight">\(b = 0.8\)</span>; <span class="math notranslate nohighlight">\(c = 3\)</span>; <span class="math notranslate nohighlight">\(I = 0\)</span>.</p>
-<blockquote>
-<div><p><em><strong>Homework exercise 1</strong></em> Check what the equations of change of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> produce for some of the extreme values (<span class="math notranslate nohighlight">\(-\infty\)</span>,<span class="math notranslate nohighlight">\(0\)</span>,<span class="math notranslate nohighlight">\(\infty\)</span>) of these variables. I.e., what do you get when both <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> are <span class="math notranslate nohighlight">\(0\)</span>? What when <span class="math notranslate nohighlight">\(v\)</span> is very large but <span class="math notranslate nohighlight">\(r=0\)</span>? This is a “pen&amp;paper” exercise: solve it without the use of code.</p>
-</div></blockquote>
+<p>In order to understand these equations better, you can check what the equations of change of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> produce for some of the extreme values (<span class="math notranslate nohighlight">\(-\infty\)</span>,<span class="math notranslate nohighlight">\(0\)</span>,<span class="math notranslate nohighlight">\(\infty\)</span>) of these variables. I.e., what do you get when both <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> are <span class="math notranslate nohighlight">\(0\)</span>? What when <span class="math notranslate nohighlight">\(v\)</span> is very large but <span class="math notranslate nohighlight">\(r=0\)</span>?</p>
 <p>We will use a function called <code>dvdr</code> that takes an <span class="math notranslate nohighlight">\(v\)</span>-value, a <span class="math notranslate nohighlight">\(r\)</span>-value and a vector <span class="math notranslate nohighlight">\((a, b, c, I)\)</span> containing both the parameters of the system and its input. The function returns a vector with <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> and <span class="math notranslate nohighlight">\(\frac{dr}{dt}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -464,14 +474,14 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 </div>
 </div>
 </div>
-<p>Check your answers from the pen &amp; paper exercise above using the function <code>dvdr</code>. Use e.g., <span class="math notranslate nohighlight">\(100\)</span> rather than <span class="math notranslate nohighlight">\(\infty\)</span> to represent “very large”.</p>
+<p>Now we can check our intuitions above using the function <code>dvdr</code>. Use e.g., <span class="math notranslate nohighlight">\(1000\)</span> rather than <span class="math notranslate nohighlight">\(\infty\)</span> to represent “very large”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define parameter vector</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">param</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define parameter vector: these are just examples</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">param</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span> 
 
 <span class="c1"># call newly defined function</span>
-<span class="n">dvdr</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">param</span><span class="p">)</span>
+<span class="n">dvdr</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">param</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -487,8 +497,7 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 <span class="n">v_vals</span><span class="p">,</span> <span class="n">r_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
 
 <span class="c1"># generate dv and dr at all points</span>
-<span class="c1">#a = 0.7; b = 0.8; c = 3; I = 0</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">param</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span> 
 
 <span class="c1"># evaluate ODE at all points in our grid</span>
@@ -519,7 +528,7 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 \end{align*}
 \end{split}\]</div>
 <blockquote>
-<div><p><em><strong>Homework exercise 2:</strong></em> Explain what these two equations describe. Analytically show that the two previous equations indeed describe the nullclines of the system. This is a “pen&amp;paper” exercise: solve it without the use of code.</p>
+<div><p><em><strong>Homework exercise 1</strong></em>: Explain what these two equations describe. Analytically show that the two previous equations indeed describe the nullclines of the system. This is a “pen&amp;paper” exercise: solve it without the use of code. <strong>(2pt)</strong></p>
 </div></blockquote>
 <p>Here are two functions <code>v_nullcline</code> and <code>r_nullcline</code> that return the <span class="math notranslate nohighlight">\(r\)</span> values of the <span class="math notranslate nohighlight">\(v\)</span>- and <span class="math notranslate nohighlight">\(r\)</span>-nullclines when given input <span class="math notranslate nohighlight">\(v\)</span> and a parameter vector containing the parameters of the system.</p>
 <div class="cell docutils container">
@@ -535,16 +544,10 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 </div>
 </div>
 </div>
-<p>Now we can use these functions to plot the null cline. Run the code below, then do the pen &amp; paper exercise, and then complete the code to insert the vector field automatically in the plot.</p>
+<p>Now we can use these functions to plot the null cline: run the code below to visualize them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
-
-<span class="c1"># add the vector field to the graph</span>
-
-<span class="c1">###</span>
-
-<span class="c1"># make and plot nullclines</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make and plot nullclines</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">r_nullcline</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">param</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">v_nullcline</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">param</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
@@ -557,10 +560,7 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 </div>
 </div>
 </div>
-<blockquote>
-<div><p><em><strong>Homework exercise 3</strong></em> What is the vector field around the equilibrium? This is a qualitative question, not a quatitive one: just try to guess how it is supposed to behave. This is a “pen&amp;paper” exercise: solve it without the use of code.</p>
-</div></blockquote>
-<p>Now let’s use the <code>odeint</code> function to plot some trajectories.</p>
+<p>Finally, we can use the <code>odeint</code> function to plot some trajectories.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ode_system</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
@@ -568,13 +568,8 @@ means, actions potentials are modeled as negative, rather than positive, deflect
     <span class="n">r</span> <span class="o">=</span> <span class="n">state</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="c1"># Here you use our dvdr function</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">dvdr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">r</span><span class="p">,</span> <span class="n">param</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial value points</span>
+
+<span class="c1"># initial value points</span>
 <span class="n">v_init</span><span class="o">=</span><span class="mi">1</span>
 <span class="n">r_init</span><span class="o">=</span><span class="mi">1</span>
 <span class="c1"># time points to evaluate</span>
@@ -591,7 +586,7 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 </div>
 </div>
 <blockquote>
-<div><p><em><strong>Exercise</strong></em>: Try to plot trajectories for different initial points.</p>
+<div><p>Try to plot trajectories for different initial points.</p>
 </div></blockquote>
 <p>We can automate this for a grid of initial points.</p>
 <div class="cell docutils container">
@@ -633,10 +628,7 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 <li><p>Plot the trajectories for each starting point using <code>odeint()</code>. That function takes a function <code>ode_system</code> as an input.</p></li>
 </ul>
 <blockquote>
-<div><p><em><strong>Exercise</strong></em>: Draw the phase plane of the Fitzhugh-Nagumo model with <span class="math notranslate nohighlight">\(a = 0.7, b = 0.8, c = 3\)</span>
-and set the injected current <span class="math notranslate nohighlight">\(I\)</span> to <span class="math notranslate nohighlight">\(0\)</span>. The equilibrium point for these parameters is
-<span class="math notranslate nohighlight">\((1.1994, −0.62426)\)</span>. Confirm (on paper or by plotting it) that this point is indeed an
-equilibrium.</p>
+<div><p>Draw the phase plane of the Fitzhugh-Nagumo model with <span class="math notranslate nohighlight">\(a = 0.7, b = 0.8, c = 3\)</span> and set the injected current <span class="math notranslate nohighlight">\(I\)</span> to <span class="math notranslate nohighlight">\(0\)</span>. The equilibrium point for these parameters is <span class="math notranslate nohighlight">\((1.1994, −0.62426)\)</span>: we plot it so that you can check that your graph looks correct.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -659,25 +651,64 @@ equilibrium.</p>
 <span class="c1"># time points to evaluate</span>
 
 <span class="c1"># compute trajectories for each point on grid</span>
+
+<span class="c1"># mark equilibrium</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.804848</span><span class="p">,</span><span class="o">-</span><span class="mf">0.63106</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>When no pertubations are made to the system, it will stay in its equilibrium, as both <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> and <span class="math notranslate nohighlight">\(\frac{dr}{dt}\)</span> are equal to <span class="math notranslate nohighlight">\(0\)</span>. Briefly interjecting a current <span class="math notranslate nohighlight">\(I\)</span> into the system will move it a little bit in the state space (look at the differential equations to understand how). We do not explicitly model a current as this would be require more coding. (NB: if you change the value for <span class="math notranslate nohighlight">\(I\)</span> instead, you will mimic a constant, not a brief input, and this will also shift the equilibrium point.) Instead we  manually set the starting point of the trajectory to different points in the state space and observe what happens.</p>
+<p>When no pertubations are made to the system, it will stay in its equilibrium, as both <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> and <span class="math notranslate nohighlight">\(\frac{dr}{dt}\)</span> are equal to <span class="math notranslate nohighlight">\(0\)</span>. Briefly interjecting a current <span class="math notranslate nohighlight">\(I\)</span> into the system will move it a little bit in the state space (look at the differential equations to understand how). We do not explicitly model a current as this would be require more coding. If you change the value for <span class="math notranslate nohighlight">\(I\)</span> instead, you will mimic a constant, not a brief input, and this will also shift the equilibrium point. We can instead  manually set the starting point of the trajectory to different points in the state space and observe what happens.</p>
 <br>
 <blockquote>
-<div><p><em><strong>Homework exercise 4:</strong></em> What happens when the neuron is depolarized from its equilibrium value? In other words, explain what happens to the trajectories in the phase portait you created above. Does the system get back to the equilibrium? Do you get different types of behaviour depending on how much you perturbate the system? Make plots of the corresponding trajectories to illustrate this. How would you describe the path back to the equilibrium?</p>
+<div><p><em><strong>Homework exercise 2</strong></em>: What happens when the neuron is depolarized from its equilibrium value? In other words, explain what happens to the trajectories in the phase portait you created above. Does the system get back to the equilibrium? Do you get different types of behaviour depending on how much you perturbate the system? Make plots of the corresponding trajectories to illustrate this. How would you describe the path back to the equilibrium? <strong>(2pt)</strong></p>
 </div></blockquote>
 <blockquote>
-<div><p><em><strong>Homework exercise 5:</strong></em> Plot the value of <span class="math notranslate nohighlight">\(v\)</span> on different trajectories in the state space (i.e. starting at different states <span class="math notranslate nohighlight">\((v,r)\)</span>) against the time <span class="math notranslate nohighlight">\(t\)</span>: that is, plot <span class="math notranslate nohighlight">\(v(t)\)</span>. Does this plot remind you of something?</p>
+<div><p><em><strong>Homework exercise 3</strong></em>: Plot the value of <span class="math notranslate nohighlight">\(v\)</span> on different trajectories in the state space (i.e. starting at different states <span class="math notranslate nohighlight">\((v,r)\)</span>) against the time <span class="math notranslate nohighlight">\(t\)</span>: that is, plot <span class="math notranslate nohighlight">\(v(t)\)</span>. Does this plot remind you of something? <strong>(2pt)</strong></p>
 <p>Hint: you can use the output of the function <code>odeint</code> to create a plot of <span class="math notranslate nohighlight">\(v\)</span> versus <span class="math notranslate nohighlight">\(t\)</span>. <code>odeint</code> gives as output a matrix <code>trajectories</code> with the <span class="math notranslate nohighlight">\(v\)</span>-values in the first column and the <span class="math notranslate nohighlight">\(r\)</span>-values in the second column.</p>
 </div></blockquote>
-<blockquote>
-<div><p><em><strong>Homework exercise 6:</strong></em> Whether the nullclines cross on the left or on the right of the top of the curves determines the stability of the equilibrium. Can you change the parameters such that a qualitive change of the system occurs (i.e., a bifurcation) and the equilibrium is not stable anymore? What kind of equilibrium do we have in this case? Optionally, you can plot <span class="math notranslate nohighlight">\(v(t)\)</span> for a longer time span (such as 40 seconds) to understand the development of <span class="math notranslate nohighlight">\(v\)</span> over time.}</p>
-</div></blockquote>
-<br><div class="cell docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+
+<span class="c1"># the t (time) range of values</span>
+<span class="n">t</span> <span class="o">=</span>
+
+<span class="c1"># STATE 1</span>
+<span class="c1"># the intial state</span>
+<span class="n">state1</span> <span class="o">=</span> 
+<span class="c1"># the trajectory using state1</span>
+<span class="n">trajectory1</span> <span class="o">=</span> 
+<span class="c1"># plot it</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">trajectory</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># repeat the above for different initial states</span>
+
+<span class="c1">###</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;membrane potential&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;different trajectories in state space&#39;</span><span class="p">)</span>
+<span class="c1"># you can use plt.legend to add a name for each initial state</span>
+<span class="c1"># example with three different states</span>
+<span class="c1"># plt.legend([&#39;state 1&#39;,&#39;state 2&#39;,&#39;state 3&#39;])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><em><strong>Homework exercise 4</strong></em>: Whether the nullclines cross on the left or on the right of the top of the curves determines the stability of the equilibrium. Can you change the parameters such that a qualitive change of the system occurs (i.e., a bifurcation) and the equilibrium is not stable anymore? What kind of equilibrium do we have in this case? <strong>(2pt)</strong></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### YOUR CODE HERE ###</span>
+
+<span class="c1"># define a new paramater vectors</span>
+
+<span class="c1"># then re-use the code you completed for exercise 3</span>
 </pre></div>
 </div>
 </div>
@@ -704,7 +735,7 @@ equilibrium.</p>
 \end{split}\]</div>
 <p>Both the <code>dvdu</code> function and the nullcline functions are already implemented in the code below, you can just use them as they are.</p>
 <blockquote>
-<div><p><em><strong>Homework exercise 7:</strong></em> The Izhikevich neuron model can, depending on the parameters, exhibit several types of spiking behaviour, such as (1) regular spiking, (2) fast spiking or (3) intrinsically bursting behaviour. Find parameter sets that lead to these three different types of behaviour (look at <a class="reference external" href="http://www.izhikevich.org/publications/spikes.htm">http://www.izhikevich.org/publications/spikes.htm</a> for help) and see if you can understand why they behave this way by plotting their trajectories. Hand in the phase portraints and <span class="math notranslate nohighlight">\(v(t)\)</span>-plots of the three different neuron types to show that they indeed exhibit the desired behaviour. Izhikevich assumes a constant input current of <span class="math notranslate nohighlight">\(I=10\)</span>.</p>
+<div><p><em><strong>Homework exercise 5</strong></em>: The Izhikevich neuron model can, depending on the parameters, exhibit several types of spiking behaviour, such as (1) regular spiking, (2) fast spiking or (3) intrinsically bursting behaviour. Find parameter sets that lead to these three different types of behaviour (look at <a class="reference external" href="http://www.izhikevich.org/publications/spikes.htm">http://www.izhikevich.org/publications/spikes.htm</a> for help) and see if you can understand why they behave this way by plotting their trajectories. Hand in the phase portraints and <span class="math notranslate nohighlight">\(v(t)\)</span>-plots of the three different neuron types to show that they indeed exhibit the desired behaviour. Izhikevich assumes a constant input current of <span class="math notranslate nohighlight">\(I=10\)</span>. <strong>(2pt)</strong></p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -716,9 +747,12 @@ equilibrium.</p>
 <span class="n">v_init</span> <span class="o">=</span> <span class="o">-</span><span class="mi">65</span><span class="p">;</span> <span class="n">u_init</span> <span class="o">=</span> <span class="o">-</span><span class="mi">18</span> <span class="c1"># these are the initial values of the trajectory</span>
 <span class="n">times</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">;</span> <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
 
-<span class="c1"># set values for parameters (a, b and c and d or I)</span>
-<span class="c1"># these are only example parameters!</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1">### YOUR CODE HERE ###</span>
+<span class="c1"># set values for parameters (a, b and c and d)</span>
+<span class="c1"># choose different ones to see all behaviours</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="p">;</span> <span class="n">d</span> <span class="o">=</span> <span class="p">;</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1">###</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span> <span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">I</span><span class="p">])</span>
 
