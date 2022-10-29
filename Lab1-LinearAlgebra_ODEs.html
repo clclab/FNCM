@@ -382,13 +382,13 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#eigenvectors-and-eigenvalues">
-     Eigenvectors and eigenvalues
+    <a class="reference internal nav-link" href="#determinant-and-trace">
+     Determinant and trace
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#determinant-and-trace">
-     Determinant and trace
+    <a class="reference internal nav-link" href="#eigenvectors-and-eigenvalues">
+     Eigenvectors and eigenvalues
     </a>
    </li>
   </ul>
@@ -475,13 +475,13 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#eigenvectors-and-eigenvalues">
-     Eigenvectors and eigenvalues
+    <a class="reference internal nav-link" href="#determinant-and-trace">
+     Determinant and trace
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#determinant-and-trace">
-     Determinant and trace
+    <a class="reference internal nav-link" href="#eigenvectors-and-eigenvalues">
+     Eigenvectors and eigenvalues
     </a>
    </li>
   </ul>
@@ -530,7 +530,7 @@ title="Print to PDF"
                 
   <div class="section" id="linear-algebra-and-ordinary-differential-equations">
 <h1>1. Linear Algebra and Ordinary Differential Equations<a class="headerlink" href="#linear-algebra-and-ordinary-differential-equations" title="Permalink to this headline">#</a></h1>
-<p>This notebook is part of a larger effort to offer an approachable introduction to models of the mind and the brain for the course “Foundations of Neural and Cognitive Modelling”, offered at the University of Amsterdam by Jelle (aka Willem) Zuidema. The notebook in this present form is the result of the combined work of Iris Proff, Marianne de Heer Kloots, and Simone Astarita.</p>
+<p>This notebook is part of a larger effort to offer an approachable introduction to models of the mind and the brain for the course “Foundations of Neural and Cognitive Modelling”, offered at the University of Amsterdam by <a class="reference external" href="https://staff.fnwi.uva.nl/w.zuidema/">Jelle (aka Willem) Zuidema</a>. The notebook in this present form is the result of the combined work of Iris Proff, <a class="reference external" href="http://mdhk.net/">Marianne de Heer Kloots</a>, and <a class="reference external" href="https://www.linkedin.com/in/simone-astarita-4499b11b5/">Simone Astarita</a>.</p>
 <div class="section" id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">#</a></h2>
 <p>The following instructions apply if and only if you are a student taking the course “Foundations of Neural and Cognitive Modelling” at the University of Amsterdam (Semester 1, Period 2, Year 2022).</p>
@@ -540,7 +540,7 @@ title="Print to PDF"
 </ul>
 <p><code>### YOUR CODE HERE ###</code></p>
 <ul class="simple">
-<li><p>A separate pdf file with the answer to the <strong>homework exercises</strong>. These can be identified by the following formatting, where <strong>n</strong> is the number of points (out of 10) that question <strong>m</strong> is worth:
+<li><p>A separate pdf file with the answers to the <strong>homework exercises</strong>. These can be identified by the following formatting, where <strong>n</strong> is the number of points (out of 10) that question <strong>m</strong> is worth:
 <br></p></li>
 </ul>
 <blockquote>
@@ -557,13 +557,15 @@ title="Print to PDF"
 <div class="section" id="vectors-definitions">
 <h3>Vectors: definitions<a class="headerlink" href="#vectors-definitions" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p><strong>Vector</strong>: formally, vectors are members of a vector space that can be added together and multiplied by a scalar. Visually, think of an arrow (= a line with a direction) situated in a space. In practice, when we use them they look like this: <span class="math notranslate nohighlight">\(v = [v_1, v_2, ..., v_{n-1}, v_n]\)</span>.</p></li>
+<li><p><strong>Vector space</strong>: a set closed under finite vector addition and scalar multiplication. Examples: <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> (or <span class="math notranslate nohighlight">\(\mathbb{R}^1\)</span>), the set of real numbers; <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>, the set of bidimensional vectors; <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>, the set of tridimensional vectors.</p></li>
+<li><p><strong>Vector</strong>: formally, vectors are members of a vector space, so they can be added together and multiplied by a scalar, while remaining in the same vector space. Visually, think of an arrow (= a line with a direction) situated in the space. In practice, when we use them they look like this: <span class="math notranslate nohighlight">\(v = [v_1, v_2, ..., v_{n-1}, v_n]\)</span>. In <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, <span class="math notranslate nohighlight">\(v_1, v_2, ..., v_{n-1}, v_n\)</span> are the coordinates of the vector.</p></li>
 <li><p><strong>Scalar</strong>: a ‘scalar’ is the mathematical term for a single number, like 2, 6.7 or 14,000,000.</p></li>
 <li><p><strong>Dimensionality</strong>: number of elements in a vector. It may sometimes be referred to as <em>length</em>, especially in programming languages: for example, <code>len([1,2,5,0])</code> returns <code>4</code>, the dimensionality of the vector, in Python.</p></li>
 <li><p><strong>Length</strong> or <strong>Euclidean norm</strong>: the actual length of a vector. It is computed as follows: <span class="math notranslate nohighlight">\(|\vec{v}| = \sqrt{v_1^2 + \ldots + v_n^2}\)</span>.</p></li>
 <li><p><strong>Scaling</strong>: modifying (= multiplying) the length of a vector <span class="math notranslate nohighlight">\(v\)</span> by a scalar value <span class="math notranslate nohighlight">\(a\)</span>: <span class="math notranslate nohighlight">\(a \times \vec{v} = \vec{u}\)</span> with <span class="math notranslate nohighlight">\(u_i = a \times v_i\)</span>.</p></li>
-<li><p><strong>Vector addition</strong>: adding together vectors of the same dimensionality (= that belong to the same vector space): <span class="math notranslate nohighlight">\(\vec{v} + \vec{w} = \vec{w} + \vec{v} = \vec{u}\)</span> with <span class="math notranslate nohighlight">\(u_i = v_i + w_i\)</span> .</p></li>
+<li><p><strong>Vector addition</strong>: adding together vectors of the same dimensionality (= that belong to the same vector space): <span class="math notranslate nohighlight">\(\vec{v} + \vec{w} = \vec{w} + \vec{v} = \vec{u}\)</span> with <span class="math notranslate nohighlight">\(u_i = v_i + w_i\)</span>.</p></li>
 <li><p><strong>Vector multiplication or dot product</strong>: multiplying together vectors of the same dimensionality, which results in a scalar: <span class="math notranslate nohighlight">\(\vec{v} \times \vec{w} = \vec{w} \times \vec{v} = a\)</span>, with <span class="math notranslate nohighlight">\(a = \sum v_i \times w_i\)</span>. In Python, we use the command <code>dot(v,w)</code> or <code>v &#64; w</code>.</p></li>
+<li><p><strong>Linear dependence</strong>: two vectors <span class="math notranslate nohighlight">\(\vec{v}\)</span> and <span class="math notranslate nohighlight">\(\vec{w}\)</span> are linearly dependent if and only if <span class="math notranslate nohighlight">\(\vec{v}=a\vec{w}\)</span> for some scalar <span class="math notranslate nohighlight">\(a\)</span>.</p></li>
 </ul>
 <p>In order to deal with vectors and matrices in Python, we use the <em>numpy</em> package. When writing <code>import numpy as np</code> in the beginning of our script, we can access all numpy functions using the shortcut <code>np</code>.</p>
 <p>The following cell contains some commands to create vectors and matrices. Figure out how the functions work.</p>
@@ -602,7 +604,7 @@ title="Print to PDF"
 <li><p><strong>Matrix</strong>: a 2D array of numbers, so it has one or more columns and one or more rows (A vector is a matrix with either only one column or only one row;note that in Python, by default, there is no difference between row and column vectors).</p></li>
 <li><p><strong>Size</strong>: the <strong>height</strong> (= number of rows) times the <strong>width</strong> (= number of columns) of a matrix.</p></li>
 <li><p><strong>Scaling</strong>: modifying (= multiplying) each number in a matrix <span class="math notranslate nohighlight">\(A\)</span> by a scalar value <span class="math notranslate nohighlight">\(c\)</span>: <span class="math notranslate nohighlight">\(c \times A = B\)</span>, with <span class="math notranslate nohighlight">\(B_{i,j} = c \times A_{i,j}\)</span>.</p></li>
-<li><p><strong>Addition</strong>: adding each number of two matrices together <span class="math notranslate nohighlight">\(A + B = B + A = C\)</span>, with <span class="math notranslate nohighlight">\(c_{i,j} = a_{i.j} + b_{i,j}\)</span>, only if A and B same sizes</p></li>
+<li><p><strong>Addition</strong>: adding each number of two matrices together <span class="math notranslate nohighlight">\(A + B = B + A = C\)</span>, with <span class="math notranslate nohighlight">\(c_{i,j} = a_{i.j} + b_{i,j}\)</span>, only if A and B same sizes.</p></li>
 <li><p><strong>Multiplication:</strong> you can multiply two matrices to obtain a single matrix. In particular, <span class="math notranslate nohighlight">\(A \times B = C\)</span>, with <span class="math notranslate nohighlight">\(c_{ij} = \sum_{k=1}^pa_{ik}b_{kj}\)</span>, only if the number columns in <span class="math notranslate nohighlight">\(A\)</span> is the same as the number of rows in <span class="math notranslate nohighlight">\(B\)</span> (and said number is <span class="math notranslate nohighlight">\(p\)</span>).</p></li>
 </ul>
 <p>Example:</p>
@@ -669,13 +671,39 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<div class="section" id="determinant-and-trace">
+<h3>Determinant and trace<a class="headerlink" href="#determinant-and-trace" title="Permalink to this headline">#</a></h3>
+<p>Two interesting values of a square matrix are the <em>determinant</em> and the <em>trace</em>. The determinant of a <span class="math notranslate nohighlight">\(2\times2\)</span> matrix is computed as follows:</p>
+<p><span class="math notranslate nohighlight">\(A = \left( \begin{array}{cc}    a     &amp; b \\    c     &amp; d    \end{array} \right), 
+\quad \det(A)=\left| \begin{array}{cc}  a &amp; b \\c&amp; d \end{array} \right| = ad - cb\)</span></p>
+<p>The <em>trace</em> of a matrix is the sum of the main diagonal, which is the one from upper left to lower right. So, in a <span class="math notranslate nohighlight">\(2\times2\)</span> matrix:</p>
+<p><span class="math notranslate nohighlight">\(A = \left( \begin{array}{cc}    a     &amp; b \\    c     &amp; d    \end{array} \right), 
+\quad \text{tr}(A)=\left| \begin{array}{cc}  a &amp; b \\c&amp; d \end{array} \right| = a+d\)</span></p>
+</div>
 <div class="section" id="eigenvectors-and-eigenvalues">
 <h3>Eigenvectors and eigenvalues<a class="headerlink" href="#eigenvectors-and-eigenvalues" title="Permalink to this headline">#</a></h3>
-<p>There are several interesting values we can compute from a square matrix, for instance <span class="math notranslate nohighlight">\(M=\begin{pmatrix}1&amp;2\\2&amp;1\end{pmatrix}\)</span>.</p>
-<p>When <span class="math notranslate nohighlight">\(M\)</span> is multiplied with a vector, this yields a new vector, as explained above. For most vectors, both the length and the direction changes. Some vectors however do not get not rotated by mutliplication with <span class="math notranslate nohighlight">\(M\)</span> or any other square matrix. For these vectors, it holds that <span class="math notranslate nohighlight">\(M\times \vec{v} = \lambda\vec{v}\)</span>. In other words, the vectors get only scaled by the matrix. These are so-called eigenvectors. The corresponding scaling factor <span class="math notranslate nohighlight">\(\lambda\)</span> is called the eigenvalue.</p>
+<p>When a matrix <span class="math notranslate nohighlight">\(M\)</span> is multiplied with a vector, this yields a new vector, as explained above. For most vectors, both the length and the direction changes. Some vectors however do not get not rotated by mutliplication with <span class="math notranslate nohighlight">\(M\)</span> or any other square matrix. For these vectors, it holds that <span class="math notranslate nohighlight">\(M\times \vec{v} = \lambda\vec{v}\)</span>. In other words, the vectors get only scaled by the matrix. These are so-called eigenvectors. The corresponding scaling factor <span class="math notranslate nohighlight">\(\lambda\)</span> is called the eigenvalue.</p>
+<p>Let’s now see how we can compute eigenvectors and eigenvalues of a  <span class="math notranslate nohighlight">\(2\times2\)</span> matrix.</p>
+<p><span class="math notranslate nohighlight">\(M \vec{v} = \lambda \vec{v}\)</span> can be rewritten as:
+\begin{align*}
+\begin{pmatrix}a&amp;b\c&amp;d\end{pmatrix}\begin{pmatrix}v_x \v_y\end{pmatrix} &amp;= \lambda \begin{pmatrix}v_x \v_y\end{pmatrix}\
+\begin{pmatrix}a&amp;b\c&amp;d\end{pmatrix}\begin{pmatrix}v_x \v_y\end{pmatrix} - \lambda \begin{pmatrix}v_x \v_y\end{pmatrix}&amp;= \begin{pmatrix}0\0\end{pmatrix}\
+\begin{pmatrix}a-\lambda&amp;b\c&amp;d-\lambda\end{pmatrix}\begin{pmatrix}v_x \v_y\end{pmatrix} &amp;= \begin{pmatrix}0\0\end{pmatrix}\
+\end{align*}</p>
+<p>From which we can derive the so-called <em>characteristic equation</em>:
+\begin{align*}
+(a-\lambda)(d-\lambda)-bc&amp;=0 \
+\lambda^2 - (a+d)\lambda + ad -bc&amp;=0
+\end{align*}</p>
+<p>This equation can be solved to obtain the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{1,2}\)</span>. The corresponding eigenvectors <span class="math notranslate nohighlight">\(v\)</span> can be obtained by solving the following equation:</p>
+<p>\begin{align*}
+\begin{pmatrix}a-\lambda&amp;b\c&amp;d-\lambda\end{pmatrix}\begin{pmatrix}v_x \v_y\end{pmatrix} &amp;= \begin{pmatrix}0\0\end{pmatrix}\
+\end{align*}</p>
+<p>This yields <span class="math notranslate nohighlight">\(v_{1,2}=\begin{pmatrix}-b\\a-\lambda_{1,2}\end{pmatrix}\)</span> as eigenvectors for the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{1,2}\)</span>, respectively.</p>
+<p>If <span class="math notranslate nohighlight">\(\vec{v}\)</span> is an eigenvector of a matrix <span class="math notranslate nohighlight">\(M\)</span>, then for an arbitrary number <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(k \vec{v}\)</span> is also an eigenvector, with the same eigenvalue. In other words, eigenvectors are not unique.  An <span class="math notranslate nohighlight">\(n\times n\)</span> square matrix has a maximum of <span class="math notranslate nohighlight">\(n\)</span> eigenvalues, and equally many <em>linearly independent</em> eigenvectors. Two vectors are linarly independent if they are not scaled versions of each other.</p>
 <br>
 <blockquote>
-<div><p>We know use the  Python function <code>np.linalg.eig()</code> to compute eigenvalues and eigenvectors of the matrix <span class="math notranslate nohighlight">\(M\)</span>. Try to find matrices that have negative and/or complex eigenvalues.</p>
+<div><p>Consider a matrix <span class="math notranslate nohighlight">\(M=\begin{pmatrix}1&amp;2\\2&amp;1\end{pmatrix}\)</span>: we can use the  Python function <code>np.linalg.eig()</code> to compute eigenvalues and eigenvectors of the matrix <span class="math notranslate nohighlight">\(M\)</span> (see cell below). Try to find matrices that have negative and/or complex eigenvalues using the code.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -707,7 +735,7 @@ title="Print to PDF"
 </div>
 </div>
 <blockquote>
-<div><p>Check the eigenvector/eigenvalue condition for both eigenvalues and eigenvectors. I.e., <span class="math notranslate nohighlight">\(\vec{v}\)</span> is an eigenvector of a matrix <span class="math notranslate nohighlight">\(M\)</span> if:</p>
+<div><p>Check the eigenvector/eigenvalue condition for both eigenvalues and eigenvectors. Remember: <span class="math notranslate nohighlight">\(\vec{v}\)</span> is an eigenvector of a matrix <span class="math notranslate nohighlight">\(M\)</span> if:</p>
 <div class="math notranslate nohighlight">
 \[ M \vec{v} = \lambda \vec{v} \]</div>
 </div></blockquote>
@@ -723,18 +751,8 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>If <span class="math notranslate nohighlight">\(\vec{v}\)</span> is an eigenvector of a matrix <span class="math notranslate nohighlight">\(M\)</span>, then for an arbitrary number <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(k \vec{v}\)</span> is also an eigenvector, with the same eigenvalue. In other words, eigenvectors are not unique.  An <span class="math notranslate nohighlight">\(n\times n\)</span> square matrix has a maximum of <span class="math notranslate nohighlight">\(n\)</span> eigenvalues, and equally many <em>linearly independent</em> eigenvectors. Two vectors are linarly independent if they are not scaled versions of each other.</p>
-</div>
-<div class="section" id="determinant-and-trace">
-<h3>Determinant and trace<a class="headerlink" href="#determinant-and-trace" title="Permalink to this headline">#</a></h3>
-<p>Two other interesting values of a square matrix are the <em>determinant</em> and the <em>trace</em>. The determinant of a <span class="math notranslate nohighlight">\(2\times2\)</span> matrix is computed as follows:</p>
-<p><span class="math notranslate nohighlight">\(A = \left( \begin{array}{cc}    a     &amp; b \\    c     &amp; d    \end{array} \right), 
-\quad \det(A)=\left| \begin{array}{cc}  a &amp; b \\c&amp; d \end{array} \right| = ad - cb\)</span></p>
-<p>The <em>trace</em> of a matrix is the sum of the main diagonal, which is the one from upper left to lower right. So, in a <span class="math notranslate nohighlight">\(2\times2\)</span> matrix:</p>
-<p><span class="math notranslate nohighlight">\(A = \left( \begin{array}{cc}    a     &amp; b \\    c     &amp; d    \end{array} \right), 
-\quad \text{tr}(A)=\left| \begin{array}{cc}  a &amp; b \\c&amp; d \end{array} \right| = a+d\)</span></p>
 <blockquote>
-<div><p><em><strong>Homework exercise 1</strong></em>: What are the determinant, trace, eigenvalues and corresponding eigenvectors of matrix <span class="math notranslate nohighlight">\(M=\begin{pmatrix}5&amp;2\\4&amp;3\end{pmatrix}\)</span>? You should use the code to get the eigenvalues and eigenvectors, and calculate the determinant and trace yourself. <strong>(1pt)</strong></p>
+<div><p><em><strong>Homework exercise 1</strong></em>: What are the determinant, trace, eigenvalues and corresponding eigenvectors of matrix <span class="math notranslate nohighlight">\(M=\begin{pmatrix}5&amp;2\\4&amp;3\end{pmatrix}\)</span>? You have to first calculate all 4 of them yourself, then use the code to check that the eigenvalues and eigenvectors are correct. <strong>(1.5pt)</strong></p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -768,7 +786,7 @@ title="Print to PDF"
     \end{equation}
 </center>
 <blockquote>
-<div><p><em><strong>Homework exercise 2:</strong></em> Let’s assume that the variable <span class="math notranslate nohighlight">\(x\)</span> denotes the speed of an object. What information does the equation above provide? <strong>(1pt)</strong></p>
+<div><p><em><strong>Homework exercise 2:</strong></em> Let’s assume that the variable <span class="math notranslate nohighlight">\(x\)</span> denotes the speed of an object. What information does the equation above provide? <strong>(0.5pt)</strong></p>
 </div></blockquote>
 <p>The code below plots a one-dimensional vector field for our ODE. That means, at a range of <span class="math notranslate nohighlight">\(x\)</span> values, it draws an arrow pointing into the direction of the derivative <span class="math notranslate nohighlight">\(dx\)</span>. Moreover, it also plots the derivative <span class="math notranslate nohighlight">\(\frac{dx}{dt} = 2-0.1*x\)</span> and the corresponding function, <span class="math notranslate nohighlight">\(f(x) = 2x - \frac{x^2}{20}\)</span> (assuming the constant <span class="math notranslate nohighlight">\(c = 0\)</span>). To plot vectors field, we use the <code>quiver</code> function from the <code>matplotlib.pyplot</code> library.</p>
 <p>Note that, for visual reasons, we rather define the values for the <span class="math notranslate nohighlight">\(\frac{dx}{dt}\)</span> and for the vector field differently, as too many arrows make it hard to understand which direction the vectors are going, but the ODE is still the same. If this does not make sense to you, try to chance <code>x_vecs</code> below with the code that defines <code>x</code>: what happens? Similarly, play around with the values of <code>plt.xlim</code> and <code>plt.ylim</code> to get a good picture of both <span class="math notranslate nohighlight">\(\frac{dx}{dt}\)</span> and <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
@@ -1041,9 +1059,47 @@ The <span class="math notranslate nohighlight">\(x\)</span>-nullcline is the set
 </div>
 </div>
 <p>From the ODEs given above, we can extract the parameter matrix <span class="math notranslate nohighlight">\(M = \left( \begin{array}{cc}    a     &amp; b \\    c     &amp; d    \end{array} \right)\)</span>.</p>
-<p>The properties of this matrix (such as its eigenvectors, determinants and trace) can inform us about the behavior of the system. This is because we can view the current position in state space as a vector <span class="math notranslate nohighlight">\(\left( \begin{array}{c} x \\ y \end{array} \right)\)</span>, and one step of the dynamics defined by our dynamical system as multiplying with <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<p>The properties of this matrix can inform us about the behavior of the system. This is because we can view the current position in state space as a vector <span class="math notranslate nohighlight">\(\left( \begin{array}{c} x \\ y \end{array} \right)\)</span>, and one step of the dynamics defined by our dynamical system as multiplying with <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<p>The following table summarizes the relationship between equilibrium types and the properties of their matrices:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Equilibrium type</p></th>
+<th class="text-align:left head"><p>Eigenvalues</p></th>
+<th class="text-align:left head"><p>Determinant and Trace</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>(1) Saddle point</p></td>
+<td class="text-align:left"><p>Real, opposite sign</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\text{Det} &lt; 0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>(2) Stable node</p></td>
+<td class="text-align:left"><p>Real, negative</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0 &lt; \text{Det} &lt; \frac{\text{Tr}^2}{4} \\ \text{Tr} &lt; 0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>(3) Unstable node</p></td>
+<td class="text-align:left"><p>Real, positive</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0 &lt; \text{Det} &lt; \frac{\text{Tr}^2}{4} \\ \text{Tr} &gt; 0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>(4) Stable spiral</p></td>
+<td class="text-align:left"><p>Complex, negative real part</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0 &lt; \frac{\text{Tr}^2}{4} &lt; \text{Det} \\ \text{Tr} &lt; 0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>(5) Unstable spiral</p></td>
+<td class="text-align:left"><p>Complex, positive real part</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0 &lt; \frac{\text{Tr}^2}{4} &lt; \text{Det} \\ \text{Tr} &gt; 0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>(6) Center point</p></td>
+<td class="text-align:left"><p>Complex, zero real part</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\text{Det} &gt; 0 \\ \text{Tr} = 0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Here you can see the graphical representations of the equilibria:</p>
+<p><img alt="image" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab1-dettr.png" /></p>
+<p>Finally, you can see the interaction between equilibria shape and eigenvalues, determinant, and trace in <a class="reference external" href="https://www.youtube.com/watch?v=48BMz9db71E&amp;list=PL8erL0pXF3JYiEz1b8eLPq49aDeMBF99C&amp;index=50">this YouTube video</a> or at <a class="reference external" href="http://www.math.stonybrook.edu/~scott/mat308.spr11/demovie.html">this page</a>.</p>
 <blockquote>
-<div><p><em><strong>Homework exercise 4:</strong></em> Find parameters for which the system has all six types of equilibria. For each of them, hand in the corresponding phase portait plots, report the corresponding matrix and its eigenvalues and eigenvectors, using the function <code>np.linalg.eig()</code>. Briefly show that you results are consistent with what is mentioned in the lecture slides about equilibria and corresponding eigenvalues. <strong>(6pt)</strong>
+<div><p><em><strong>Homework exercise 4:</strong></em> Find parameters for which the system has all six types of equilibria. For each of them, hand in the corresponding phase portait plots, report the corresponding matrix and its eigenvalues and eigenvectors, using the function <code>np.linalg.eig()</code>. Briefly show that you results are consistent with what is mentioned in the table above. <strong>(6pt)</strong>
 <br></p>
 </div></blockquote>
 <div class="cell docutils container">
