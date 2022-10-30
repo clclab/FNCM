@@ -684,21 +684,29 @@ title="Print to PDF"
 <h3>Eigenvectors and eigenvalues<a class="headerlink" href="#eigenvectors-and-eigenvalues" title="Permalink to this headline">#</a></h3>
 <p>When a matrix <span class="math notranslate nohighlight">\(M\)</span> is multiplied with a vector, this yields a new vector, as explained above. For most vectors, both the length and the direction changes. Some vectors however do not get not rotated by mutliplication with <span class="math notranslate nohighlight">\(M\)</span> or any other square matrix. For these vectors, it holds that <span class="math notranslate nohighlight">\(M\times \vec{v} = \lambda\vec{v}\)</span>. In other words, the vectors get only scaled by the matrix. These are so-called eigenvectors. The corresponding scaling factor <span class="math notranslate nohighlight">\(\lambda\)</span> is called the eigenvalue.</p>
 <p>Let’s now see how we can compute eigenvectors and eigenvalues of a  <span class="math notranslate nohighlight">\(2\times2\)</span> matrix.</p>
-<p><span class="math notranslate nohighlight">\(M \vec{v} = \lambda \vec{v}\)</span> can be rewritten as:
+<p><span class="math notranslate nohighlight">\(M \vec{v} = \lambda \vec{v}\)</span> can be rewritten as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
-\begin{pmatrix}a&amp;b\c&amp;d\end{pmatrix}\begin{pmatrix}v_x \v_y\end{pmatrix} &amp;= \lambda \begin{pmatrix}v_x \v_y\end{pmatrix}\
-\begin{pmatrix}a&amp;b\c&amp;d\end{pmatrix}\begin{pmatrix}v_x \v_y\end{pmatrix} - \lambda \begin{pmatrix}v_x \v_y\end{pmatrix}&amp;= \begin{pmatrix}0\0\end{pmatrix}\
-\begin{pmatrix}a-\lambda&amp;b\c&amp;d-\lambda\end{pmatrix}\begin{pmatrix}v_x \v_y\end{pmatrix} &amp;= \begin{pmatrix}0\0\end{pmatrix}\
-\end{align*}</p>
+\left( \begin{array}{cc} a &amp; b \\ c &amp; d \end{array} \right)\left( \begin{array}{cc} v_x \\ v_y  \end{array} \right) &amp;= \lambda \left( \begin{array}{cc} v_x \\ v_y  \end{array} \right)\\
+\left( \begin{array}{cc} a &amp; b \\ c &amp; d \end{array} \right)\left( \begin{array}{cc} v_x \\ v_y  \end{array} \right) -\lambda \left( \begin{array}{cc} v_x \\ v_y  \end{array} \right) &amp;= \left( \begin{array}{cc} 0 \\ 0  \end{array} \right)\\
+\left( \begin{array}{cc} a-\lambda &amp; b \\ c &amp; d-\lambda \end{array} \right)\left( \begin{array}{cc} v_x \\ v_y  \end{array} \right)  &amp;= \left( \begin{array}{cc} 0 \\ 0  \end{array} \right)\\
+\end{align*}
+\end{split}\]</div>
 <p>From which we can derive the so-called <em>characteristic equation</em>:
+$<span class="math notranslate nohighlight">\(
 \begin{align*}
-(a-\lambda)(d-\lambda)-bc&amp;=0 \
+(a-\lambda)(d-\lambda)-bc&amp;=0 \\
 \lambda^2 - (a+d)\lambda + ad -bc&amp;=0
-\end{align*}</p>
+\end{align*}
+\)</span>$</p>
 <p>This equation can be solved to obtain the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{1,2}\)</span>. The corresponding eigenvectors <span class="math notranslate nohighlight">\(v\)</span> can be obtained by solving the following equation:</p>
-<p>\begin{align*}
-\begin{pmatrix}a-\lambda&amp;b\c&amp;d-\lambda\end{pmatrix}\begin{pmatrix}v_x \v_y\end{pmatrix} &amp;= \begin{pmatrix}0\0\end{pmatrix}\
-\end{align*}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\left( \begin{array}{cc} a-\lambda &amp; b \\ c &amp; d-\lambda \end{array} \right)\left( \begin{array}{cc} v_x \\ v_y  \end{array} \right)  &amp;= \left( \begin{array}{cc} 0 \\ 0  \end{array} \right)\\
+\end{align*}
+\end{split}\]</div>
 <p>This yields <span class="math notranslate nohighlight">\(v_{1,2}=\begin{pmatrix}-b\\a-\lambda_{1,2}\end{pmatrix}\)</span> as eigenvectors for the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{1,2}\)</span>, respectively.</p>
 <p>If <span class="math notranslate nohighlight">\(\vec{v}\)</span> is an eigenvector of a matrix <span class="math notranslate nohighlight">\(M\)</span>, then for an arbitrary number <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(k \vec{v}\)</span> is also an eigenvector, with the same eigenvalue. In other words, eigenvectors are not unique.  An <span class="math notranslate nohighlight">\(n\times n\)</span> square matrix has a maximum of <span class="math notranslate nohighlight">\(n\)</span> eigenvalues, and equally many <em>linearly independent</em> eigenvectors. Two vectors are linarly independent if they are not scaled versions of each other.</p>
 <br>
