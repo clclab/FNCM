@@ -601,7 +601,7 @@ title="Print to PDF"
 <div class="section" id="matrices-definitions">
 <h3>Matrices: definitions<a class="headerlink" href="#matrices-definitions" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p><strong>Matrix</strong>: a 2D array of numbers, so it has one or more columns and one or more rows (A vector is a matrix with either only one column or only one row;note that in Python, by default, there is no difference between row and column vectors).</p></li>
+<li><p><strong>Matrix</strong>: a 2D array of numbers, so it has one or more columns and one or more rows (A vector is a matrix with either only one column or only one row; note that in Python, by default, there is no difference between row and column vectors).</p></li>
 <li><p><strong>Size</strong>: the <strong>height</strong> (= number of rows) times the <strong>width</strong> (= number of columns) of a matrix.</p></li>
 <li><p><strong>Scaling</strong>: modifying (= multiplying) each number in a matrix <span class="math notranslate nohighlight">\(A\)</span> by a scalar value <span class="math notranslate nohighlight">\(c\)</span>: <span class="math notranslate nohighlight">\(c \times A = B\)</span>, with <span class="math notranslate nohighlight">\(B_{i,j} = c \times A_{i,j}\)</span>.</p></li>
 <li><p><strong>Addition</strong>: adding each number of two matrices together <span class="math notranslate nohighlight">\(A + B = B + A = C\)</span>, with <span class="math notranslate nohighlight">\(c_{i,j} = a_{i.j} + b_{i,j}\)</span>, only if A and B same sizes.</p></li>
@@ -693,13 +693,14 @@ title="Print to PDF"
 \left( \begin{array}{cc} a-\lambda &amp; b \\ c &amp; d-\lambda \end{array} \right)\left( \begin{array}{cc} v_x \\ v_y  \end{array} \right)  &amp;= \left( \begin{array}{cc} 0 \\ 0  \end{array} \right)\\
 \end{align*}
 \end{split}\]</div>
-<p>From which we can derive the so-called <em>characteristic equation</em>:
-$<span class="math notranslate nohighlight">\(
+<p>From which we can derive the so-called <em>characteristic equation</em>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
 (a-\lambda)(d-\lambda)-bc&amp;=0 \\
 \lambda^2 - (a+d)\lambda + ad -bc&amp;=0
 \end{align*}
-\)</span>$</p>
+\end{split}\]</div>
 <p>This equation can be solved to obtain the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{1,2}\)</span>. The corresponding eigenvectors <span class="math notranslate nohighlight">\(v\)</span> can be obtained by solving the following equation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
