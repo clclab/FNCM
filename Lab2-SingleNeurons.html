@@ -485,11 +485,6 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-9.99997e+08, -3.33100e+02])
-</pre></div>
-</div>
-</div>
 </div>
 <p>We can also plot the vector field for this dynamical system for a grid of point in its state space.</p>
 <div class="cell docutils container">
@@ -521,9 +516,6 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 <span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">v_vals</span><span class="p">,</span> <span class="n">r_vals</span><span class="p">,</span> <span class="n">v_dirs</span><span class="p">,</span> <span class="n">r_dirs</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span> <span class="c1">#r: xlocations v: ylocations r_dirs: xdirections v_dirs: ydirections</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/Lab2-SingleNeurons_8_0.png" src="_images/Lab2-SingleNeurons_8_0.png" />
 </div>
 </div>
 <p>Can you see where the nullclines are? Which one is the <span class="math notranslate nohighlight">\(r\)</span>-nullcline, which one the <span class="math notranslate nohighlight">\(v\)</span>-nullcline? Where (approximately) do they intersect?</p>
@@ -567,9 +559,6 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/Lab2-SingleNeurons_13_0.png" src="_images/Lab2-SingleNeurons_13_0.png" />
-</div>
 </div>
 <p>Finally, we can use the <code>odeint</code> function to plot some trajectories.</p>
 <div class="cell docutils container">
@@ -594,9 +583,6 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/Lab2-SingleNeurons_15_0.png" src="_images/Lab2-SingleNeurons_15_0.png" />
 </div>
 </div>
 <blockquote>
@@ -628,9 +614,6 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/Lab2-SingleNeurons_18_0.png" src="_images/Lab2-SingleNeurons_18_0.png" />
 </div>
 </div>
 <p>We can now use our functions to study the behaviour of the system, like we did last time. That means we want to visualise the phase plot with nullclines and some trajectories. It should be fairly easy to copy-paste the code from above and put it all together. You can also look at the previous lab to rembeber how we plotted the behaviour of the new system then. The steps we need are:</p>
