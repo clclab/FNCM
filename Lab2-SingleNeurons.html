@@ -441,7 +441,7 @@ title="Print to PDF"
 </div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>In the previous computer lab we learned how to use Python to plot phase portraits as well as draw nullclines and trajectories of a 2-dimensional system of linear ODEs. Today we will use the same techniques to study the behaviour of two models of single neuron dynamics: the Fitzhugh-Nagumo model and the Izhikevich model. You will need to re-use some of the code you wrote in the previous computer lab.</p>
+<p>In the previous computer lab we learned how to use Python to plot phase portraits as well as draw nullclines and trajectories of a 2-dimensional system of linear ODEs. Today we will use the same techniques to study the behaviour of two models of single neuron dynamics: the Fitzhugh-Nagumo model and the Izhikevich model. We will re-use some of the code from the previous computer lab.</p>
 </div>
 <div class="section" id="the-fitzhugh-nagumo-model">
 <h2>1. The Fitzhugh-Nagumo model<a class="headerlink" href="#the-fitzhugh-nagumo-model" title="Permalink to this headline">#</a></h2>
@@ -485,6 +485,11 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-9.99997e+08, -3.33100e+02])
+</pre></div>
+</div>
+</div>
 </div>
 <p>We can also plot the vector field for this dynamical system for a grid of point in its state space.</p>
 <div class="cell docutils container">
@@ -516,6 +521,9 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 <span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">v_vals</span><span class="p">,</span> <span class="n">r_vals</span><span class="p">,</span> <span class="n">v_dirs</span><span class="p">,</span> <span class="n">r_dirs</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span> <span class="c1">#r: xlocations v: ylocations r_dirs: xdirections v_dirs: ydirections</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Lab2-SingleNeurons_8_0.png" src="_images/Lab2-SingleNeurons_8_0.png" />
 </div>
 </div>
 <p>Can you see where the nullclines are? Which one is the <span class="math notranslate nohighlight">\(r\)</span>-nullcline, which one the <span class="math notranslate nohighlight">\(v\)</span>-nullcline? Where (approximately) do they intersect?</p>
@@ -559,6 +567,9 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/Lab2-SingleNeurons_13_0.png" src="_images/Lab2-SingleNeurons_13_0.png" />
+</div>
 </div>
 <p>Finally, we can use the <code>odeint</code> function to plot some trajectories.</p>
 <div class="cell docutils container">
@@ -583,6 +594,9 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Lab2-SingleNeurons_15_0.png" src="_images/Lab2-SingleNeurons_15_0.png" />
 </div>
 </div>
 <blockquote>
@@ -615,11 +629,14 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/Lab2-SingleNeurons_18_0.png" src="_images/Lab2-SingleNeurons_18_0.png" />
 </div>
-<p>We can now use our functions to study the behaviour of the system, like we did last time. That means we want to visualise the phase plot with nullclines and some trajectories. It should be fairly easy to adapt the script of the previous lab to plot the behaviour of the new system. Recall that the steps we are going through are:</p>
+</div>
+<p>We can now use our functions to study the behaviour of the system, like we did last time. That means we want to visualise the phase plot with nullclines and some trajectories. It should be fairly easy to copy-paste the code from above and put it all together. You can also look at the previous lab to rembeber how we plotted the behaviour of the new system then. The steps we need are:</p>
 <ul class="simple">
-<li><p>Create vectors with <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> values. We previously used <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> as names; it doesn’t really matter what you call them in your script as long as you are consistent and clear.</p></li>
-<li><p>Use np.meshgrid to create arrays with all possible combinations of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> values.</p></li>
+<li><p>Create vectors with <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> values. We used <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> as names in the previous lab, but it doesn’t really matter what you call them in your script as long as you are consistent and clear.</p></li>
+<li><p>Use <code>np.meshgrid</code> to create arrays with all possible combinations of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(r\)</span> values.</p></li>
 <li><p>Use your function <code>dvdr</code> to generate the <span class="math notranslate nohighlight">\(\frac{dv}{dt}\)</span> and <span class="math notranslate nohighlight">\(\frac{dr}{dt}\)</span> at all previously defined points and put them in a vector.</p></li>
 <li><p>Use <code>ax.quiver</code> to create the vector fields (use <code>fig, ax = plt.subplots()</code> before).</p></li>
 <li><p>Generate a (fine grained) sequence of <span class="math notranslate nohighlight">\(v\)</span>-values to plot your nullclines, fill vectors with the <span class="math notranslate nohighlight">\(r\)</span> values on these values.</p></li>
@@ -653,7 +670,7 @@ means, actions potentials are modeled as negative, rather than positive, deflect
 <span class="c1"># compute trajectories for each point on grid</span>
 
 <span class="c1"># mark equilibrium</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.804848</span><span class="p">,</span><span class="o">-</span><span class="mf">0.63106</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">1.1994</span><span class="p">,</span><span class="o">-</span><span class="mf">0.62426</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
