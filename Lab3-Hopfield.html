@@ -377,8 +377,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#as-symmetry-of-the-weights-and-convergence">
-     2.2 (As)symmetry of the weights and convergence
+    <a class="reference internal nav-link" href="#a-symmetry-of-the-weights-and-convergence">
+     2.2 (A-)symmetry of the weights and convergence
     </a>
    </li>
   </ul>
@@ -445,8 +445,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#as-symmetry-of-the-weights-and-convergence">
-     2.2 (As)symmetry of the weights and convergence
+    <a class="reference internal nav-link" href="#a-symmetry-of-the-weights-and-convergence">
+     2.2 (A-)symmetry of the weights and convergence
     </a>
    </li>
   </ul>
@@ -569,7 +569,7 @@ title="Print to PDF"
 </div>
 <div class="section" id="definition-of-hopfield-networks">
 <h2>1. Definition of Hopfield networks<a class="headerlink" href="#definition-of-hopfield-networks" title="Permalink to this headline">#</a></h2>
-<p>We will study Hopﬁeld networks, which are networks where connections in both directions exist between all pairs of <em>distinct</em> neurons <span class="math notranslate nohighlight">\((i, j)\)</span>. So there is a weight <span class="math notranslate nohighlight">\(w_{ij}\)</span> associated to the connection from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span> and a weight <span class="math notranslate nohighlight">\(w_{ji}\)</span> for the connection from <span class="math notranslate nohighlight">\(j\)</span> to <span class="math notranslate nohighlight">\(i\)</span>. Moreover, in a Hopﬁeld net it holds that <span class="math notranslate nohighlight">\(w_{ij}\)</span> = <span class="math notranslate nohighlight">\(w_{ji}\)</span> , thus the weights are symmetrical.</p>
+<p>We will study Hopﬁeld networks (or Hopfield nets), which are networks with connections in both directions between all pairs of <em>distinct</em> neurons <span class="math notranslate nohighlight">\((i, j)\)</span>. So there is a weight <span class="math notranslate nohighlight">\(w_{ij}\)</span> associated to the connection from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span> and a weight <span class="math notranslate nohighlight">\(w_{ji}\)</span> for the connection from <span class="math notranslate nohighlight">\(j\)</span> to <span class="math notranslate nohighlight">\(i\)</span>. Moreover, in a Hopﬁeld net it holds that <span class="math notranslate nohighlight">\(w_{ij}\)</span> = <span class="math notranslate nohighlight">\(w_{ji}\)</span> , thus the weights are symmetrical.</p>
 <p>Recall from the lecture that the activation (or value) <span class="math notranslate nohighlight">\(y_i\)</span> of a McCulloch-Pitts neuron is a function of (the weighted sum of) the inputs <span class="math notranslate nohighlight">\(x_j\)</span> it receives from other neurons. In a Hopfield net, the total input a neuron receives is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -619,7 +619,7 @@ See Theorem 2, page 51, <a class="reference external" href="https://www.infor.uv
 <h3>2.1 Asynchronous updates<a class="headerlink" href="#asynchronous-updates" title="Permalink to this headline">#</a></h3>
 <p>Consider the network given in the following figure:</p>
 <p><img alt="ICCN-drive-steps" src="https://raw.githubusercontent.com/clclab/FNCM/main/book/Lab3-materials/hopfield_3nodes.png" /></p>
-<p>We study how the state of the network changes if we iteratively update its state in an asynchronous fashion. For this, we will use the <code class="docutils literal notranslate"><span class="pre">run_hopfield</span></code> function defined in the next cell (instructions on how to use the function follow below).</p>
+<p>We study how the state of the network changes if we iteratively update its state in an asynchronous fashion. For this, we will use the <code class="docutils literal notranslate"><span class="pre">run_hopfield</span></code> function defined in the next cell. Instructions on how to use the function follow below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_hopfield</span><span class="p">(</span><span class="n">hopnet</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">stepbystep</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
@@ -709,7 +709,7 @@ See Theorem 2, page 51, <a class="reference external" href="https://www.infor.uv
 input pattern =  [ 1 -1  1]
 </pre></div>
 </div>
-<p>and a black and white plot illustrating the current state of the network (black represents an activation of <span class="math notranslate nohighlight">\(-1\)</span>, white of <span class="math notranslate nohighlight">\(+1\)</span>). Press Enter inside the input field below the plot to run the next iteration. You should see something like this:</p>
+<p>and a black and white plot illustrating the current state of the network: black represents an activation of <span class="math notranslate nohighlight">\(-1\)</span>, white of <span class="math notranslate nohighlight">\(+1\)</span>. Press ‘Enter’ inside the input field below the plot to run the next iteration. You should see something like this:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>iter  1
 pick neuron  1
 input to this neuron  2
@@ -717,7 +717,7 @@ output of this neuron  1
 new state  [1 1 1]
 </pre></div>
 </div>
-<p>This means that in the first iteration, we picked neuron number 2. The total input <span class="math notranslate nohighlight">\(s_2\)</span> to this neuron was 2, and hence its output is <span class="math notranslate nohighlight">\(\text{sign}(s_2) = \text{sign}(2) = 1\)</span>. Press Enter a few more times to see what happens next. (You can type ‘q’ and press Enter at any point to stop iterating manually.)</p>
+<p>This means that in the first iteration, we picked neuron number 2. The total input <span class="math notranslate nohighlight">\(s_2\)</span> to this neuron was 2, and hence its output is <span class="math notranslate nohighlight">\(\text{sign}(s_2) = \text{sign}(2) = 1\)</span>. Press Enter a few more times to see what happens next. You can type ‘q’ and press ‘Enter’ at any point if you wish to stop iterating.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">init_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -752,7 +752,7 @@ new state  [1 1 1]
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
-<th class="text-align:center head"><p>New state number</p></th>
+<th class="text-align:center head"><p>New state nr.</p></th>
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
 </tr>
@@ -833,8 +833,8 @@ new state  [1 1 1]
 </tbody>
 </table>
 </div>
-<div class="section" id="as-symmetry-of-the-weights-and-convergence">
-<h3>2.2 (As)symmetry of the weights and convergence<a class="headerlink" href="#as-symmetry-of-the-weights-and-convergence" title="Permalink to this headline">#</a></h3>
+<div class="section" id="a-symmetry-of-the-weights-and-convergence">
+<h3>2.2 (A-)symmetry of the weights and convergence<a class="headerlink" href="#a-symmetry-of-the-weights-and-convergence" title="Permalink to this headline">#</a></h3>
 <p>To see why symmetry is important for convergence, we are going to compare two different Hopfield networks with two neurons each. The networks are determined by their weight matrices <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -852,7 +852,7 @@ new state  [1 1 1]
 1 &amp; 0
 \end{pmatrix}
 \end{split}\]</div>
-<p>Think: Wwich of these matrices is symmetric?</p>
+<p>Think: Which of these matrices is symmetric?</p>
 <p>Your task is to examine whether the net converges when starting from the initial state <span class="math notranslate nohighlight">\(\mathbf{y}^{(0)} = (1, -1)^T\)</span> (that means that <span class="math notranslate nohighlight">\(y_1^{(0)} = 1\)</span> and <span class="math notranslate nohighlight">\(y_2^{(0)} = -1\)</span>). To do so, you have to repeat the steps from the previous section, using the two sets of weights <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span> and varying initial states.</p>
 <blockquote>
 <div><p>Create the matrices <span class="math notranslate nohighlight">\(\mathbf{W}_1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W}_2\)</span> and run several updates using different initial states of the two neurons. Check the code in the previous section to see how.</p>
@@ -880,7 +880,7 @@ new state  [1 1 1]
 </div>
 <div class="section" id="learning-with-hebbs-rule">
 <h2>3. Learning with Hebb’s rule<a class="headerlink" href="#learning-with-hebbs-rule" title="Permalink to this headline">#</a></h2>
-<p>As you have seen, a Hopfield net is a fully recurrent artificial neural network. Interestingly, it can be used as an <em>associative memory</em>. That is, it can be used to associate patterns with themselves, such that they can be retrieved by the network when given an incomplete input. This is achieved by setting the weights <span class="math notranslate nohighlight">\(w_{ij}\)</span> of the network in such a way that patterns you want to store correspond to stable points of the network. (In other words, such that the patterns are local minima in the energy function of the network.)</p>
+<p>As you have seen, a Hopfield net is a fully recurrent artificial neural network. Interestingly, it can be used as an <em>associative memory</em>. That is, it can be used to associate patterns with themselves, such that they can be retrieved by the network when given an incomplete input. This is achieved by setting the weights <span class="math notranslate nohighlight">\(w_{ij}\)</span> of the network in such a way that patterns you want to store correspond to stable points of the network. In other words, such that the patterns are local minima in the energy function of the network.</p>
 <p>Starting from an incomplete input pattern, over iterations the network will converge to a stable point that corresponds to one of the stored patterns of the network. But how to find the weights that allow us to store a certain pattern? For that, we can use the Hebbian learning rule. Given <span class="math notranslate nohighlight">\(m\)</span> patterns <span class="math notranslate nohighlight">\(\mathbf{p}^k = (p_1^k,...,p_n^k)\)</span> (where <span class="math notranslate nohighlight">\(k = 1, ..., m\)</span>), we set the weights to:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -893,7 +893,7 @@ w_{ij} =
 \label{eq:weights}
 \end{equation}
 \end{split}\]</div>
-<p>How well this rule works is of course dependent on the number of patterns you want to store in your network, as well as on the similarity of the different patterns. The closer the number of patterns you want to store approaches the number of neurons, the harder it gets to store the patterns. Furthermore, it is easier to store patterns that are very different, than patterns that are very similar (note that for a Hopfield network, patterns that differ on exactly half of the neurons are the most dissimilar, do you understand why?).</p>
+<p>How well this rule works is of course dependent on the number of patterns you want to store in your network, as well as on the similarity of the different patterns. The closer the number of patterns you want to store approaches the number of neurons, the harder it gets to store the patterns. Furthermore, it is easier to store patterns that are very different, than patterns that are very similar. Note that for a Hopfield network, patterns that differ on exactly half of the neurons are the most dissimilar: do you understand why?</p>
 <div class="section" id="updating-the-weights-using-hebbian-learning">
 <h3>3.1 Updating the weights using Hebbian learning<a class="headerlink" href="#updating-the-weights-using-hebbian-learning" title="Permalink to this headline">#</a></h3>
 <p>We will now study how to use the Hebbian learning rule to update a Hopfield net’s weights and what effects it has. We start with two <span class="math notranslate nohighlight">\(10 \times 10\)</span> images. We will not use actual images, but <span class="math notranslate nohighlight">\(10 \times 10\)</span> matrices and think of every entry in such a matrix as a pixel that is either black (the entry has value <span class="math notranslate nohighlight">\(-1\)</span>) or white (value <span class="math notranslate nohighlight">\(+1\)</span>). Start with two simple patterns: a completely white and a completely black image:</p>
@@ -924,7 +924,7 @@ w_{ij} =
 <hr class="docutils" />
 <p><a id="fn3"><sup>3</sup></a>
 Calculating the weights is a bit tricky, if only because there are <span class="math notranslate nohighlight">\(100 \times 100\)</span> of them. <em>You don’t have to know all these details</em>, but if you wonder what’s going on, here’s some more background. To see how formula <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> works, suppose <span class="math notranslate nohighlight">\(m = 2\)</span>, so we have two patterns <span class="math notranslate nohighlight">\(\mathbf{p}^1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{p}^2\)</span>. We want to know the weight of the connection between neuron <span class="math notranslate nohighlight">\(3\)</span> and <span class="math notranslate nohighlight">\(4\)</span>. According to equation <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a>, we should use <span class="math notranslate nohighlight">\(w_{3,4} = p_3^1 \cdot p_4^1 + p_3^2 \cdot p_4^2\)</span>.</p>
-<p>Computing this for all connections is a lot of work, unless we use a trick. Suppose you could, for a given pattern <span class="math notranslate nohighlight">\(\mathbf{p}^k\)</span>, build a matrix <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> that contains the product <span class="math notranslate nohighlight">\(p_i^k \cdot p_j^k\)</span> at position <span class="math notranslate nohighlight">\((i, j)\)</span>. We calculate such matrices <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{P}^2\)</span> for our two patterns and then compute their sum <span class="math notranslate nohighlight">\(\mathbf{P}^1 + \mathbf{P}^2\)</span>. Can you see why <span class="math notranslate nohighlight">\(\mathbf{P}^1 + \mathbf{P}^2\)</span> will (nearly) contain the weight <span class="math notranslate nohighlight">\(w_{ij}\)</span> given by <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> at position <span class="math notranslate nohighlight">\((i, j)\)</span>? If not, try to write down the value of entry <span class="math notranslate nohighlight">\((i, j)\)</span> in <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span> + <span class="math notranslate nohighlight">\(\mathbf{P}^2\)</span> and compare it to <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a>. The only problem that remains is the diagonal, which should be zero in a Hopﬁeld network (why?), but will now contain 2s. This is easily fixed by subtracting the identity matrix twice. So how to get the <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> matrices? In fact <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> just happens to be the so called <em>outer product</em> (see <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">Wikipedia</a>) of the vector <span class="math notranslate nohighlight">\(\mathbf{p}^k\)</span> with itself. You can compute it in Python using the <code class="docutils literal notranslate"><span class="pre">numpy.outer()</span></code> function. So <code class="docutils literal notranslate"><span class="pre">numpy.outer(pattern1,</span> <span class="pre">pattern1)</span></code> computes <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span>. Can you now see why the given code actually implements equation <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> for two patterns?</p>
+<p>Computing this for all connections is a lot of work, unless we use a trick. Suppose you could, for a given pattern <span class="math notranslate nohighlight">\(\mathbf{p}^k\)</span>, build a matrix <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> that contains the product <span class="math notranslate nohighlight">\(p_i^k \cdot p_j^k\)</span> at position <span class="math notranslate nohighlight">\((i, j)\)</span>. We calculate such matrices <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{P}^2\)</span> for our two patterns and then compute their sum <span class="math notranslate nohighlight">\(\mathbf{P}^1 + \mathbf{P}^2\)</span>. Can you see why <span class="math notranslate nohighlight">\(\mathbf{P}^1 + \mathbf{P}^2\)</span> will (nearly) contain the weight <span class="math notranslate nohighlight">\(w_{ij}\)</span> given by <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> at position <span class="math notranslate nohighlight">\((i, j)\)</span>? If not, try to write down the value of entry <span class="math notranslate nohighlight">\((i, j)\)</span> in <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span> + <span class="math notranslate nohighlight">\(\mathbf{P}^2\)</span> and compare it to <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a>. The only problem that remains is the diagonal, which should be zero in a Hopﬁeld network (why?), but will now contain <span class="math notranslate nohighlight">\(2\)</span>s. This is easily fixed by subtracting the identity matrix twice. So how to get the <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> matrices? In fact, <span class="math notranslate nohighlight">\(\mathbf{P}^k\)</span> just happens to be the so called <em>outer product</em> (see <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">Wikipedia</a>) of the vector <span class="math notranslate nohighlight">\(\mathbf{p}^k\)</span> with itself. You can compute it in Python using the <code class="docutils literal notranslate"><span class="pre">numpy.outer()</span></code> function. So <code class="docutils literal notranslate"><span class="pre">numpy.outer(pattern1,</span> <span class="pre">pattern1)</span></code> computes <span class="math notranslate nohighlight">\(\mathbf{P}^1\)</span>. Can you now see why the given code actually implements equation <a class="reference external" href="#mjx-eqn-eqweights"><span class="math notranslate nohighlight">\((4)\)</span></a> for two patterns?</p>
 <p>Does a network using these weights indeed store the two images <code class="docutils literal notranslate"><span class="pre">pattern1</span></code> and <code class="docutils literal notranslate"><span class="pre">pattern2</span></code>? To find out, we iterate several updates using the <code class="docutils literal notranslate"><span class="pre">run_hopfield()</span></code> function again:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
