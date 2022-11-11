@@ -597,7 +597,7 @@ y_i^{(t)} = \text{sign}{\Big( \sum_{j \neq i} w_{ji} \cdot y_j^{(t - 1)} + \thet
 <p>Starting from an initial state <span class="math notranslate nohighlight">\((v_1^{(0)}, ..., v_n^{(0)})\)</span> we can then iteratively calculate the new activation or <em>state</em> of the neuron in the next time step. This can give rise to different kinds of dynamics. A neuron <span class="math notranslate nohighlight">\(i\)</span> is called <em>stable</em> at time <span class="math notranslate nohighlight">\(t\)</span> if its value doesn’t change: <span class="math notranslate nohighlight">\(y_i^{(t)} = y_i^{(t-1)}\)</span>. A Hopfield net is called <em>stable</em> if all of its neurons are stable. In that case we also say that the network <em>converged</em> to the stable state.</p>
 <p>In this lab we will first look at the different dynamics that can occur when <em>updating the state</em> of the network over time. Next, we will see how we can <em>update the weights</em> of the network and use that to model an associative memory. We often drop the time <span class="math notranslate nohighlight">\(t\)</span>, and assume that all the thresholds <span class="math notranslate nohighlight">\(\theta_i\)</span> are <span class="math notranslate nohighlight">\(0\)</span>, i.e., we use <span class="math notranslate nohighlight">\(y_i\)</span> instead of <span class="math notranslate nohighlight">\(y_i^{(t)}\)</span>, and <span class="math notranslate nohighlight">\(\theta_i = 0\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <blockquote>
-<div><p><em><strong>Homework exercise 1</strong></em>: is a Hopfield network a recurrent neural network? (0.5)</p>
+<div><p><em><strong>Homework exercise 1</strong></em>: is a Hopfield network a recurrent neural network? <strong>(0.5)</strong></p>
 </div></blockquote>
 <hr class="docutils" />
 <p><a id="fn1"><sup>1</sup></a>
@@ -752,80 +752,80 @@ new state  [1 1 1]
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
-<th class="text-align:center head"><p>New state nr.</p></th>
+<th class="text-align:center head"><p>New state number</p></th>
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\ \)</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-align:center"><p><strong>nr.</strong></p></td>
-<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((x_1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(x_3\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(x_3)\)</span></p></td>
 <td class="text-align:center"><p><strong>Updating node 1</strong></p></td>
 <td class="text-align:center"><p><strong>Updating node 2</strong></p></td>
 <td class="text-align:center"><p><strong>Updating node 3</strong></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
-<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((-1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1)\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
-<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((-1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1)\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
-<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((-1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1)\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
-<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((-1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1)\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
-<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1)\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(5\)</span></p></td>
-<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1)\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(7\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
-<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-1)\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(7\)</span></p></td>
-<td class="text-align:center"><p>(<span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((1\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span>)</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1)\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(7\)</span></p></td>
 <td class="text-align:center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
